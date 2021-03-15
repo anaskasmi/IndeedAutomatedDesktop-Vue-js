@@ -1,26 +1,23 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-      
-    >
-    
-     Indeed Automated Desktop 
-    
+    <v-app-bar app color="primary" dark class="">
+      <v-toolbar-title>
+        <div class="text-center">
+          <span class="akaya">Indeed Automated</span>
+        </div>
+      </v-toolbar-title>
     </v-app-bar>
 
     <v-main>
-      <Index/>
+      <Index />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Index from './views/index'
+import Index from "./views/index";
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     Index,
@@ -31,5 +28,10 @@ export default {
   }),
 };
 </script>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+.akaya {
+font-family: 'Comfortaa', cursive;}
+</style>
 
 

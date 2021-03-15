@@ -1,24 +1,55 @@
 <template>
-  <div class="mx-5 mb-10"  >
-    <div class="row col-12 pb-0 mb-0 ml-1">
+  <div class="mx-5 mb-10">
+    <div>
+      <div class="my-10 text-right">
+        <v-btn color="info" class=" " elevation="0" tile @click="fetchItems">
+          <v-icon class="mr-2">mdi-refresh </v-icon>refresh page</v-btn
+        >
+      </div>
+      <v-alert outlined type="error" prominent border="left" v-if="taskFailed">
+        Error : {{ failureMsg }}
+        <p>
+          <small class="text-info"
+            >Tip : please Make sure that the Backend code is running
+          </small>
+        </p>
+      </v-alert>
+      <v-progress-linear
+        class="my-10"
+        v-if="isLoading"
+        indeterminate
+        color="info"
+      ></v-progress-linear>
+      <v-alert
+        outlined
+        type="info"
+        prominent
+        border="left"
+        v-if="isLoading && !taskFailed"
+      >
+        please wait a second we are fetching the jobs from the database...
+      </v-alert>
+    </div>
+
+    <div class="row col-12 pb-0 mb-0 ml-1" v-if="!taskFailed && !isLoading">
       <div class="col-2 pb-0 mb-0">
         <v-checkbox
           style="font-weight: 1000; color: #3d405b"
           label="Select ALL"
           color="#006d77"
           class=""
-          @click="selectAllJobs()"
           v-model="isAllSelected"
         ></v-checkbox>
       </div>
     </div>
+
     <v-expansion-panels inset hover multiple>
       <v-expansion-panel v-for="(job, i) in jobs" :key="i">
         <v-expansion-panel-header>
           <div class="row justify-content-around">
             <v-checkbox
-              v-model="selectedJobsIds"
-              :value="job.job_id"
+              v-model="selectedJobs"
+              :value="job"
               class="align-middle mr-4 my-auto"
               @click="selectJob($event)"
               color="#006d77"
@@ -227,13 +258,11 @@
                 v-html="job.jobDescriptionHtml"
               ></div>
             </v-card-text>
-
-            
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
-  </div >
+  </div>
 </template>
 <script>
 import applicantButton from "./sub-components/applicantButton.vue";
@@ -241,6 +270,8 @@ import budgetPanel from "./sub-components/budgetPanel.vue";
 import panelTitle from "./sub-components/panelTitle.vue";
 
 export default {
+  name: "JobsList",
+
   components: {
     applicantButton,
     budgetPanel,
@@ -249,50 +280,79 @@ export default {
   created() {
     this.fetchItems();
   },
-
+  computed: {
+    jobs: {
+      get: function () {
+        return this.$store.getters.getJobs;
+      },
+      set: function (newVal) {
+        this.$store.commit("setJobs", newVal);
+      },
+    },
+    selectedJobs: {
+      get: function () {
+        return this.$store.getters.getSelectedJobs;
+      },
+      set: function (newVal) {
+        this.$store.commit("setSelectedJobs", newVal);
+      },
+    },
+      isAllSelected: {
+      get: function () {
+        return this.$store.getters.getIsAllSelected;
+      },
+      set: function (newVal) {
+        this.$store.commit("setIsAllSelected", newVal);
+      },
+    },
+  },
   data() {
     return {
-      jobs: [],
-      loading: false,
       isLoading: false,
-      isAllSelected: false,
-      selectedJobsIds: [],
+      failureMsg: "",
+      taskFailed: false,
     };
   },
   methods: {
     BASE_URL() {
       return this.$store.state.BASE_URL;
     },
+
+    sortJobsByDate(jobs) {
+      return jobs.sort((job1, job2) => {
+        let dateOfJob1 = new Date(job1.dateCreated);
+        let dateOfJob2 = new Date(job2.dateCreated);
+        if (dateOfJob1 >= dateOfJob2) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+    },
     fetchItems() {
-      this.loading = true;
+      this.taskFailed = false;
+      this.isLoading = true;
       let url = this.BASE_URL() + "/jobs/getAllJobsFromDb";
       this.$axios
         .get(url)
         .then((res) => {
-          this.loading = false;
-          this.jobs = res.data.jobs;
-          // this.cleanJobs();
           this.isLoading = false;
+          this.jobs = this.sortJobsByDate(res.data.jobs);
         })
         .catch((error) => {
-          this.loading = false;
-          this.$swal("Try again", error.message, "warning");
+          this.isLoading = false;
+          if (error.response && error.response.data.error) {
+            this.failureMsg = error.response.data.error;
+          } else {
+            this.failureMsg = error.message;
+          }
+          this.taskFailed = true;
         });
     },
     selectJob(e) {
       e.cancelBubble = true;
     },
-    selectAllJobs() {
-      //if already all jobs selected => unselecte them all, else select them all
-      if (this.selectedJobsIds.length == this.jobs.length) {
-        this.selectedJobsIds = [];
-      } else {
-        this.selectedJobsIds = [];
-        for (const currentJob of this.jobs) {
-          this.selectedJobsIds.push(currentJob.job_id);
-        }
-      }
-    },
+
   },
 };
 </script>

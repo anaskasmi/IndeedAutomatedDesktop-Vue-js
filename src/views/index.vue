@@ -1,5 +1,5 @@
 <template>
-  <v-stepper v-model="e1" non-linear elevation="0">
+  <v-stepper v-model="currentStep" non-linear elevation="0">
     <v-stepper-header>
       <v-stepper-step editable :complete="false" step="1">
         Login
@@ -17,7 +17,12 @@
 
       <v-divider></v-divider>
 
-      <v-stepper-step editable :complete="false" step="4">
+      <v-stepper-step
+        :editable="oneJobOrMoreSelected"
+        @click="openRepostingPage()"
+        :complete="false"
+        step="4"
+      >
         Reposting
       </v-stepper-step>
     </v-stepper-header>
@@ -29,6 +34,8 @@
         <v-card elevation="0">
           <LoginComponent />
         </v-card>
+        <hr />
+
         <v-btn color="primary" tile large class="float-right" @click="e1 = 2">
           <v-icon>mdi-chevron-right </v-icon>
 
@@ -40,8 +47,9 @@
       <!-- grab all jobs -->
       <v-stepper-content step="2" class="text-center">
         <GrabAllJobs />
+        <hr />
 
-        <v-btn color="primary" tile large class="float-right" @click="e1 = 2">
+        <v-btn color="primary" tile large class="float-right" @click="e1 = 3">
           <v-icon>mdi-chevron-right </v-icon>
           Select Jobs To repost
         </v-btn>
@@ -50,18 +58,23 @@
       <!-- grab all jobs -->
       <v-stepper-content step="3">
         <JobsList />
-        <v-btn color="primary" @click="e1 = 3"> Continue </v-btn>
-
-        <v-btn text> Cancel </v-btn>
+        <hr />
+        <v-btn
+          color="primary"
+          tile
+          large
+          class="float-right"
+          @click="openRepostingPage()"
+          :disabled="!oneJobOrMoreSelected"
+        >
+          <v-icon>mdi-chevron-right </v-icon>
+          Start reposting
+        </v-btn>
       </v-stepper-content>
       <!-- !! end of list step !! -->
       <!-- Reposting step -->
       <v-stepper-content step="4">
-        <v-card class="mb-12" color="grey lighten-1" height="200px"></v-card>
-
-        <v-btn color="primary" @click="e1 = 1"> Continue </v-btn>
-
-        <v-btn text> Cancel </v-btn>
+        <RepostingComponent />
       </v-stepper-content>
       <!-- !! end of Reposting step !! -->
     </v-stepper-items>
@@ -72,28 +85,35 @@
 import LoginComponent from "../components/LoginComponent";
 import GrabAllJobs from "../components/GrabAllJobs";
 import JobsList from "../components/JobsList";
+import RepostingComponent from "../components/repostingComponent";
 export default {
+  name: "mainIndex",
   components: {
     LoginComponent,
     GrabAllJobs,
     JobsList,
+    RepostingComponent,
   },
   data() {
     return {
-      e1: 1,
+      currentStep: 1,
     };
   },
-
+  computed: {
+    oneJobOrMoreSelected: {
+      get() {
+        return this.$store.getters.getIsRepostingPageEnabled;
+      },
+    },
+  },
   methods: {
     BASE_URL() {
       return this.$store.state.BASE_URL;
     },
-    login() {
-      let url = this.BASE_URL() + "/jobs/tryToLogin";
-      this.$axios
-        .get(url)
-        .then(() => {})
-        .catch(() => {});
+    openRepostingPage() {
+      if (this.oneJobOrMoreSelected) {
+        this.currentStep = 4;
+      }
     },
   },
 };

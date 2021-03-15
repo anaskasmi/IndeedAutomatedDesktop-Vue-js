@@ -7,7 +7,7 @@
     elevation="0"
   >
     <v-stepper-step editable step="1" :complete="false" elevation="0">
-      Start browser
+      Start the chromuim browser
     </v-stepper-step>
 
     <v-stepper-content step="1" elevation="0">
@@ -23,7 +23,7 @@
         elevation="0"
         class="mb-10"
       >
-        Start the browser
+        Start the chromuim browser
       </v-btn>
     </v-stepper-content>
 
@@ -41,7 +41,10 @@
 </template>
 
 <script>
+
 export default {
+      name:'LoginComponent',
+
   data() {
     return {
       currentStep: 1,
