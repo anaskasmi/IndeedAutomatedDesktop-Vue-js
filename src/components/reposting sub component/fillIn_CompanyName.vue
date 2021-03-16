@@ -2,7 +2,7 @@
   <div>
     <v-stepper-step
       editable
-      step="4"
+      :step="stepNumber"
       :rules="[
         (status) => {
           return this.status != 'failed';
@@ -15,7 +15,7 @@
       Fill In Company Name
     </v-stepper-step>
 
-    <v-stepper-content step="4" elevation="0">
+    <v-stepper-content :step="stepNumber" elevation="0">
       <v-alert
         v-if="status == 'notDone'"
         outlined
@@ -59,6 +59,7 @@
         tile
         elevation="0"
         class="mb-10"
+        :disabled="!this.currentJob.companyName"
       >
         Execute
       </v-btn>
@@ -83,6 +84,7 @@ export default {
       currentJobId: null,
     };
   },
+  props: ["stepNumber"],
   computed: {
     currentJob: {
       get: function () {

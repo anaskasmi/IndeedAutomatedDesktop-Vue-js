@@ -2,7 +2,7 @@
   <div>
     <v-stepper-step
       editable
-      step="5"
+      :step="stepNumber"
       :rules="[
         (status) => {
           return this.status != 'failed';
@@ -15,7 +15,7 @@
       Fill In Job title
     </v-stepper-step>
 
-    <v-stepper-content step="5" elevation="0">
+    <v-stepper-content :step="stepNumber" elevation="0">
       <v-alert
         v-if="status == 'notDone'"
         outlined
@@ -32,7 +32,8 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually by Filling the job title Inputs
+        This task Failed, Rexecute it Or do it manually by Filling the job title
+        Inputs
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -82,6 +83,7 @@ export default {
       currentJobId: null,
     };
   },
+  props: ["stepNumber"],
   computed: {
     currentJob: {
       get: function () {
@@ -98,7 +100,7 @@ export default {
       this.failureMsg = "";
       let url = this.BASE_URL() + "/jobs/fillIn_JobTitle";
       this.$axios
-        .post(url,{jobTitle : this.currentJob.jobTitle})
+        .post(url, { jobTitle: this.currentJob.jobTitle })
         .then(() => {
           this.status = "done";
         })

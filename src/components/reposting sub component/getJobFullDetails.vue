@@ -2,7 +2,7 @@
   <div>
     <v-stepper-step
       editable
-      step="1"
+      :step="stepNumber"
       :rules="[
         (status) => {
           return this.status != 'failed';
@@ -15,7 +15,7 @@
       Get Job Full Details
     </v-stepper-step>
 
-    <v-stepper-content step="1" elevation="0">
+    <v-stepper-content :step="stepNumber" elevation="0">
       <v-alert
         v-if="status == 'notDone'"
         outlined
@@ -82,7 +82,8 @@ export default {
       currentJobId: null,
     };
   },
-   computed: {
+  props: ["stepNumber"],
+  computed: {
     currentJob: {
       get: function () {
         return this.$store.getters.getCurrentJob;

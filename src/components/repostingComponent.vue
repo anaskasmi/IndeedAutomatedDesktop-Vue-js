@@ -1,14 +1,13 @@
 <template>
   <div v-if="currentJob">
     <div class="text-center">
-       <v-alert
-        tile
-        type="info"
-        color="#0077b6"
-        prominent
-        border="top"
-      >
-        <span class="font-weight-bold">Currently Reposting :</span> {{ currentJob.jobTitle }} <span class="text-warning"> / <span class="font-weight-bold">{{queueLenght-1}}</span> other jobs left in queue</span>
+      <v-alert tile type="info" color="#0077b6" prominent border="top">
+        <span class="font-weight-bold">Currently Reposting :</span>
+        {{ currentJob.jobTitle }}
+        <span class="text-warning">
+          / <span class="font-weight-bold">{{ queueLenght - 1 }}</span> other
+          jobs left in queue</span
+        >
       </v-alert>
     </div>
     <v-stepper
@@ -18,14 +17,38 @@
       class="mb-10"
       elevation="0"
     >
-      <GetJobFullDetails />
-      <OpenJobPostingPage />
-      <UnlockCompanyNameInput />
-      <FillInCompanyName />
-      <FillInJobTitle />
-      <FillInJobCategory />
-      <FillInRolesLocation />
-      <ClickSaveAndContinue />
+      <GetJobFullDetails stepNumber="1" />
+      <OpenJobPostingPage stepNumber="2" />
+      <UnlockCompanyNameInput stepNumber="3" />
+      <FillInCompanyName stepNumber="4" />
+      <FillInJobTitle stepNumber="5" />
+      <FillInJobCategory stepNumber="6" />
+      <FillInRolesLocation stepNumber="7" />
+      <ClickSaveAndContinue stepNumber="8" />
+      <FillInIsJobFullTimeOrPartTime stepNumber="9" />
+      <FillInSchedule stepNumber="10" />
+      <FillInHiresNumber stepNumber="11" />
+      <FillInDeadline stepNumber="12" />
+      <ClickSaveAndContinue stepNumber="13" />
+      <FillInPaymentType stepNumber="14" />
+      <FillInPaymentFrom stepNumber="15" />
+      <FillInPaymentTo stepNumber="16" />
+      <FillInPaymentPer stepNumber="17" />
+      <ClickSaveAndContinue stepNumber="18" />
+      <ClickSaveAndContinue stepNumber="19" />
+      <FillInDescription stepNumber="20" />
+      <ClickSaveAndContinue stepNumber="21" />
+      <FillInIsResumeRequired stepNumber="22  " />
+      <ClickSaveAndContinue stepNumber="23" />
+      <ClickSaveAndContinue stepNumber="24" />
+      <ClickSaveAndContinue stepNumber="25" />
+      <ClickConfirm stepNumber="26" />
+      <ClickAdvanced stepNumber="27" />
+      <FillInAdDurationDate stepNumber="28" />
+      <FillInCPC stepNumber="29" />
+      <FillInAdBudget stepNumber="30" />
+      <CloseJob stepNumber="31" />
+      
     </v-stepper>
   </div>
 </template>
@@ -39,10 +62,25 @@ import FillInJobTitle from "./reposting sub component/fillIn_JobTitle";
 import FillInJobCategory from "./reposting sub component/fillIn_JobCategory";
 import FillInRolesLocation from "./reposting sub component/fillIn_RolesLocation";
 import ClickSaveAndContinue from "./reposting sub component/clickSaveAndContinue";
+import FillInIsJobFullTimeOrPartTime from "./reposting sub component/fillIn_isJobFullTimeOrPartTime";
+import FillInSchedule from "./reposting sub component/fillIn_schedule";
+import FillInHiresNumber from "./reposting sub component/fillIn_hiresNumber";
+import FillInDeadline from "./reposting sub component/fillIn_deadline";
+import FillInPaymentType from "./reposting sub component/fillIn_paymentType";
+import FillInPaymentFrom from "./reposting sub component/fillIn_paymentFrom";
+import FillInPaymentTo from "./reposting sub component/fillIn_paymentTo";
+import FillInPaymentPer from "./reposting sub component/fillIn_paymentPer";
+import FillInDescription from "./reposting sub component/fillIn_description";
+import FillInIsResumeRequired from "./reposting sub component/fillIn_isResumeRequired";
+import ClickConfirm from "./reposting sub component/click_confirm";
+import ClickAdvanced from "./reposting sub component/click_advanced";
+import FillInAdDurationDate from "./reposting sub component/fillIn_adDurationDate";
+import FillInCPC from "./reposting sub component/fillIn_CPC";
+import FillInAdBudget from "./reposting sub component/fillIn_adBudget";
+import CloseJob from "./reposting sub component/CloseJob";
 
 export default {
-
-    name:'repostingComponent',
+  name: "repostingComponent",
 
   components: {
     OpenJobPostingPage,
@@ -53,6 +91,22 @@ export default {
     FillInJobCategory,
     FillInRolesLocation,
     ClickSaveAndContinue,
+    FillInIsJobFullTimeOrPartTime,
+    FillInSchedule,
+    FillInHiresNumber,
+    FillInDeadline,
+    FillInPaymentType,
+    FillInPaymentFrom,
+    FillInPaymentTo,
+    FillInPaymentPer,
+    FillInDescription,
+    FillInIsResumeRequired,
+    ClickConfirm,
+    ClickAdvanced,
+    FillInAdDurationDate,
+    FillInCPC,
+    FillInAdBudget,
+    CloseJob,
   },
 
   computed: {

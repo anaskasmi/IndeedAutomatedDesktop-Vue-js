@@ -1,10 +1,21 @@
 <template>
   <div>
-    <v-stepper-step editable step="2" :rules="[(status)=>{return (this.status!='failed')}]" :complete="this.status=='done'" edit-icon="mdi-check" elevation="0">
+    <v-stepper-step
+      editable
+      :step="stepNumber"
+      :rules="[
+        (status) => {
+          return this.status != 'failed';
+        },
+      ]"
+      :complete="this.status == 'done'"
+      edit-icon="mdi-check"
+      elevation="0"
+    >
       open Post Job Page
     </v-stepper-step>
 
-    <v-stepper-content step="2" elevation="0">
+    <v-stepper-content :step="stepNumber" elevation="0">
       <v-alert
         v-if="status == 'notDone'"
         outlined
@@ -64,14 +75,14 @@
 </template>
 <script>
 export default {
-
   data() {
     return {
       status: "notDone",
       failureMsg: "",
-      currentJobId:null,
+      currentJobId: null,
     };
   },
+  props: ["stepNumber"],
   computed: {
     getStatus: {
       get() {
@@ -80,7 +91,7 @@ export default {
     },
   },
   methods: {
-     BASE_URL() {
+    BASE_URL() {
       return this.$store.state.BASE_URL;
     },
     execute() {

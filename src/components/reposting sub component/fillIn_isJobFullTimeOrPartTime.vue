@@ -2,7 +2,7 @@
   <div>
     <v-stepper-step
       editable
-      step="4"
+      :step="stepNumber"
       :rules="[
         (status) => {
           return this.status != 'failed';
@@ -12,10 +12,10 @@
       edit-icon="mdi-check"
       elevation="0"
     >
-      Fill In Company Name
+      Fill In job type, full time or part time
     </v-stepper-step>
 
-    <v-stepper-content step="4" elevation="0">
+    <v-stepper-content :step="stepNumber" elevation="0">
       <v-alert
         v-if="status == 'notDone'"
         outlined
@@ -83,6 +83,7 @@ export default {
       currentJobId: null,
     };
   },
+  props: ["stepNumber"],
   computed: {
     currentJob: {
       get: function () {
@@ -97,9 +98,12 @@ export default {
     execute() {
       this.status = "doing";
       this.failureMsg = "";
-      let url = this.BASE_URL() + "/jobs/fillIn_CompanyName";
+      let url = this.BASE_URL() + "/jobs/fillIn_isJobFullTimeOrPartTime";
       this.$axios
-        .post(url, { companyName: this.currentJob.companyName })
+        .post(url, {
+          jobDetails_WhatTypeOfJobIsIt: this.currentJob
+            .jobDetails_WhatTypeOfJobIsIt,
+        })
         .then(() => {
           this.status = "done";
         })

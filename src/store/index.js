@@ -8,6 +8,7 @@ export default new Vuex.Store({
         BASE_URL: 'http://localhost:3000/api',
         jobs: [],
         selectedJobs: [],
+        currentJob: null,
         isAllSelected: false,
         autoPilotMode: true,
         repostingSteps: {
@@ -56,7 +57,8 @@ export default new Vuex.Store({
         },
         getCurrentJob: (state) => {
             if (state.selectedJobs.length > 0) {
-                return state.selectedJobs[0];
+                state.currentJob = state.selectedJobs[0]
+                return state.currentJob;
             } else {
                 return null
             }
@@ -85,6 +87,7 @@ export default new Vuex.Store({
         },
         setCurrentJob(state, job) {
             state.selectedJobs[0] = job;
+            state.currentJob = state.selectedJobs[0];
         },
         unQueueJob(state) {
             let shiftedId = state.selectedJobsIds.shift();

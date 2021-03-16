@@ -2,7 +2,7 @@
   <div>
     <v-stepper-step
       editable
-      step="7"
+      :step="stepNumber"
       :rules="[
         (status) => {
           return this.status != 'failed';
@@ -15,7 +15,7 @@
       Fill In Location
     </v-stepper-step>
 
-    <v-stepper-content step="7" elevation="0">
+    <v-stepper-content :step="stepNumber" elevation="0">
       <v-alert
         v-if="status == 'notDone'"
         outlined
@@ -32,7 +32,8 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually by Filling the Location Inputs
+        This task Failed, Rexecute it Or do it manually by Filling the Location
+        Inputs
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -81,22 +82,24 @@ export default {
       failureMsg: "",
     };
   },
+  props: ["stepNumber"],
   computed: {
     currentJob: {
       get: function () {
         return this.$store.getters.getCurrentJob;
       },
     },
-    getCurrentJobLoaction()
-    {
-      let locationArray = this.currentJob.displayLocation[0].location.split(', ')
-      let city = locationArray[0]
-      let state = locationArray[1]
-      return{
-        city : city,
-        state:state
-      }
-    }
+    getCurrentJobLoaction() {
+      let locationArray = this.currentJob.displayLocation[0].location.split(
+        ", "
+      );
+      let city = locationArray[0];
+      let state = locationArray[1];
+      return {
+        city: city,
+        state: state,
+      };
+    },
   },
   methods: {
     BASE_URL() {
@@ -107,7 +110,7 @@ export default {
       this.failureMsg = "";
       let url = this.BASE_URL() + "/jobs/fillIn_RolesLocation";
       this.$axios
-        .post(url,{location: this.getCurrentJobLoaction})
+        .post(url, { location: this.getCurrentJobLoaction })
         .then(() => {
           this.status = "done";
         })

@@ -2,7 +2,7 @@
   <div>
     <v-stepper-step
       editable
-      step="8"
+      :step="stepNumber"
       :rules="[
         (status) => {
           return this.status != 'failed';
@@ -15,7 +15,7 @@
       Click Save and Continue
     </v-stepper-step>
 
-    <v-stepper-content step="8" elevation="0">
+    <v-stepper-content :step="stepNumber" elevation="0">
       <v-alert
         v-if="status == 'notDone'"
         outlined
@@ -32,7 +32,8 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually by Clicking 'Save and continue'
+        This task Failed, Rexecute it Or do it manually by Clicking 'Save and
+        continue'
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -81,13 +82,15 @@ export default {
       failureMsg: "",
     };
   },
+  props: ["stepNumber"],
+
   computed: {
     currentJob: {
       get: function () {
         return this.$store.getters.getCurrentJob;
       },
     },
-      },
+  },
   methods: {
     BASE_URL() {
       return this.$store.state.BASE_URL;

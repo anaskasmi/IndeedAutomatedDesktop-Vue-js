@@ -2,7 +2,7 @@
   <div>
     <v-stepper-step
       editable
-      step="6"
+      :step="stepNumber"
       :rules="[
         (status) => {
           return this.status != 'failed';
@@ -15,7 +15,7 @@
       Fill In Job Category (If asked)
     </v-stepper-step>
 
-    <v-stepper-content step="6" elevation="0">
+    <v-stepper-content :step="stepNumber" elevation="0">
       <v-alert
         v-if="status == 'notDone'"
         outlined
@@ -32,7 +32,8 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually by Filling the job Category Input
+        This task Failed, Rexecute it Or do it manually by Filling the job
+        Category Input
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -82,7 +83,7 @@ export default {
       currentJobId: null,
     };
   },
-  
+  props: ["stepNumber"],
   methods: {
     BASE_URL() {
       return this.$store.state.BASE_URL;

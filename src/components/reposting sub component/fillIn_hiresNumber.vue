@@ -1,11 +1,21 @@
 <template>
   <div>
-    
-    <v-stepper-step editable step="3" :rules="[(status)=>{return (this.status!='failed')}]" :complete="this.status=='done'" edit-icon="mdi-check" elevation="0">
-      Unlock Company Name
+    <v-stepper-step
+      editable
+      :step="stepNumber"
+      :rules="[
+        (status) => {
+          return this.status != 'failed';
+        },
+      ]"
+      :complete="this.status == 'done'"
+      edit-icon="mdi-check"
+      elevation="0"
+    >
+      Fill In hires number
     </v-stepper-step>
 
-    <v-stepper-content step="3" elevation="0">
+    <v-stepper-content :step="stepNumber" elevation="0">
       <v-alert
         v-if="status == 'notDone'"
         outlined
@@ -22,7 +32,8 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually by clicking unlock on the company name
+        This task Failed, Rexecute it Or do it manually by Filling the Hires
+        number Input
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -65,32 +76,33 @@
 </template>
 <script>
 export default {
-
   data() {
     return {
       status: "notDone",
       failureMsg: "",
-      currentJobId:null,
+      currentJobId: null,
     };
   },
   props: ["stepNumber"],
   computed: {
-    getStatus: {
-      get() {
-        return this.$store.state.repostingSteps.openPostJobPage;
+    currentJob: {
+      get: function () {
+        return this.$store.getters.getCurrentJob;
       },
     },
   },
   methods: {
-     BASE_URL() {
+    BASE_URL() {
       return this.$store.state.BASE_URL;
     },
     execute() {
       this.status = "doing";
       this.failureMsg = "";
-      let url = this.BASE_URL() + "/jobs/unlockCompanyNameInput";
+      let url = this.BASE_URL() + "/jobs/fillIn_hiresNumber";
       this.$axios
-        .get(url)
+        .post(url, {
+          jobDetails_intHiresNeeded: this.currentJob.jobDetails_intHiresNeeded,
+        })
         .then(() => {
           this.status = "done";
         })
