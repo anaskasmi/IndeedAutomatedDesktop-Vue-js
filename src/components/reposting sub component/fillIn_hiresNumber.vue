@@ -89,7 +89,7 @@ export default {
     },
     failureMsg: {
       get() {
-        return this.$store.getters.failureMsgs.fillIn_hiresNumber;
+        return this.$store.getters.getFailureMsgs.fillIn_hiresNumber;
       },
     },
   },

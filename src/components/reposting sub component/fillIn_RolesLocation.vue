@@ -89,7 +89,7 @@ export default {
     },
     failureMsg: {
       get() {
-        return this.$store.getters.failureMsgs.fillIn_RolesLocation;
+        return this.$store.getters.getFailureMsgs.fillIn_RolesLocation;
       },
     },
   },

@@ -89,7 +89,7 @@ export default {
     },
     failureMsg: {
       get() {
-        return this.$store.getters.failureMsgs.fillIn_isJobFullTimeOrPartTime;
+        return this.$store.getters.getFailureMsgs.fillIn_isJobFullTimeOrPartTime;
       },
     },
   },

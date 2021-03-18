@@ -88,7 +88,7 @@ export default {
     },
     failureMsg: {
       get() {
-        return this.$store.getters.failureMsgs.fillIn_CPC;
+        return this.$store.getters.getFailureMsgs.fillIn_CPC;
       },
     },
   },

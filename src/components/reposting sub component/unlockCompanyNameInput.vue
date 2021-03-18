@@ -78,7 +78,7 @@ export default {
     },
     failureMsg: {
       get() {
-        return this.$store.getters.failureMsgs.unlockCompanyNameInput;
+        return this.$store.getters.getFailureMsgs.unlockCompanyNameInput;
       },
     },
   },

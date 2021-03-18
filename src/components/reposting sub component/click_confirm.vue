@@ -88,7 +88,7 @@ export default {
     },
     failureMsg: {
       get() {
-        return this.$store.getters.failureMsgs.click_confirm;
+        return this.$store.getters.getFailureMsgs.click_confirm;
       },
     },
   },

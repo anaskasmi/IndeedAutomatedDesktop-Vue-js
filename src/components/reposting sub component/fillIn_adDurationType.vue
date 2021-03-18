@@ -88,7 +88,7 @@ export default {
     },
     failureMsg: {
       get() {
-        return this.$store.getters.failureMsgs.fillIn_adDurationType;
+        return this.$store.getters.getFailureMsgs.fillIn_adDurationType;
       },
     },
   },

@@ -12,7 +12,7 @@
       edit-icon="mdi-check"
       elevation="0"
     >
-      Get Job Full Details
+      Get Job Full Details (Important to run first !)
     </v-stepper-step>
 
     <v-stepper-content :step="stepNumber" elevation="0">
@@ -88,7 +88,7 @@ export default {
     },
     failureMsg: {
       get() {
-        return this.$store.getters.failureMsgs.getJobFullDetails;
+        return this.$store.getters.getFailureMsgs.getJobFullDetails;
       },
     },
   },

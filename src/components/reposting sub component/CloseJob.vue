@@ -88,7 +88,7 @@ export default {
     },
     failureMsg: {
       get() {
-        return this.$store.getters.failureMsgs.CloseJob;
+        return this.$store.getters.getFailureMsgs.CloseJob;
       },
     },
   },

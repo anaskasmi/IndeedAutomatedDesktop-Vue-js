@@ -89,7 +89,7 @@ export default {
     },
     failureMsg: {
       get() {
-        return this.$store.getters.failureMsgs.clickSaveAndContinue;
+        return this.$store.getters.getFailureMsgs.clickSaveAndContinue;
       },
     },
   },

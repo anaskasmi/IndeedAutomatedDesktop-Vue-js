@@ -1,4 +1,5 @@
 <template>
+<div>
   <div v-if="currentJob">
     <div class="text-center">
       <v-alert tile type="info" color="#0077b6" prominent border="top">
@@ -49,7 +50,16 @@
       <FillInAdBudget stepNumber="30" />
       <ClickSaveAndContinue stepNumber="31" />
       <CloseJob stepNumber="32" />
+      <RepostNextJobComponent stepNumber="33" />
     </v-stepper>
+  </div>
+  <div v-else>
+       <div class="text-center">
+      <v-alert tile type="info" color="#0077b6" prominent border="top">
+        <span class="font-weight-bold">No jobs in the queue</span>
+      </v-alert>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -78,6 +88,7 @@ import FillInAdDurationDate from "./reposting sub component/fillIn_adDurationDat
 import FillInCPC from "./reposting sub component/fillIn_CPC";
 import FillInAdBudget from "./reposting sub component/fillIn_adBudget";
 import CloseJob from "./reposting sub component/CloseJob";
+import RepostNextJobComponent from "./reposting sub component/RepostNextJobComponent";
 
 export default {
   name: "repostingComponent",
@@ -107,6 +118,7 @@ export default {
     FillInCPC,
     FillInAdBudget,
     CloseJob,
+    RepostNextJobComponent,
   },
 
   computed: {

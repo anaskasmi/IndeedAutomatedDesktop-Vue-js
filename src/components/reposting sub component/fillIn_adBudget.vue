@@ -88,7 +88,7 @@ export default {
     },
     failureMsg: {
       get() {
-        return this.$store.getters.failureMsgs.fillIn_adBudget;
+        return this.$store.getters.getFailureMsgs.fillIn_adBudget;
       },
     },
   },
