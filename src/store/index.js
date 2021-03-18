@@ -545,14 +545,17 @@ export default new Vuex.Store({
                     console.log(error);
                 });
         },
-        execute_getJobFullDetails({ state, getters }) {
+        execute_getJobFullDetails({ state, getters, commit }) {
             state.repostingSteps.getJobFullDetails = "doing";
             state.failureMsgs.getJobFullDetails = null;
             let url = state.BASE_URL + "/jobs/getJobFullDetails";
             axios
                 .post(url, { job_id: getters.getCurrentJob.job_id })
-                .then(() => {
+                .then((res) => {
                     state.repostingSteps.getJobFullDetails = "done";
+                    //affect the full details to the current job
+                    commit("setCurrentJob", res.data.job);
+
                 })
                 .catch((error) => {
                     state.repostingSteps.getJobFullDetails = "failed";
