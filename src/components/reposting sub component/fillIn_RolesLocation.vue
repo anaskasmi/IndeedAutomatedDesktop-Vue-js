@@ -78,47 +78,24 @@
 export default {
   data() {
     return {
-      status: "notDone",
-      failureMsg: "",
     };
   },
   props: ["stepNumber"],
   computed: {
-    currentJob: {
-      get: function () {
-        return this.$store.getters.getCurrentJob;
+    status: {
+      get() {
+        return this.$store.getters.getRepostingSteps.fillIn_RolesLocation;
       },
     },
-    getCurrentJobLoaction() {
-      let locationArray = this.currentJob.displayLocation[0].location.split(
-        ", "
-      );
-      let city = locationArray[0];
-      let state = locationArray[1];
-      return {
-        city: city,
-        state: state,
-      };
+    failureMsg: {
+      get() {
+        return this.$store.getters.failureMsgs.fillIn_RolesLocation;
+      },
     },
   },
   methods: {
-    BASE_URL() {
-      return this.$store.state.BASE_URL;
-    },
     execute() {
-      this.status = "doing";
-      this.failureMsg = "";
-      let url = this.BASE_URL() + "/jobs/fillIn_RolesLocation";
-      this.$axios
-        .post(url, { location: this.getCurrentJobLoaction })
-        .then(() => {
-          this.status = "done";
-        })
-        .catch((error) => {
-          this.status = "failed";
-          this.failureMsg = error.response.data.error;
-          console.log(error);
-        });
+      this.$store.dispatch("execute_fillIn_RolesLocation");
     },
   },
 };

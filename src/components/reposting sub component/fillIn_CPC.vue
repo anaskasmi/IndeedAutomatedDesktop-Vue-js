@@ -12,7 +12,7 @@
       edit-icon="mdi-check"
       elevation="0"
     >
-      Click Confirm
+      Fill In CPC
     </v-stepper-step>
 
     <v-stepper-content :step="stepNumber" elevation="0">
@@ -32,7 +32,7 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually by Clicking 'confirm'
+        This task Failed, Rexecute it Or do it manually by Fillin the CPC Input
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -77,37 +77,24 @@
 export default {
   data() {
     return {
-      status: "notDone",
-      failureMsg: "",
     };
   },
   props: ["stepNumber"],
-
   computed: {
-    currentJob: {
-      get: function () {
-        return this.$store.getters.getCurrentJob;
+    status: {
+      get() {
+        return this.$store.getters.getRepostingSteps.fillIn_CPC;
+      },
+    },
+    failureMsg: {
+      get() {
+        return this.$store.getters.failureMsgs.fillIn_CPC;
       },
     },
   },
   methods: {
-    BASE_URL() {
-      return this.$store.state.BASE_URL;
-    },
     execute() {
-      this.status = "doing";
-      this.failureMsg = "";
-      let url = this.BASE_URL() + "/jobs/click_confirm";
-      this.$axios
-        .post(url)
-        .then(() => {
-          this.status = "done";
-        })
-        .catch((error) => {
-          this.status = "failed";
-          this.failureMsg = error.response.data.error;
-          console.log(error);
-        });
+      this.$store.dispatch("execute_fillIn_CPC");
     },
   },
 };

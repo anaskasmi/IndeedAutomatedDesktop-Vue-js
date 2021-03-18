@@ -32,7 +32,7 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually by filling the 
+        This task Failed, Rexecute it Or do it manually by filling the date input 
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -77,37 +77,24 @@
 export default {
   data() {
     return {
-      status: "notDone",
-      failureMsg: "",
     };
   },
   props: ["stepNumber"],
-
   computed: {
-    currentJob: {
-      get: function () {
-        return this.$store.getters.getCurrentJob;
+    status: {
+      get() {
+        return this.$store.getters.getRepostingSteps.fillIn_adDurationDate;
+      },
+    },
+    failureMsg: {
+      get() {
+        return this.$store.getters.failureMsgs.fillIn_adDurationDate;
       },
     },
   },
   methods: {
-    BASE_URL() {
-      return this.$store.state.BASE_URL;
-    },
     execute() {
-      this.status = "doing";
-      this.failureMsg = "";
-      let url = this.BASE_URL() + "/jobs/fillIn_adDurationDate";
-      this.$axios
-        .get(url)
-        .then(() => {
-          this.status = "done";
-        })
-        .catch((error) => {
-          this.status = "failed";
-          this.failureMsg = error.response.data.error;
-          console.log(error);
-        });
+      this.$store.dispatch("execute_fillIn_adDurationDate");
     },
   },
 };

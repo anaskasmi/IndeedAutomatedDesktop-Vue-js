@@ -77,40 +77,24 @@
 export default {
   data() {
     return {
-      status: "notDone",
-      failureMsg: "",
-      currentJobId: null,
     };
   },
   props: ["stepNumber"],
   computed: {
-    currentJob: {
-      get: function () {
-        return this.$store.getters.getCurrentJob;
+    status: {
+      get() {
+        return this.$store.getters.getRepostingSteps.fillIn_paymentFrom;
+      },
+    },
+    failureMsg: {
+      get() {
+        return this.$store.getters.failureMsgs.fillIn_paymentFrom;
       },
     },
   },
   methods: {
-    BASE_URL() {
-      return this.$store.state.BASE_URL;
-    },
     execute() {
-      this.status = "doing";
-      this.failureMsg = "";
-      let url = this.BASE_URL() + "/jobs/fillIn_paymentFrom";
-      this.$axios
-        .post(url, {
-          jobDetails_SalaryFrom: this.currentJob
-            .jobDetails_SalaryFrom,
-        })
-        .then(() => {
-          this.status = "done";
-        })
-        .catch((error) => {
-          this.status = "failed";
-          this.failureMsg = error.response.data.error;
-          console.log(error);
-        });
+      this.$store.dispatch("execute_fillIn_paymentFrom");
     },
   },
 };

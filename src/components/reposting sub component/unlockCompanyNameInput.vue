@@ -65,40 +65,26 @@
 </template>
 <script>
 export default {
-
   data() {
     return {
-      status: "notDone",
-      failureMsg: "",
-      currentJobId:null,
     };
   },
   props: ["stepNumber"],
   computed: {
-    getStatus: {
+    status: {
       get() {
-        return this.$store.state.repostingSteps.openPostJobPage;
+        return this.$store.getters.getRepostingSteps.unlockCompanyNameInput;
+      },
+    },
+    failureMsg: {
+      get() {
+        return this.$store.getters.failureMsgs.unlockCompanyNameInput;
       },
     },
   },
   methods: {
-     BASE_URL() {
-      return this.$store.state.BASE_URL;
-    },
     execute() {
-      this.status = "doing";
-      this.failureMsg = "";
-      let url = this.BASE_URL() + "/jobs/unlockCompanyNameInput";
-      this.$axios
-        .get(url)
-        .then(() => {
-          this.status = "done";
-        })
-        .catch((error) => {
-          this.status = "failed";
-          this.failureMsg = error.response.data.error;
-          console.log(error);
-        });
+      this.$store.dispatch("execute_unlockCompanyNameInput");
     },
   },
 };

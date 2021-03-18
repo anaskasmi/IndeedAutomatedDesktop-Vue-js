@@ -18,7 +18,7 @@
       elevation="0"
     >
       <GetJobFullDetails stepNumber="1" />
-      <OpenJobPostingPage stepNumber="2" />
+      <OpenPostJobPage stepNumber="2" />
       <UnlockCompanyNameInput stepNumber="3" />
       <FillInCompanyName stepNumber="4" />
       <FillInJobTitle stepNumber="5" />
@@ -47,14 +47,14 @@
       <FillInAdDurationDate stepNumber="28" />
       <FillInCPC stepNumber="29" />
       <FillInAdBudget stepNumber="30" />
-      <CloseJob stepNumber="31" />
-      
+      <ClickSaveAndContinue stepNumber="31" />
+      <CloseJob stepNumber="32" />
     </v-stepper>
   </div>
 </template>
 
 <script>
-import OpenJobPostingPage from "./reposting sub component/openJobPostingPage";
+import OpenPostJobPage from "./reposting sub component/openPostJobPage";
 import GetJobFullDetails from "./reposting sub component/getJobFullDetails";
 import UnlockCompanyNameInput from "./reposting sub component/unlockCompanyNameInput";
 import FillInCompanyName from "./reposting sub component/fillIn_CompanyName";
@@ -83,7 +83,7 @@ export default {
   name: "repostingComponent",
 
   components: {
-    OpenJobPostingPage,
+    OpenPostJobPage,
     GetJobFullDetails,
     UnlockCompanyNameInput,
     FillInCompanyName,

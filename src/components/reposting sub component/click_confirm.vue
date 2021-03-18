@@ -77,37 +77,24 @@
 export default {
   data() {
     return {
-      status: "notDone",
-      failureMsg: "",
     };
   },
   props: ["stepNumber"],
-
   computed: {
-    currentJob: {
-      get: function () {
-        return this.$store.getters.getCurrentJob;
+    status: {
+      get() {
+        return this.$store.getters.getRepostingSteps.click_confirm;
+      },
+    },
+    failureMsg: {
+      get() {
+        return this.$store.getters.failureMsgs.click_confirm;
       },
     },
   },
   methods: {
-    BASE_URL() {
-      return this.$store.state.BASE_URL;
-    },
     execute() {
-      this.status = "doing";
-      this.failureMsg = "";
-      let url = this.BASE_URL() + "/jobs/click_confirm";
-      this.$axios
-        .get(url)
-        .then(() => {
-          this.status = "done";
-        })
-        .catch((error) => {
-          this.status = "failed";
-          this.failureMsg = error.response.data.error;
-          console.log(error);
-        });
+      this.$store.dispatch("execute_click_confirm");
     },
   },
 };

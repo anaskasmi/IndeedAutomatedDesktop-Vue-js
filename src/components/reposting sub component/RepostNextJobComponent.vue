@@ -12,7 +12,7 @@
       edit-icon="mdi-check"
       elevation="0"
     >
-      open Post Job Page
+      Start Reposting the Next Job
     </v-stepper-step>
 
     <v-stepper-content :step="stepNumber" elevation="0">
@@ -32,7 +32,7 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually
+        This task Failed, Rexecute it Or do it manually by Filling the description Input
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -77,37 +77,24 @@
 export default {
   data() {
     return {
-      status: "notDone",
-      failureMsg: "",
-      currentJobId: null,
     };
   },
   props: ["stepNumber"],
   computed: {
-    getStatus: {
+    status: {
       get() {
-        return this.$store.state.repostingSteps.openPostJobPage;
+        return this.$store.getters.getRepostingSteps.RepostNextJobComponent;
+      },
+    },
+    failureMsg: {
+      get() {
+        return this.$store.getters.failureMsgs.RepostNextJobComponent;
       },
     },
   },
   methods: {
-    BASE_URL() {
-      return this.$store.state.BASE_URL;
-    },
     execute() {
-      this.status = "doing";
-      this.failureMsg = "";
-      let url = this.BASE_URL() + "/jobs/openPostJobPage";
-      this.$axios
-        .get(url)
-        .then(() => {
-          this.status = "done";
-        })
-        .catch((error) => {
-          this.status = "failed";
-          this.failureMsg = error.response.data.error;
-          console.log(error);
-        });
+      this.$store.dispatch("execute_RepostNextJobComponent");
     },
   },
 };

@@ -12,7 +12,7 @@
       edit-icon="mdi-check"
       elevation="0"
     >
-      Fill In Job Category (If asked)
+      open Post Job Page
     </v-stepper-step>
 
     <v-stepper-content :step="stepNumber" elevation="0">
@@ -32,8 +32,7 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually by Filling the job
-        Category Input
+        This task Failed, Rexecute it Or do it manually
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -84,18 +83,18 @@ export default {
   computed: {
     status: {
       get() {
-        return this.$store.getters.getRepostingSteps.fillIn_JobCategory;
+        return this.$store.getters.getRepostingSteps.openPostJobPage;
       },
     },
     failureMsg: {
       get() {
-        return this.$store.getters.failureMsgs.fillIn_JobCategory;
+        return this.$store.getters.failureMsgs.openPostJobPage;
       },
     },
   },
   methods: {
     execute() {
-      this.$store.dispatch("execute_fillIn_JobCategory");
+      this.$store.dispatch("execute_openPostJobPage");
     },
   },
 };
