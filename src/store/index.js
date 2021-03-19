@@ -38,6 +38,10 @@ export default new Vuex.Store({
             fillIn_CPC: 'notDone',
             fillIn_adBudget: 'notDone',
             CloseJob: 'notDone',
+            fillIn_email: 'notDone',
+            close_questions: 'notDone',
+            fillIn_isJobRemote: 'notDone',
+            fillIn_otherBenefits: 'notDone',
             RepostNextJobComponent: 'notDone',
         },
         failureMsgs: {
@@ -66,7 +70,12 @@ export default new Vuex.Store({
             fillIn_CPC: null,
             fillIn_adBudget: null,
             CloseJob: null,
+            fillIn_email: null,
+            close_questions: null,
+            fillIn_isJobRemote: null,
+            fillIn_otherBenefits: null,
             RepostNextJobComponent: null,
+
         },
     },
     getters: {
@@ -157,6 +166,10 @@ export default new Vuex.Store({
                 fillIn_CPC: 'notDone',
                 fillIn_adBudget: 'notDone',
                 CloseJob: 'notDone',
+                fillIn_email: 'notDone',
+                close_questions: 'notDone',
+                fillIn_isJobRemote: 'notDone',
+                fillIn_otherBenefits: 'notDone',
                 RepostNextJobComponent: 'notDone',
             };
 
@@ -187,6 +200,10 @@ export default new Vuex.Store({
                 fillIn_CPC: null,
                 fillIn_adBudget: null,
                 CloseJob: null,
+                fillIn_email: null,
+                close_questions: null,
+                fillIn_isJobRemote: null,
+                fillIn_otherBenefits: null,
                 RepostNextJobComponent: null,
             };
         },
@@ -578,7 +595,6 @@ export default new Vuex.Store({
                     console.log(error);
                 });
         },
-
         execute_unlockCompanyNameInput({ state }) {
             state.repostingSteps.unlockCompanyNameInput = "doing";
             state.failureMsgs.unlockCompanyNameInput = null;
@@ -594,8 +610,68 @@ export default new Vuex.Store({
                     console.log(error);
                 });
         },
+        execute_fillIn_email({ state, getters }) {
 
+            state.repostingSteps.fillIn_email = "doing";
+            state.failureMsgs.fillIn_email = null;
+            let url = state.BASE_URL + "/jobs/fillIn_email";
+            axios
+                .post(url, {
+                    jobDetails_emails: getters.getCurrentJob
+                        .jobDetails_emails[0],
+                }).then(() => {
+                    state.repostingSteps.fillIn_email = "done";
+                })
+                .catch((error) => {
+                    state.repostingSteps.fillIn_email = "failed";
+                    state.failureMsgs.fillIn_email = error.response.data.error;
+                    console.log(error);
+                });
+        },
+        execute_close_questions({ state }) {
 
+            state.repostingSteps.close_questions = "doing";
+            state.failureMsgs.close_questions = null;
+            let url = state.BASE_URL + "/jobs/close_questions";
+            axios
+                .get(url).then(() => {
+                    state.repostingSteps.close_questions = "done";
+                })
+                .catch((error) => {
+                    state.repostingSteps.close_questions = "failed";
+                    state.failureMsgs.close_questions = error.response.data.error;
+                    console.log(error);
+                });
+        },
+        execute_fillIn_isJobRemote({ state }) {
+
+            state.repostingSteps.fillIn_isJobRemote = "doing";
+            state.failureMsgs.fillIn_isJobRemote = null;
+            let url = state.BASE_URL + "/jobs/fillIn_isJobRemote";
+            axios
+                .get(url).then(() => {
+                    state.repostingSteps.fillIn_isJobRemote = "done";
+                })
+                .catch((error) => {
+                    state.repostingSteps.fillIn_isJobRemote = "failed";
+                    state.failureMsgs.fillIn_isJobRemote = error.response.data.error;
+                    console.log(error);
+                });
+        },
+        execute_fillIn_otherBenefits({ state }) {
+            state.repostingSteps.fillIn_otherBenefits = "doing";
+            state.failureMsgs.fillIn_otherBenefits = null;
+            let url = state.BASE_URL + "/jobs/fillIn_otherBenefits";
+            axios
+                .get(url).then(() => {
+                    state.repostingSteps.fillIn_otherBenefits = "done";
+                })
+                .catch((error) => {
+                    state.repostingSteps.fillIn_otherBenefits = "failed";
+                    state.failureMsgs.fillIn_otherBenefits = error.response.data.error;
+                    console.log(error);
+                });
+        },
     },
     modules: {}
 })

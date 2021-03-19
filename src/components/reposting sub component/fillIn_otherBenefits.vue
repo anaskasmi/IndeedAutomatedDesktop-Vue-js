@@ -12,10 +12,10 @@
       edit-icon="mdi-check"
       elevation="0"
     >
-      Fill In deadline
+      fill In Other on Benefits input
     </v-stepper-step>
 
-    <v-stepper-content  :step="stepNumber" elevation="0">
+    <v-stepper-content :step="stepNumber" elevation="0">
       <v-alert
         v-if="status == 'notDone'"
         outlined
@@ -32,8 +32,7 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually by Filling the deadline
-        Input
+        This task Failed, Rexecute it Or do it manually by clicking Other, on benefits Input
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -77,24 +76,25 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+    };
   },
   props: ["stepNumber"],
   computed: {
     status: {
       get() {
-        return this.$store.getters.getRepostingSteps.fillIn_deadline;
+        return this.$store.getters.getRepostingSteps.fillIn_otherBenefits;
       },
     },
     failureMsg: {
       get() {
-        return this.$store.getters.getFailureMsgs.fillIn_deadline;
+        return this.$store.getters.getFailureMsgs.fillIn_otherBenefits;
       },
     },
   },
   methods: {
     execute() {
-      this.$store.dispatch("execute_fillIn_deadline");
+      this.$store.dispatch("execute_fillIn_otherBenefits");
     },
   },
 };

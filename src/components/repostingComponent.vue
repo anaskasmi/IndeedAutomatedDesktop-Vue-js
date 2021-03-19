@@ -1,65 +1,101 @@
 <template>
-<div>
-  <div v-if="currentJob">
-    <div class="text-center">
-      <v-alert tile type="info" color="#0077b6" prominent border="top">
-        <span class="font-weight-bold">Currently Reposting :</span>
-        {{ currentJob.jobTitle }}
-        <span class="text-warning">
-          / <span class="font-weight-bold">{{ queueLenght - 1 }}</span> other
-          jobs left in queue</span
-        >
-      </v-alert>
+  <div>
+    <div v-if="currentJob">
+      <div class="text-center">
+        <v-alert tile type="info" color="#0077b6" prominent border="top">
+          <span class="font-weight-bold">Currently Reposting :</span>
+          {{ currentJob.jobTitle }}
+          <span class="text-warning">
+            / <span class="font-weight-bold">{{ queueLenght - 1 }}</span> other
+            jobs left in queue</span
+          >
+        </v-alert>
+      </div>
+      <v-stepper
+        editable
+        v-model="currentStep"
+        vertical
+        class="mb-10"
+        elevation="0"
+      >
+        <GetJobFullDetails stepNumber="1" />
+        <OpenPostJobPage stepNumber="2" />
+
+        <hr />
+        <span class="page-title">1- Getting Started page</span>
+        <hr />
+        <UnlockCompanyNameInput stepNumber="3" />
+        <FillInCompanyName stepNumber="4" />
+        <FillInJobTitle stepNumber="5" />
+        <FillInJobCategory stepNumber="6" />
+        <FillInRolesLocation stepNumber="7" />
+        <FillInIsJobRemote stepNumber="8" />
+        <ClickSaveAndContinue stepNumber="9" />
+
+        <hr />
+        <span class="page-title">2- Job Details page</span>
+        <hr />
+        <FillInIsJobFullTimeOrPartTime stepNumber="10" />
+        <FillInSchedule stepNumber="11" />
+        <FillInHiresNumber stepNumber="12" />
+        <FillInDeadline stepNumber="13" />
+        <ClickSaveAndContinue stepNumber="14" />
+
+        <hr />
+        <span class="page-title">3- Compensation Details page</span>
+        <hr />
+        <FillInPaymentType stepNumber="15" />
+        <FillInPaymentFrom stepNumber="16" />
+        <FillInPaymentTo stepNumber="17" />
+        <FillInPaymentPer stepNumber="18" />
+        <FillInOtherBenefits stepNumber="19" />
+        <ClickSaveAndContinue stepNumber="20" />
+
+        <hr />
+        <span class="page-title">4- Additional Job Details page</span>
+        <hr />
+        <ClickSaveAndContinue stepNumber="21" />
+
+        <hr />
+        <span class="page-title">5- Job Description page</span>
+        <hr />
+        <FillInDescription stepNumber="22" />
+        <ClickSaveAndContinue stepNumber="23" />
+
+        <hr />
+        <span class="page-title">6- Application Settings page</span>
+        <hr />
+        <FillInIsResumeRequired stepNumber="24" />
+        <FillInEmail stepNumber="25" />
+        <ClickSaveAndContinue stepNumber="26" />
+
+        <hr />
+        <span class="page-title">7- Applicant qualifications page</span>
+        <hr />
+        <CloseQuestions stepNumber="27" />
+        <ClickSaveAndContinue stepNumber="28" />
+
+        <hr />
+        <span class="page-title">8- Preview Job page</span>
+        <hr />
+        <ClickSaveAndContinue stepNumber="29" />
+        <ClickConfirm stepNumber="30" />
+        <ClickAdvanced stepNumber="31" />
+        <FillInAdDurationDate stepNumber="32" />
+        <FillInCPC stepNumber="33" />
+        <FillInAdBudget stepNumber="34" />
+        <ClickSaveAndContinue stepNumber="35" />
+        <CloseJob stepNumber="36" />
+        <RepostNextJobComponent stepNumber="37" />
+      </v-stepper>
     </div>
-    <v-stepper
-      editable
-      v-model="currentStep"
-      vertical
-      class="mb-10"
-      elevation="0"
-    >
-      <GetJobFullDetails stepNumber="1" />
-      <OpenPostJobPage stepNumber="2" />
-      <UnlockCompanyNameInput stepNumber="3" />
-      <FillInCompanyName stepNumber="4" />
-      <FillInJobTitle stepNumber="5" />
-      <FillInJobCategory stepNumber="6" />
-      <FillInRolesLocation stepNumber="7" />
-      <ClickSaveAndContinue stepNumber="8" />
-      <FillInIsJobFullTimeOrPartTime stepNumber="9" />
-      <FillInSchedule stepNumber="10" />
-      <FillInHiresNumber stepNumber="11" />
-      <FillInDeadline stepNumber="12" />
-      <ClickSaveAndContinue stepNumber="13" />
-      <FillInPaymentType stepNumber="14" />
-      <FillInPaymentFrom stepNumber="15" />
-      <FillInPaymentTo stepNumber="16" />
-      <FillInPaymentPer stepNumber="17" />
-      <ClickSaveAndContinue stepNumber="18" />
-      <ClickSaveAndContinue stepNumber="19" />
-      <FillInDescription stepNumber="20" />
-      <ClickSaveAndContinue stepNumber="21" />
-      <FillInIsResumeRequired stepNumber="22  " />
-      <ClickSaveAndContinue stepNumber="23" />
-      <ClickSaveAndContinue stepNumber="24" />
-      <ClickSaveAndContinue stepNumber="25" />
-      <ClickConfirm stepNumber="26" />
-      <ClickAdvanced stepNumber="27" />
-      <FillInAdDurationDate stepNumber="28" />
-      <FillInCPC stepNumber="29" />
-      <FillInAdBudget stepNumber="30" />
-      <ClickSaveAndContinue stepNumber="31" />
-      <CloseJob stepNumber="32" />
-      <RepostNextJobComponent stepNumber="33" />
-    </v-stepper>
-  </div>
-  <div v-else>
-       <div class="text-center">
-      <v-alert tile type="info" color="#0077b6" prominent border="top">
-        <span class="font-weight-bold">No jobs in the queue</span>
-      </v-alert>
+    <div v-else>
+      <div class="text-center">
+        <v-alert tile type="info" color="#0077b6" prominent border="top">
+          <span class="font-weight-bold">No jobs in the queue</span>
+        </v-alert>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -88,7 +124,11 @@ import FillInAdDurationDate from "./reposting sub component/fillIn_adDurationDat
 import FillInCPC from "./reposting sub component/fillIn_CPC";
 import FillInAdBudget from "./reposting sub component/fillIn_adBudget";
 import CloseJob from "./reposting sub component/CloseJob";
+import FillInEmail from "./reposting sub component/fillIn_email";
+import CloseQuestions from "./reposting sub component/close_questions";
 import RepostNextJobComponent from "./reposting sub component/RepostNextJobComponent";
+import FillInIsJobRemote from "./reposting sub component/fillIn_isJobRemote";
+import FillInOtherBenefits from "./reposting sub component/fillIn_otherBenefits";
 
 export default {
   name: "repostingComponent",
@@ -118,6 +158,10 @@ export default {
     FillInCPC,
     FillInAdBudget,
     CloseJob,
+    FillInEmail,
+    CloseQuestions,
+    FillInIsJobRemote,
+    FillInOtherBenefits,
     RepostNextJobComponent,
   },
 
@@ -158,3 +202,10 @@ export default {
 };
 </script>
 
+<style scoped>
+.page-title{
+  color:#1976d2  ;
+  font-weight: 700;
+  font-size: 16px;
+}
+</style>
