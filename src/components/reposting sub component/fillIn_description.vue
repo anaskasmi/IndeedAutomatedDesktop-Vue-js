@@ -32,7 +32,8 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually by Filling the description Input
+        This task Failed, Rexecute it Or do it manually by Filling the
+        description Input
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -63,6 +64,17 @@
       </v-btn>
 
       <v-btn
+        v-clipboard:copy="description"
+        v-clipboard:success="onCopy"
+        :color="textCopied?'#dddddd':'success'"
+        tile
+        :elevation="textCopied?0:2"
+        class="mb-10 mx-4"
+        >Copy
+      </v-btn>
+
+
+      <v-btn
         color="success"
         @click="nextStep()"
         tile
@@ -77,10 +89,17 @@
 export default {
   data() {
     return {
+      textCopied: false,
     };
   },
+
   props: ["stepNumber"],
   computed: {
+    description: {
+      get() {
+        return this.$store.getters.getCurrentJob.jobDescriptionHtml;
+      },
+    },
     status: {
       get() {
         return this.$store.getters.getRepostingSteps.fillIn_description;
@@ -95,6 +114,9 @@ export default {
   methods: {
     execute() {
       this.$store.dispatch("execute_fillIn_description");
+    },
+    onCopy() {
+      this.textCopied = true;
     },
   },
 };
