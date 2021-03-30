@@ -2,12 +2,26 @@
   <div>
     <div v-if="currentJob">
       <div class="text-center">
-        <v-alert tile type="info" color="#0077b6" prominent border="top">
-          <span class="font-weight-bold">Currently Reposting :</span>
-          {{ currentJob.jobTitle }}
-          <span class="text-warning">
-            / <span class="font-weight-bold">{{ queueLenght - 1 }}</span> other
-            jobs left in queue</span
+        <v-alert
+          style="font-size: 22px"
+          tile
+          type="warning"
+          color="#f1f6f9"
+          class="text-dark"
+          prominent
+          border="left"
+          elevation="3"
+        >
+          <span>Currently Reposting : </span>
+          <span class="font-weight-bold" style="color: #3d7ea6">{{
+            currentJob.jobTitle
+          }}</span>
+          <span>
+            /
+            <span class="font-weight-bold" style="color: #ee6f57">{{
+              queueLenght - 1
+            }}</span>
+            other jobs left in queue</span
           >
         </v-alert>
       </div>
@@ -18,75 +32,77 @@
         class="mb-10"
         elevation="0"
       >
+        <DownloadJobDetailsBar />
         <GetJobFullDetails stepNumber="1" />
         <OpenPostJobPage stepNumber="2" />
 
-        <hr />
-        <span class="page-title">1- Getting Started page</span>
-        <hr />
+        <GettingStartedBar />
+
         <UnlockCompanyNameInput stepNumber="3" />
         <FillInCompanyName stepNumber="4" />
         <FillInJobTitle stepNumber="5" />
         <FillInJobCategory stepNumber="6" />
         <FillInRolesLocation stepNumber="7" />
         <FillInIsJobRemote stepNumber="8" />
-        <ClickSaveAndContinue stepNumber="9" />
+        <!-- <ClickSaveAndContinue stepNumber="9" /> -->
 
-        <hr />
-        <span class="page-title">2- Job Details page</span>
-        <hr />
+        <JobDetailsBar />
+
         <FillInIsJobFullTimeOrPartTime stepNumber="10" />
         <FillInSchedule stepNumber="11" />
         <FillInHiresNumber stepNumber="12" />
         <FillInDeadline stepNumber="13" />
-        <ClickSaveAndContinue stepNumber="14" />
+        <!-- <ClickSaveAndContinue stepNumber="14" /> -->
 
-        <hr />
-        <span class="page-title">3- Compensation Details page</span>
-        <hr />
+        <CompensationDetailsBar />
+
         <FillInPaymentType stepNumber="15" />
         <FillInPaymentFrom stepNumber="16" />
         <FillInPaymentTo stepNumber="17" />
         <FillInPaymentPer stepNumber="18" />
         <FillInOtherBenefits stepNumber="19" />
-        <ClickSaveAndContinue stepNumber="20" />
+        <!-- <ClickSaveAndContinue stepNumber="20" /> -->
 
-        <hr />
-        <span class="page-title">4- Additional Job Details page</span>
-        <hr />
-        <ClickSaveAndContinue stepNumber="21" />
+        <AdditionalJobDetailsBar />
+        <br />
 
-        <hr />
-        <span class="page-title">5- Job Description page</span>
-        <hr />
+        <!-- <ClickSaveAndContinue stepNumber="21" /> -->
+
+        <JobDescriptionBar />
+
         <FillInDescription stepNumber="22" />
-        <ClickSaveAndContinue stepNumber="23" />
+        <!-- <ClickSaveAndContinue stepNumber="23" /> -->
 
-        <hr />
-        <span class="page-title">6- Application Settings page</span>
-        <hr />
+        <ApplicationSettingsBar />
+
         <FillInIsResumeRequired stepNumber="24" />
         <FillInEmail stepNumber="25" />
-        <ClickSaveAndContinue stepNumber="26" />
+        <!-- <ClickSaveAndContinue stepNumber="26" /> -->
 
-        <hr />
-        <span class="page-title">7- Applicant qualifications page</span>
-        <hr />
+        <ApplicantQualificationsBar />
+
         <CloseQuestions stepNumber="27" />
-        <ClickSaveAndContinue stepNumber="28" />
+        <!-- <ClickSaveAndContinue stepNumber="28" /> -->
 
-        <hr />
-        <span class="page-title">8- Preview Job page</span>
-        <hr />
-        <ClickSaveAndContinue stepNumber="29" />
-        <ClickConfirm stepNumber="30" />
+        <CustomizedScreeningBar />
+        <!-- <ClickSaveAndContinue stepNumber="29" /> -->
+        <br />
+        <PreviewJobBar />
+        <br />
+        <!-- <ClickConfirm stepNumber="30" /> -->
+
+        <SponsoringPageBar />
         <ClickAdvanced stepNumber="31" />
-        <FillInAdDurationDate stepNumber="32" />
-        <FillInCPC stepNumber="33" />
-        <FillInAdBudget stepNumber="34" />
-        <ClickSaveAndContinue stepNumber="35" />
-        <CloseJob stepNumber="36" />
-        <RepostNextJobComponent stepNumber="37" />
+        <FillInAdDurationType stepNumber="32" />
+        <FillInAdDurationDate stepNumber="33" />
+        <FillInCPC stepNumber="34" />
+        <FillInAdBudget stepNumber="35" />
+        <!-- <ClickSaveAndContinue stepNumber="36" /> -->
+
+        <CloseOldJobBar />
+
+        <CloseJob stepNumber="37" />
+        <RepostNextJobComponent stepNumber="38" />
       </v-stepper>
     </div>
     <div v-else>
@@ -107,7 +123,7 @@ import FillInCompanyName from "./reposting sub component/fillIn_CompanyName";
 import FillInJobTitle from "./reposting sub component/fillIn_JobTitle";
 import FillInJobCategory from "./reposting sub component/fillIn_JobCategory";
 import FillInRolesLocation from "./reposting sub component/fillIn_RolesLocation";
-import ClickSaveAndContinue from "./reposting sub component/clickSaveAndContinue";
+// import ClickSaveAndContinue from "./reposting sub component/clickSaveAndContinue";
 import FillInIsJobFullTimeOrPartTime from "./reposting sub component/fillIn_isJobFullTimeOrPartTime";
 import FillInSchedule from "./reposting sub component/fillIn_schedule";
 import FillInHiresNumber from "./reposting sub component/fillIn_hiresNumber";
@@ -118,7 +134,7 @@ import FillInPaymentTo from "./reposting sub component/fillIn_paymentTo";
 import FillInPaymentPer from "./reposting sub component/fillIn_paymentPer";
 import FillInDescription from "./reposting sub component/fillIn_description";
 import FillInIsResumeRequired from "./reposting sub component/fillIn_isResumeRequired";
-import ClickConfirm from "./reposting sub component/click_confirm";
+// import ClickConfirm from "./reposting sub component/click_confirm";
 import ClickAdvanced from "./reposting sub component/click_advanced";
 import FillInAdDurationDate from "./reposting sub component/fillIn_adDurationDate";
 import FillInCPC from "./reposting sub component/fillIn_CPC";
@@ -129,6 +145,19 @@ import CloseQuestions from "./reposting sub component/close_questions";
 import RepostNextJobComponent from "./reposting sub component/RepostNextJobComponent";
 import FillInIsJobRemote from "./reposting sub component/fillIn_isJobRemote";
 import FillInOtherBenefits from "./reposting sub component/fillIn_otherBenefits";
+import FillInAdDurationType from "./reposting sub component/fillIn_adDurationType";
+import GettingStartedBar from "./bars/GettingStarted";
+import ApplicantQualificationsBar from "./bars/ApplicantQualifications";
+import ApplicationSettingsBar from "./bars/ApplicationSettings";
+import CloseOldJobBar from "./bars/CloseOldJob";
+import JobDescriptionBar from "./bars/JobDescription";
+import JobDetailsBar from "./bars/JobDetails";
+import PreviewJobBar from "./bars/PreviewJob";
+import SponsoringPageBar from "./bars/SponsoringPage";
+import AdditionalJobDetailsBar from "./bars/AdditionalJobDetails";
+import CompensationDetailsBar from "./bars/CompensationDetails";
+import CustomizedScreeningBar from "./bars/CustomizedScreening";
+import DownloadJobDetailsBar from "./bars/DownloadJobDetails";
 
 export default {
   name: "repostingComponent",
@@ -141,7 +170,7 @@ export default {
     FillInJobTitle,
     FillInJobCategory,
     FillInRolesLocation,
-    ClickSaveAndContinue,
+    // ClickSaveAndContinue,
     FillInIsJobFullTimeOrPartTime,
     FillInSchedule,
     FillInHiresNumber,
@@ -152,9 +181,10 @@ export default {
     FillInPaymentPer,
     FillInDescription,
     FillInIsResumeRequired,
-    ClickConfirm,
+    // ClickConfirm,
     ClickAdvanced,
     FillInAdDurationDate,
+    FillInAdDurationType,
     FillInCPC,
     FillInAdBudget,
     CloseJob,
@@ -163,6 +193,18 @@ export default {
     FillInIsJobRemote,
     FillInOtherBenefits,
     RepostNextJobComponent,
+    GettingStartedBar,
+    ApplicantQualificationsBar,
+    ApplicationSettingsBar,
+    CloseOldJobBar,
+    JobDescriptionBar,
+    JobDetailsBar,
+    PreviewJobBar,
+    SponsoringPageBar,
+    AdditionalJobDetailsBar,
+    CompensationDetailsBar,
+    CustomizedScreeningBar,
+    DownloadJobDetailsBar,
   },
 
   computed: {
@@ -198,13 +240,23 @@ export default {
           console.log(error);
         });
     },
+    async fillInGettingStartedPage() {
+      await this.$store.dispatch("execute_unlockCompanyNameInput");
+      await this.$store.dispatch("execute_fillIn_CompanyName");
+      await this.$store.dispatch("execute_fillIn_JobTitle");
+      await this.$store.dispatch("execute_fillIn_JobCategory");
+      await this.$store.dispatch("execute_fillIn_RolesLocation");
+      await this.$store.dispatch("execute_fillIn_isJobRemote");
+      await this.$store.dispatch("execute_fillIn_isJobRemote");
+      await this.$store.dispatch("execute_clickSaveAndContinue");
+    },
   },
 };
 </script>
 
 <style scoped>
-.page-title{
-  color:#1976d2  ;
+.page-title {
+  color: #1976d2;
   font-weight: 700;
   font-size: 16px;
 }

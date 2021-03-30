@@ -1,25 +1,17 @@
 <template>
-  <div>
-    <v-stepper-step
-      editable
-      :step="stepNumber"
-      edit-icon="mdi-check"
-      elevation="0"
+  <div class="text-center">
+    <v-btn
+      color="#0f3057"
+      dark
+      tile
+      @click="execute()"
+      elevation="3"
+      x-large
+      class="mb-10 font-weight-bold float-right mr-6"
     >
-      Start Reposting the Next Job
-    </v-stepper-step>
-
-    <v-stepper-content :step="stepNumber" elevation="0">
-      <v-btn
-        color="primary"
-        @click="execute()"
-        tile
-        elevation="0"
-        class="mb-10"
-      >
-        Execute
-      </v-btn>
-    </v-stepper-content>
+      Repost Next Job
+      <v-icon>mdi-chevron-right </v-icon>
+    </v-btn>
   </div>
 </template>
 <script>
@@ -28,7 +20,7 @@ export default {
     return {};
   },
   props: ["stepNumber"],
-  
+
   methods: {
     execute() {
       this.$store.commit("startRepostingTheNextJob");

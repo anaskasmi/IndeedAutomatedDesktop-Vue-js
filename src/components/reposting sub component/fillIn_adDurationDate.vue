@@ -12,7 +12,7 @@
       edit-icon="mdi-check"
       elevation="0"
     >
-      Fill In Ad duration type
+      Fill In Ad Duration Date
     </v-stepper-step>
 
     <v-stepper-content :step="stepNumber" elevation="0">
