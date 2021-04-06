@@ -41,11 +41,12 @@ export default {
     async fillInPage() {
       this.isLoading = true;
       try {
+        await this.$store.dispatch("execute_openPostJobPage");
         await this.$store.dispatch("execute_unlockCompanyNameInput");
         await this.$store.dispatch("execute_fillIn_CompanyName");
         await this.$store.dispatch("execute_fillIn_JobTitle");
-        await this.$store.dispatch("execute_fillIn_JobCategory");
         await this.$store.dispatch("execute_fillIn_RolesLocation");
+        await this.$store.dispatch("execute_fillIn_JobCategory");
         await this.$store.dispatch("execute_fillIn_isJobRemote");
         this.isLoading = false;
       } catch (error) {
@@ -56,11 +57,16 @@ export default {
     async fillInPageAndContinue() {
       this.isLoading = true;
       try {
-        await this.$store.dispatch("execute_unlockCompanyNameInput");
+        await this.$store.dispatch("execute_openPostJobPage");
+        try {
+          await this.$store.dispatch("execute_unlockCompanyNameInput");
+        } catch (error) {
+          console.log(error);
+        }
         await this.$store.dispatch("execute_fillIn_CompanyName");
         await this.$store.dispatch("execute_fillIn_JobTitle");
-        await this.$store.dispatch("execute_fillIn_JobCategory");
         await this.$store.dispatch("execute_fillIn_RolesLocation");
+        await this.$store.dispatch("execute_fillIn_JobCategory");
         await this.$store.dispatch("execute_fillIn_isJobRemote");
         await this.$store.dispatch("execute_clickSaveAndContinue");
         this.isLoading = false;

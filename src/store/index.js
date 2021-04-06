@@ -35,6 +35,7 @@ export default new Vuex.Store({
             click_confirm: 'notDone',
             click_advanced: 'notDone',
             fillIn_adDurationType: 'notDone',
+            fillIn_adDurationDate: 'notDone',
             fillIn_CPC: 'notDone',
             fillIn_adBudget: 'notDone',
             CloseJob: 'notDone',
@@ -43,6 +44,9 @@ export default new Vuex.Store({
             fillIn_isJobRemote: 'notDone',
             fillIn_otherBenefits: 'notDone',
             RepostNextJobComponent: 'notDone',
+            fillIn_webSite: 'notDone',
+            fillIn_salaryFromAndTo: 'notDone',
+            fillIn_industry: 'notDone',
         },
         failureMsgs: {
             getJobFullDetails: null,
@@ -67,6 +71,7 @@ export default new Vuex.Store({
             click_confirm: null,
             click_advanced: null,
             fillIn_adDurationType: null,
+            fillIn_adDurationDate: null,
             fillIn_CPC: null,
             fillIn_adBudget: null,
             CloseJob: null,
@@ -75,6 +80,9 @@ export default new Vuex.Store({
             fillIn_isJobRemote: null,
             fillIn_otherBenefits: null,
             RepostNextJobComponent: null,
+            fillIn_webSite: null,
+            fillIn_salaryFromAndTo: null,
+            fillIn_industry: null,
 
         },
     },
@@ -111,6 +119,9 @@ export default new Vuex.Store({
         },
         getFailureMsgs: (state) => {
             return state.failureMsgs;
+        },
+        doesJobHasFullDetails: (state) => {
+            return (state.currentJob.jobDetails_type != null)
         }
     },
     mutations: {
@@ -163,6 +174,7 @@ export default new Vuex.Store({
                 click_confirm: 'notDone',
                 click_advanced: 'notDone',
                 fillIn_adDurationType: 'notDone',
+                fillIn_adDurationDate: 'notDone',
                 fillIn_CPC: 'notDone',
                 fillIn_adBudget: 'notDone',
                 CloseJob: 'notDone',
@@ -171,6 +183,9 @@ export default new Vuex.Store({
                 fillIn_isJobRemote: 'notDone',
                 fillIn_otherBenefits: 'notDone',
                 RepostNextJobComponent: 'notDone',
+                fillIn_webSite: 'notDone',
+                fillIn_salaryFromAndTo: 'notDone',
+                fillIn_industry: 'notDone',
             };
 
             //reset feilure messages
@@ -197,6 +212,7 @@ export default new Vuex.Store({
                 click_confirm: null,
                 click_advanced: null,
                 fillIn_adDurationType: null,
+                fillIn_adDurationDate: null,
                 fillIn_CPC: null,
                 fillIn_adBudget: null,
                 CloseJob: null,
@@ -205,6 +221,9 @@ export default new Vuex.Store({
                 fillIn_isJobRemote: null,
                 fillIn_otherBenefits: null,
                 RepostNextJobComponent: null,
+                fillIn_webSite: null,
+                fillIn_salaryFromAndTo: null,
+                fillIn_industry: null,
             };
         },
 
@@ -552,6 +571,70 @@ export default new Vuex.Store({
                     .catch((error) => {
                         state.repostingSteps.fillIn_paymentFrom = "failed";
                         state.failureMsgs.fillIn_paymentFrom = error.response.data.error;
+                        console.log(error);
+                        rej(error);
+                    });
+            })
+
+        },
+        execute_fillIn_webSite({ state }) {
+            return new Promise((res, rej) => {
+                state.repostingSteps.fillIn_webSite = "doing";
+                state.failureMsgs.fillIn_webSite = null;
+                let url = state.BASE_URL + "/jobs/fillIn_webSite";
+                axios
+                    .get(url).then(() => {
+                        state.repostingSteps.fillIn_webSite = "done";
+                        res();
+                    })
+                    .catch((error) => {
+                        state.repostingSteps.fillIn_webSite = "failed";
+                        state.failureMsgs.fillIn_webSite = error.response.data.error;
+                        console.log(error);
+                        rej(error);
+                    });
+            })
+
+        },
+        execute_fillIn_industry({ state }) {
+            return new Promise((res, rej) => {
+                state.repostingSteps.fillIn_industry = "doing";
+                state.failureMsgs.fillIn_industry = null;
+                let url = state.BASE_URL + "/jobs/fillIn_industry";
+                axios
+                    .get(url).then(() => {
+                        state.repostingSteps.fillIn_industry = "done";
+                        res();
+                    })
+                    .catch((error) => {
+                        state.repostingSteps.fillIn_industry = "failed";
+                        state.failureMsgs.fillIn_industry = error.response.data.error;
+                        console.log(error);
+                        rej(error);
+                    });
+            })
+
+        },
+        execute_fillIn_salaryFromAndTo({ state, getters }) {
+            return new Promise((res, rej) => {
+                state.repostingSteps.fillIn_salaryFromAndTo = "doing";
+                state.failureMsgs.fillIn_salaryFromAndTo = null;
+                let url = state.BASE_URL + "/jobs/fillIn_salaryFromAndTo";
+                axios
+                    .post(url, {
+                        jobDetails_SalaryFrom: getters.getCurrentJob
+                            .jobDetails_SalaryFrom,
+                        jobDetails_SalaryTo: getters.getCurrentJob
+                            .jobDetails_SalaryTo,
+                        jobDetails_salaryRangeType: getters.getCurrentJob
+                            .jobDetails_salaryRangeType,
+                    }).then(() => {
+                        state.repostingSteps.fillIn_salaryFromAndTo = "done";
+                        res();
+                    })
+                    .catch((error) => {
+                        state.repostingSteps.fillIn_salaryFromAndTo = "failed";
+                        state.failureMsgs.fillIn_salaryFromAndTo = error.response.data.error;
                         console.log(error);
                         rej(error);
                     });

@@ -32,7 +32,6 @@ export default {
       this.isLoading = true;
       try {
         await this.$store.dispatch("execute_getJobFullDetails");
-        await this.$store.dispatch("execute_openPostJobPage");
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;

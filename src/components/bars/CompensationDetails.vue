@@ -44,8 +44,9 @@ export default {
       this.isLoading = true;
       try {
         await this.$store.dispatch("execute_fillIn_paymentType");
-        await this.$store.dispatch("execute_fillIn_paymentFrom");
-        await this.$store.dispatch("execute_fillIn_paymentTo");
+        // await this.$store.dispatch("execute_fillIn_paymentFrom");
+        // await this.$store.dispatch("execute_fillIn_paymentTo");
+        await this.$store.dispatch("execute_fillIn_salaryFromAndTo");
         await this.$store.dispatch("execute_fillIn_paymentPer");
         await this.$store.dispatch("execute_fillIn_otherBenefits");
         this.isLoading = false;
@@ -58,8 +59,10 @@ export default {
       this.isLoading = true;
       try {
         await this.$store.dispatch("execute_fillIn_paymentType");
-        await this.$store.dispatch("execute_fillIn_paymentFrom");
-        await this.$store.dispatch("execute_fillIn_paymentTo");
+        // await this.$store.dispatch("execute_fillIn_paymentFrom");
+        // await this.$store.dispatch("execute_fillIn_paymentTo");
+        await this.$store.dispatch("execute_fillIn_salaryFromAndTo");
+
         await this.$store.dispatch("execute_fillIn_paymentPer");
         await this.$store.dispatch("execute_fillIn_otherBenefits");
         await this.$store.dispatch("execute_clickSaveAndContinue");

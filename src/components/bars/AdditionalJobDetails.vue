@@ -7,16 +7,28 @@
     <v-spacer></v-spacer>
 
     <v-btn
-      color="#effad3"
+      color="#f14668"
       large
       dark
-      class="align-middle text-dark"
+      class="align-middle"
+      elevation="0"
+      @click="fillInPage()"
+      :disabled="isLoading"
+    >
+      <v-icon class="mr-3">mdi-pause-octagon</v-icon>
+      Fill in & stop
+    </v-btn>
+    <v-btn
+      color="#28abb9"
+      large
+      dark
+      class="align-middle mx-3"
       elevation="0"
       :disabled="isLoading"
-      @click="saveAndContinue()"
+      @click="fillInPageAndContinue"
     >
-      <v-icon class="mr-3">mdi-debug-step-over</v-icon>
-      Continue
+      <v-icon class="mr-3">mdi-skip-next</v-icon>
+      Fill in & Continue
     </v-btn>
   </v-app-bar>
 </template>
@@ -28,9 +40,20 @@ export default {
     };
   },
   methods: {
-    async saveAndContinue() {
+    async fillInPage() {
       this.isLoading = true;
       try {
+        await this.$store.dispatch("execute_fillIn_webSite");
+        this.isLoading = false;
+      } catch (error) {
+        this.isLoading = false;
+        console.log(error);
+      }
+    },
+    async fillInPageAndContinue() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch("execute_fillIn_webSite");
         await this.$store.dispatch("execute_clickSaveAndContinue");
         this.isLoading = false;
       } catch (error) {

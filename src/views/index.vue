@@ -11,7 +11,12 @@
       </v-stepper-step>
       <v-divider></v-divider>
 
-      <v-stepper-step editable :complete="false" step="3">
+      <v-stepper-step
+        editable
+        :complete="false"
+        step="3"
+        @click="refreshJobs()"
+      >
         select jobs
       </v-stepper-step>
 
@@ -36,7 +41,7 @@
         </v-card>
         <hr />
 
-        <v-btn color="primary" tile large class="float-right" @click="e1 = 2">
+        <v-btn color="primary" tile large class="float-right" @click="currentStep = 2">
           <v-icon>mdi-chevron-right </v-icon>
 
           Grab All jobs
@@ -49,7 +54,7 @@
         <GrabAllJobs />
         <hr />
 
-        <v-btn color="primary" tile large class="float-right" @click="e1 = 3">
+        <v-btn color="primary" tile large class="float-right" @click="currentStep = 3;refreshJobs()">
           <v-icon>mdi-chevron-right </v-icon>
           Select Jobs To repost
         </v-btn>
@@ -105,6 +110,14 @@ export default {
         return this.$store.getters.getIsRepostingPageEnabled;
       },
     },
+    jobs: {
+      get: function () {
+        return this.$store.getters.getJobs;
+      },
+      set: function (newVal) {
+        this.$store.commit("setJobs", newVal);
+      },
+    },
   },
   methods: {
     BASE_URL() {
@@ -114,6 +127,17 @@ export default {
       if (this.oneJobOrMoreSelected) {
         this.currentStep = 4;
       }
+    },
+    refreshJobs() {
+      let url = this.BASE_URL() + "/jobs/getAllJobsFromDb";
+      this.$axios
+        .get(url)
+        .then((res) => {
+          this.jobs = this.sortJobsByDate(res.data.jobs);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };
