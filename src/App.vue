@@ -9,18 +9,18 @@
     </v-app-bar>
 
     <v-main>
-      <Index />
+      <RepostingHomePage />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Index from "./views/index";
+import RepostingHomePage from "./views/RepostingHomePage";
 export default {
   name: "App",
 
   components: {
-    Index,
+    RepostingHomePage,
   },
 
   data: () => ({

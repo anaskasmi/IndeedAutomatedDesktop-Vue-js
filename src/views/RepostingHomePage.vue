@@ -92,7 +92,7 @@ import GrabAllJobs from "../components/GrabAllJobs";
 import JobsList from "../components/JobsList";
 import RepostingComponent from "../components/repostingComponent";
 export default {
-  name: "mainIndex",
+  name: "RepostingHomePage",
   components: {
     LoginComponent,
     GrabAllJobs,
