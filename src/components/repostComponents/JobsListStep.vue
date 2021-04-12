@@ -265,9 +265,9 @@
   </div>
 </template>
 <script>
-import applicantButton from "./JobsListStepSubCompenent/applicantButton.vue";
-import budgetPanel from "./JobsListStepSubCompenent/budgetPanel.vue";
-import panelTitle from "./JobsListStepSubCompenent/panelTitle.vue";
+import applicantButton from "../JobsListStepSubCompenent/applicantButton.vue";
+import budgetPanel from "../JobsListStepSubCompenent/budgetPanel.vue";
+import panelTitle from "../JobsListStepSubCompenent/panelTitle.vue";
 
 export default {
   name: "JobsList",

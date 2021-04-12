@@ -6,6 +6,9 @@ import './plugins/bootstrap-vue'
 import VueClipboard from 'vue-clipboard2'
 import router from './router'
 import { store } from './store'
+import CKEditor from 'ckeditor4-vue';
+
+Vue.use(CKEditor);
 Vue.use(VueAxios)
 Vue.use(VueClipboard)
 Vue.config.productionTip = false

@@ -265,9 +265,9 @@
   </div>
 </template>
 <script>
-import applicantButton from "./JobsListStepSubCompenent/applicantButton.vue";
-import budgetPanel from "./JobsListStepSubCompenent/budgetPanel.vue";
-import panelTitle from "./JobsListStepSubCompenent/panelTitle.vue";
+import applicantButton from "../JobsListStepSubCompenent/applicantButton.vue";
+import budgetPanel from "../JobsListStepSubCompenent/budgetPanel.vue";
+import panelTitle from "../JobsListStepSubCompenent/panelTitle.vue";
 
 export default {
   name: "JobsList",
@@ -283,26 +283,26 @@ export default {
   computed: {
     jobs: {
       get: function () {
-        return this.$store.getters.getJobs;
+        return this.$store.getters['updatePageModule/getJobs'];
       },
       set: function (newVal) {
-        this.$store.commit("repostPageModule/setJobs", newVal);
+        this.$store.commit("updatePageModule/setJobs", newVal);
       },
     },
     selectedJobs: {
       get: function () {
-        return this.$store.getters['repostPageModule/getSelectedJobs'];
+        return this.$store.getters['updatePageModule/getSelectedJobs'];
       },
       set: function (newVal) {
-        this.$store.commit("repostPageModule/setSelectedJobs", newVal);
+        this.$store.commit("updatePageModule/setSelectedJobs", newVal);
       },
     },
       isAllSelected: {
       get: function () {
-        return this.$store.getters['repostPageModule/getIsAllSelected'];
+        return this.$store.getters['updatePageModule/getIsAllSelected'];
       },
       set: function (newVal) {
-        this.$store.commit("repostPageModule/setIsAllSelected", newVal);
+        this.$store.commit("updatePageModule/setIsAllSelected", newVal);
       },
     },
   },
