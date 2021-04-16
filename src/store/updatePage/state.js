@@ -6,11 +6,15 @@ export const state = {
     isAllSelected: false,
     updatingSteps: {},
     failureMsgs: {},
+    isProgressDialogShowing: false,
     // update form
     jobTitle: null,
-    location: null,
+    locationCity: null,
+    locationState: null,
     description: null,
     budget: null,
     maxCPC: null,
     budgetEndDate: null,
+    //update status
+    jobsProgress: [],
 };

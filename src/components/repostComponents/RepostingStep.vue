@@ -223,18 +223,7 @@ export default {
     BASE_URL() {
       return this.$store.state.BASE_URL;
     },
-    startTheBrowser() {
-      let url = this.BASE_URL() + "/jobs/getNewBrowser";
-      this.$axios
-        .get(url)
-        .then(() => {
-          //move to the next page
-          this.currentStep = 2;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
+  
     async fillInGettingStartedPage() {
       await this.$store.dispatch("repostPageModule/execute_unlockCompanyNameInput");
       await this.$store.dispatch("repostPageModule/execute_fillIn_CompanyName");

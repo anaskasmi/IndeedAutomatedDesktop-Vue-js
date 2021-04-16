@@ -3,7 +3,7 @@
     <v-alert
       class="text-center akaya py-2"
       style="font-size: 20px"
-      color="#dddddd"
+      color="primary"
       elevation="0"
       tile
     >
@@ -23,6 +23,6 @@ export default {
 <style scoped>
 .akaya {
   font-family: "Lato", sans-serif;
-  color: #525252 ;
+  color: #ffffff ;
 }
 </style>

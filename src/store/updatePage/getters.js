@@ -5,23 +5,23 @@ export const getters = {
     getSelectedJobs: (state) => {
         return state.selectedJobs;
     },
+
+    getJobsProgress: (state) => {
+        return state.jobsProgress;
+    },
+
     getIsAllSelected: (state) => {
         return state.isAllSelected;
     },
     getIsRepostingPageEnabled: (state) => {
-        if (state.selectedJobs.length > 0) {
+        if (state.selectedJobs && state.selectedJobs.length) {
             return true;
         } else {
             return false;
         }
     },
-    getCurrentJob: (state) => {
-        if (state.selectedJobs.length > 0) {
-            state.currentJob = state.selectedJobs[0]
-            return state.currentJob;
-        } else {
-            return null
-        }
+    getIsProgressDialogShowing: (state) => {
+        return state.isProgressDialogShowing;
     },
     getQueueLength: (state) => {
         return state.selectedJobs.length;
@@ -38,8 +38,11 @@ export const getters = {
     getJobTitle: (state) => {
         return state.jobTitle;
     },
-    getLocation: (state) => {
-        return state.location;
+    getLocationCity: (state) => {
+        return state.locationCity;
+    },
+    getLocationState: (state) => {
+        return state.locationState;
     },
     getDescription: (state) => {
         return state.description;

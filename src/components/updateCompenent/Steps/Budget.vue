@@ -1,29 +1,32 @@
 <template>
   <div>
     <v-text-field
-      :append-icon="
-        budget ? 'mdi-checkbox-multiple-marked-outline ' : ''
-      "
+      :append-icon="budget ? 'mdi-checkbox-multiple-marked-outline ' : ''"
       label="Budget ($)"
       color="28527a"
       outlined
       clearable
       v-model="budget"
+      :rules="[budgetRule]"
     >
     </v-text-field>
+
     <v-text-field
-      :append-icon="
-        maxCPC
-          ? 'mdi-checkbox-multiple-marked-outline '
-          : ''
-      "
-      label="Max Cost Per Click ($)"
+      :append-icon="maxCPC ? 'mdi-checkbox-multiple-marked-outline ' : ''"
+      label="Max cost per click ($)"
+      min="0.15"
+      @keypress="isNumberWithdots($event)"
+      type="number"
       color="28527a"
       outlined
       v-model="maxCPC"
       clearable
+      :rules="[maxCPCRule]"
     ></v-text-field>
-
+    <span class="mb-2" style="color: #6c757d">
+      <v-icon color="warning">mdi-comment-alert-outline</v-icon>
+      Make sure the date is greater than todays date by at least 1 day
+    </span>
     <v-menu
       ref="budget_endDate_menu"
       v-model="budget_endDate_menu"
@@ -46,6 +49,7 @@
           v-model="budgetEndDate"
           label="Budget End date"
           readonly
+          clearable
           v-bind="attrs"
           v-on="on"
         ></v-text-field>
@@ -116,6 +120,22 @@ export default {
       let month = (1 + result.getMonth()).toString().padStart(2, "0");
       let day = result.getDate().toString().padStart(2, "0");
       return year + "-" + month + "-" + day;
+    },
+    budgetRule: (v) => {
+      if (v) {
+        if (v > 25) return true;
+        return "budget must be at least 25";
+      } else {
+        return true;
+      }
+    },
+    maxCPCRule: (v) => {
+      if (v) {
+        if (v > 0.15) return true;
+        return "Max CPC must be at least 0.15";
+      } else {
+        return true;
+      }
     },
   },
 };

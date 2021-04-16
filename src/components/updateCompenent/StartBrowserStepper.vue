@@ -30,7 +30,7 @@ export default {
       return this.$store.state.BASE_URL;
     },
     startTheBrowser() {
-      let url = this.BASE_URL() + "/jobs/getNewBrowser";
+      let url = this.BASE_URL() + "/jobs/getNewBrowserForUpdate";
       this.$axios
         .get(url)
         .then(() => {

@@ -1,7 +1,6 @@
 <template>
   <v-stepper v-model="currentStep" non-linear elevation="0">
     <v-stepper-header>
-
       <v-stepper-step editable :complete="false" step="1">
         Start Browser
       </v-stepper-step>
@@ -33,12 +32,10 @@
       >
         Updating
       </v-stepper-step>
-
     </v-stepper-header>
 
     <!-- steps cards -->
     <v-stepper-items elevation="0">
-      <!-- Login step -->
       <v-stepper-content step="1" elevation="0">
         <v-card elevation="0">
           <StartBrowserStepper />
@@ -57,9 +54,7 @@
           Grab All jobs
         </v-btn>
       </v-stepper-content>
-      <!-- !! end of start browser step !!  -->
 
-      <!-- grab all jobs -->
       <v-stepper-content step="2" class="text-center">
         <GrabAllJobsStepper />
         <hr />
@@ -78,8 +73,7 @@
           Select Jobs To Update
         </v-btn>
       </v-stepper-content>
-      <!-- !! end of list step !! -->
-      <!-- grab all jobs -->
+
       <v-stepper-content step="3">
         <JobsListStepper />
         <hr />
@@ -95,12 +89,10 @@
           Start Updating
         </v-btn>
       </v-stepper-content>
-      <!-- !! end of list step !! -->
-      <!-- Reposting step -->
+
       <v-stepper-content step="4">
-        <UpdateStepper/>
+        <UpdateStepper />
       </v-stepper-content>
-      <!-- !! end of Reposting step !! -->
     </v-stepper-items>
   </v-stepper>
 </template>
@@ -149,16 +141,8 @@ export default {
         this.currentStep = 4;
       }
     },
-    refreshJobs() {
-      let url = this.BASE_URL() + "/jobs/getAllJobsFromDb";
-      this.$axios
-        .get(url)
-        .then((res) => {
-          this.jobs = res.data.jobs;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    async refreshJobs() {
+      await this.$store.dispatch("updatePageModule/fetchJobs");
     },
   },
 };

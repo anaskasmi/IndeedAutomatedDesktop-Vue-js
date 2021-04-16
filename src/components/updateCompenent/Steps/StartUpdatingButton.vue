@@ -1,7 +1,7 @@
 <template>
-  <v-container>
-    <v-btn color="primary" block @click="startUpdatingSelectedJobs">Start updating</v-btn>
-  </v-container>
+  <div>
+    <v-btn class="float-right px-8 mt-2" large color="success" elevation="2"  @click="startUpdatingSelectedJobs">Start updating</v-btn>
+  </div>
 </template>
 
 <script>

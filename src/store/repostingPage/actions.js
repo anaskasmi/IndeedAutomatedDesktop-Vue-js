@@ -2,7 +2,24 @@ import axios from 'axios'
 
 
 export const actions = {
+    async fetchJobs({ state, commit }) {
+        let url = state.BASE_URL + "/jobs/getAllJobsFromDb";
+        let res = await axios.get(url);
+        let jobs = res.data.jobs;
+        console.log(res.data);
+        jobs = jobs.sort((job1, job2) => {
+            let dateOfJob1 = new Date(job1.dateCreated);
+            let dateOfJob2 = new Date(job2.dateCreated);
+            if (dateOfJob1 >= dateOfJob2) {
+                return 1;
+            } else {
+                return -1;
+            }
+        })
+        commit("setJobs", jobs);
+        commit("setSelectedJobs", []);
 
+    },
     execute_click_advanced({ state }) {
         return new Promise((res, rej) => {
             state.repostingSteps.click_advanced = "doing";

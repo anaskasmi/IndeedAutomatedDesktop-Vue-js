@@ -41,7 +41,13 @@
         </v-card>
         <hr />
 
-        <v-btn color="primary" tile large class="float-right" @click="currentStep = 2">
+        <v-btn
+          color="primary"
+          tile
+          large
+          class="float-right"
+          @click="currentStep = 2"
+        >
           <v-icon>mdi-chevron-right </v-icon>
 
           Grab All jobs
@@ -54,7 +60,16 @@
         <GrabAllJobs />
         <hr />
 
-        <v-btn color="primary" tile large class="float-right" @click="currentStep = 3;refreshJobs()">
+        <v-btn
+          color="primary"
+          tile
+          large
+          class="float-right"
+          @click="
+            currentStep = 3;
+            refreshJobs();
+          "
+        >
           <v-icon>mdi-chevron-right </v-icon>
           Select Jobs To repost
         </v-btn>
@@ -107,12 +122,14 @@ export default {
   computed: {
     oneJobOrMoreSelected: {
       get() {
-        return this.$store.getters['repostPageModule/getIsRepostingPageEnabled'];
+        return this.$store.getters[
+          "repostPageModule/getIsRepostingPageEnabled"
+        ];
       },
     },
     jobs: {
       get: function () {
-        return this.$store.getters['repostPageModule/getJobs'];
+        return this.$store.getters["repostPageModule/getJobs"];
       },
       set: function (newVal) {
         this.$store.commit("repostPageModule/setJobs", newVal);
@@ -128,16 +145,8 @@ export default {
         this.currentStep = 4;
       }
     },
-    refreshJobs() {
-      let url = this.BASE_URL() + "/jobs/getAllJobsFromDb";
-      this.$axios
-        .get(url)
-        .then((res) => {
-          this.jobs = res.data.jobs;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    async refreshJobs() {
+      await this.$store.dispatch("repostPageModule/fetchJobs");
     },
   },
 };

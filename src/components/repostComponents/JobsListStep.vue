@@ -2,7 +2,7 @@
   <div class="mx-5 mb-10">
     <div>
       <div class="my-10 text-right">
-        <v-btn color="info" class=" " elevation="0" tile @click="fetchItems">
+        <v-btn color="info"  elevation="0" tile @click="fetchItems">
           <v-icon class="mr-2">mdi-refresh </v-icon>refresh page</v-btn
         >
       </div>
@@ -318,36 +318,22 @@ export default {
       return this.$store.state.BASE_URL;
     },
 
-    sortJobsByDate(jobs) {
-      return jobs.sort((job1, job2) => {
-        let dateOfJob1 = new Date(job1.dateCreated);
-        let dateOfJob2 = new Date(job2.dateCreated);
-        if (dateOfJob1 >= dateOfJob2) {
-          return 1;
-        } else {
-          return -1;
-        }
-      });
-    },
-    fetchItems() {
+   
+    async fetchItems() {
       this.taskFailed = false;
       this.isLoading = true;
-      let url = this.BASE_URL() + "/jobs/getAllJobsFromDb";
-      this.$axios
-        .get(url)
-        .then((res) => {
-          this.isLoading = false;
-          this.jobs = this.sortJobsByDate(res.data.jobs);
-        })
-        .catch((error) => {
-          this.isLoading = false;
-          if (error.response && error.response.data.error) {
-            this.failureMsg = error.response.data.error;
-          } else {
-            this.failureMsg = error.message;
-          }
-          this.taskFailed = true;
-        });
+      try {
+        await this.$store.dispatch("repostPageModule/fetchJobs");
+        this.isLoading = false;
+      } catch (error) {
+        this.isLoading = false;
+        if (error.response && error.response.data.error) {
+          this.failureMsg = error.response.data.error;
+        } else {
+          this.failureMsg = error.message;
+        }
+        this.taskFailed = true;
+      }
     },
     selectJob(e) {
       e.cancelBubble = true;
