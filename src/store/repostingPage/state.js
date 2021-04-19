@@ -6,6 +6,11 @@ export const state = {
     currentJob: null,
     isAllSelected: false,
     autoPilotMode: true,
+    fetchJobsStatus: {
+        failed: false,
+        isLoading: false,
+        failureMsg: null,
+    },
     repostingSteps: {
         getJobFullDetails: 'notDone',
         openPostJobPage: 'notDone',

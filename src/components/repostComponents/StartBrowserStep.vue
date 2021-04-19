@@ -1,66 +1,40 @@
 <template>
-  <v-stepper
-    editable
-    v-model="currentStep"
-    vertical
-    class="mb-10"
-    elevation="0"
-  >
-    <v-stepper-step editable step="1" :complete="false" elevation="0">
-      Start the chromuim browser
-    </v-stepper-step>
-
-    <v-stepper-content step="1" elevation="0">
-      <v-alert outlined type="warning" prominent border="left">
+  <div>
+    <v-container>
+      <v-alert outlined type="info" prominent border="left">
         Please Click open the browser, then keep the browser opened during this
         whole process
       </v-alert>
-
       <v-btn
-        color="primary"
-        @click="startTheBrowser()"
+        large
         tile
-        elevation="0"
-        class="mb-10"
+        block
+        color="success"
+        class="my-10"
+        @click="startTheBrowser()"
       >
         Start the chromuim browser
       </v-btn>
-    </v-stepper-content>
-
-    <v-stepper-step editable step="2" :complete="false" elevation="0">
-      Login
-    </v-stepper-step>
-
-    <v-stepper-content step="2" elevation="0">
-      <v-alert outlined type="info" prominent border="left">
-        Please Login!  And When you are sure that you logged In, you can move on to
-        the next page
-      </v-alert>
-    </v-stepper-content>
-  </v-stepper>
+    </v-container>
+  </div>
 </template>
 
 <script>
-
 export default {
-      name:'LoginComponent',
-
+  name: "StartBrowserStepper_update",
   data() {
-    return {
-      currentStep: 1,
-    };
+    return {};
   },
   methods: {
     BASE_URL() {
       return this.$store.state.BASE_URL;
     },
     startTheBrowser() {
-      let url = this.BASE_URL() + "/jobs/getNewBrowserForRepost";
+      let url = this.BASE_URL() + "/jobs/getNewBrowserForUpdate";
       this.$axios
         .get(url)
         .then(() => {
-          //move to the next page
-          this.currentStep = 2;
+          //todo move to next step
         })
         .catch((error) => {
           console.log(error);

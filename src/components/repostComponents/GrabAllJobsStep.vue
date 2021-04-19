@@ -57,6 +57,7 @@
     <v-btn
       large
       tile
+      block
       color="success"
       class="my-10"
       @click="scrapAllJobs"
@@ -78,9 +79,9 @@ export default {
     };
   },
   computed: {
-   jobs: {
+    jobs: {
       get: function () {
-        return this.$store.getters['repostPageModule/getJobs'];
+        return this.$store.getters["repostPageModule/getJobs"];
       },
       set: function (newVal) {
         this.$store.commit("repostPageModule/setJobs", newVal);

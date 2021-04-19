@@ -4,6 +4,11 @@ export const state = {
     selectedJobs: [],
     currentJob: null,
     isAllSelected: false,
+    fetchJobsStatus: {
+        failed: false,
+        isLoading: false,
+        failureMsg: null,
+    },
     updatingSteps: {},
     failureMsgs: {},
     isProgressDialogShowing: false,

@@ -8,6 +8,9 @@ export const getters = {
     getIsAllSelected: (state) => {
         return state.isAllSelected;
     },
+    getFetchJobsStatus: (state) => {
+        return state.fetchJobsStatus;
+    },
     getIsRepostingPageEnabled: (state) => {
         if (state.selectedJobs.length > 0) {
             return true;

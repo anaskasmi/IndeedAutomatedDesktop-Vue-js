@@ -9,7 +9,9 @@ export const getters = {
     getJobsProgress: (state) => {
         return state.jobsProgress;
     },
-
+    getFetchJobsStatus: (state) => {
+        return state.fetchJobsStatus;
+    },
     getIsAllSelected: (state) => {
         return state.isAllSelected;
     },
