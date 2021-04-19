@@ -3,7 +3,7 @@
     <div>
       <div class="col d-flex justify-content-center mt-5">
         <router-link to="/reposting"
-          ><v-btn x-large elevation="1" color="#28527a" dark class="mt-10 mx-5">
+          ><v-btn x-large elevation="1" color="#28527a"  dark class="mt-10 mx-5">
             Start Reposting
           </v-btn></router-link
         >
@@ -19,13 +19,12 @@
 <script>
 export default {
   created() {
-    console.log("value : " + this.$store.getters['repostPageModule/getJobs'].length);
   },
   data() {
     return {};
   },
   methods: {
-    prints() {},
+
   },
 };
 </script>

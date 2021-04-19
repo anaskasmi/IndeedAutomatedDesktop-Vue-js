@@ -148,6 +148,7 @@ export default {
     async refreshJobs() {
       await this.$store.dispatch("repostPageModule/fetchJobs");
     },
+
   },
 };
 </script>
