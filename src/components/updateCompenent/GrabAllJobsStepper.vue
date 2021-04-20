@@ -1,24 +1,32 @@
 <template>
   <v-container class="my-10">
+    <!-- rexecute btn -->
     <div class="text-right">
-      <!-- //todo:make this appear only in case of error -->
-      <v-btn tile color="info" class="my-10" @click="scrapAllJobs">
+      <v-btn
+        tile
+        color="info"
+        class="my-10"
+        @click="reGrabJobsFromIndeed()"
+        v-if="regrabingJobsStatus == 'failed'"
+      >
         <v-icon class="mr-2">mdi-refresh</v-icon>
         Rexecute
       </v-btn>
     </div>
+    <!-- loading spinner -->
     <v-progress-linear
       class="my-10"
-      v-if="isLoading"
+      v-if="regrabingJobsStatus == 'under-processing'"
       indeterminate
       color="teal"
     ></v-progress-linear>
+    <!-- messages -->
     <v-alert
       outlined
       type="info"
       prominent
       border="left"
-      v-if="isLoading && !isDoneScraping && !scrapingFailed"
+      v-if="regrabingJobsStatus == 'under-processing'"
     >
       please wait a second we are grabing the jobs from Indeed for you !
     </v-alert>
@@ -27,7 +35,7 @@
       type="info"
       prominent
       border="left"
-      v-if="!isLoading && !isDoneScraping && !scrapingFailed"
+      v-if="!regrabingJobsStatus"
     >
       Please Click bellow to grab the jobs from Indeed
     </v-alert>
@@ -36,9 +44,9 @@
       type="error"
       prominent
       border="left"
-      v-if="!isLoading && !isDoneScraping && scrapingFailed"
+      v-if="regrabingJobsStatus == 'failed'"
     >
-      Error : {{ failureMsg }}
+      Error : {{ regrabingJobsMessage }}
       <p>
         <small class="text-info"
           >tip : try to close the chromuim browser and reopen it, using the
@@ -51,7 +59,7 @@
       type="success"
       prominent
       border="left"
-      v-if="isDoneScraping"
+      v-if="regrabingJobsStatus == 'done'"
     >
       Jobs regrabed successfully, please Move on to the next page
     </v-alert>
@@ -61,8 +69,8 @@
       color="success"
       class="my-10"
       block
-      @click="scrapAllJobs"
-      v-if="!isLoading && !isDoneScraping"
+      @click="reGrabJobsFromIndeed()"
+      v-if="!regrabingJobsStatus"
     >
       Grab All jobs from indeed
     </v-btn>
@@ -72,44 +80,25 @@
 export default {
   name: "GrabAllJobs",
   data() {
-    return {
-      isLoading: false,
-      isDoneScraping: false,
-      scrapingFailed: false,
-      failureMsg: "",
-    };
+    return {};
   },
   computed: {
-   jobs: {
+    regrabingJobsStatus: {
       get: function () {
-        return this.$store.getters['updatePageModule/getJobs'];
+        return this.$store.getters["updatePageModule/getRegrabingJobsObj"]
+          .status;
       },
-      set: function (newVal) {
-        this.$store.commit("updatePageModule/setJobs", newVal);
+    },
+    regrabingJobsMessage: {
+      get: function () {
+        return this.$store.getters["updatePageModule/getRegrabingJobsObj"]
+          .message;
       },
     },
   },
   methods: {
-    BASE_URL() {
-      return this.$store.state.BASE_URL;
-    },
-    scrapAllJobs() {
-      this.isLoading = true;
-      this.scrapingFailed = false;
-      let url = this.BASE_URL() + "/jobs/scrapAllJobs";
-      this.$axios
-        .get(url)
-        .then((res) => {
-          this.isLoading = false;
-          this.isDoneScraping = true;
-          this.jobs = res.data.jobs;
-        })
-        .catch((error) => {
-          this.isLoading = false;
-          this.scrapingFailed = true;
-          this.failureMsg = error.response.data.error;
-          console.log(error);
-        });
+    reGrabJobsFromIndeed() {
+      this.$store.dispatch("updatePageModule/reGrabJobsFromIndeed");
     },
   },
 };

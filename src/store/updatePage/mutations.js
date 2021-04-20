@@ -27,9 +27,11 @@ export const mutations = {
         for (const job of state.jobsProgress) {
             if (job.job_id == jobId) {
                 job.updateStatus = status;
+                if (status == 'failed') {
+                    job.failureMsg = newVal.failureMsg;
+                }
             }
         }
-
     },
     initJobsProgress: (state) => {
         state.jobsProgress = [];
@@ -43,6 +45,12 @@ export const mutations = {
             state.jobsProgress.push(jobToAdd);
         });
     },
+
+    initRegrabingJobsObject(state) {
+        state.regrabingJobsObj.status = null;
+        state.regrabingJobsObj.message = null;
+    },
+
     startUpdatingTheNextJob(state) {
         //remove job 0 from selected jobs
         state.selectedJobs.shift();

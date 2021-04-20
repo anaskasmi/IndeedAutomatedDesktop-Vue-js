@@ -7,7 +7,12 @@
 
       <v-divider></v-divider>
 
-      <v-stepper-step editable :complete="false" step="2">
+      <v-stepper-step
+        editable
+        :complete="false"
+        step="2"
+        @click="initRegrabJobsObj()"
+      >
         Grab All jobs
       </v-stepper-step>
 
@@ -47,7 +52,7 @@
           tile
           large
           class="float-right"
-          @click="currentStep = 2"
+          @click="initRegrabJobsObj()"
         >
           <v-icon>mdi-chevron-right </v-icon>
 
@@ -140,6 +145,10 @@ export default {
       if (this.oneJobOrMoreSelected) {
         this.currentStep = 4;
       }
+    },
+    initRegrabJobsObj() {
+      this.$store.commit("updatePageModule/initRegrabingJobsObject");
+      this.currentStep = 2;
     },
     async refreshJobs() {
       await this.$store.dispatch("updatePageModule/fetchJobs");

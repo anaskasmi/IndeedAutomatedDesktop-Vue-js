@@ -36,7 +36,6 @@
         please wait a second we are fetching the jobs from the database...
       </v-alert>
     </div>
-
     <div v-if="!fetchJobsStatus.failed && !fetchJobsStatus.isLoading">
       <div class="row col-12 pb-0 mb-0 ml-1">
         <div class="col-2 pb-0 mb-0">
@@ -99,6 +98,13 @@
                     >Locations :</b
                   >
                   <span
+                    v-if="job.primaryJobLocation"
+                    class="text-secondary mx-1"
+                    >{{ job.primaryJobLocation }}
+                  </span>
+
+                  <span
+                    v-else
                     class="text-secondary"
                     v-for="location in job.displayLocation"
                     v-bind:key="location.location"
@@ -291,31 +297,31 @@ export default {
   computed: {
     jobs: {
       get: function () {
-        return this.$store.getters["updatePageModule/getJobs"];
+        return this.$store.getters["repostPageModule/getJobs"];
       },
       set: function (newVal) {
-        this.$store.commit("updatePageModule/setJobs", newVal);
+        this.$store.commit("repostPageModule/setJobs", newVal);
       },
     },
     selectedJobs: {
       get: function () {
-        return this.$store.getters["updatePageModule/getSelectedJobs"];
+        return this.$store.getters["repostPageModule/getSelectedJobs"];
       },
       set: function (newVal) {
-        this.$store.commit("updatePageModule/setSelectedJobs", newVal);
+        this.$store.commit("repostPageModule/setSelectedJobs", newVal);
       },
     },
     isAllSelected: {
       get: function () {
-        return this.$store.getters["updatePageModule/getIsAllSelected"];
+        return this.$store.getters["repostPageModule/getIsAllSelected"];
       },
       set: function (newVal) {
-        this.$store.commit("updatePageModule/setIsAllSelected", newVal);
+        this.$store.commit("repostPageModule/setIsAllSelected", newVal);
       },
     },
     fetchJobsStatus: {
       get: function () {
-        return this.$store.getters["updatePageModule/getFetchJobsStatus"];
+        return this.$store.getters["repostPageModule/getFetchJobsStatus"];
       },
     },
   },
@@ -328,7 +334,7 @@ export default {
     },
 
     async fetchItems() {
-      await this.$store.dispatch("updatePageModule/fetchJobs");
+      await this.$store.dispatch("repostPageModule/fetchJobs");
     },
     selectJob(e) {
       e.cancelBubble = true;

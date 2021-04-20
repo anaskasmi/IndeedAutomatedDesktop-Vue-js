@@ -15,7 +15,6 @@
       :append-icon="maxCPC ? 'mdi-checkbox-multiple-marked-outline ' : ''"
       label="Max cost per click ($)"
       min="0.15"
-      @keypress="isNumberWithdots($event)"
       type="number"
       color="28527a"
       outlined

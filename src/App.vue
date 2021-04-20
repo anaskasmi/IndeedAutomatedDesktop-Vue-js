@@ -6,8 +6,8 @@
           <router-link to="/"
             ><span class="akaya text-white"
               >Indeed Automated
-              <small class="text-warning" v-if="isRepostingPage()">- Reposting page</small>
-              <small class="text-warning" v-if="isUpdatingPage()">- Updating page</small></span
+              <small class="text-warning" v-if="isRepostingPage()">- Reposting version</small>
+              <small class="text-warning" v-if="isUpdatingPage()">- Updating version</small></span
             >
           </router-link>
         </div>
@@ -20,7 +20,7 @@
           elevation="0"
           :disabled="isRepostingPage()"
         >
-          Reposting Page
+          Switch to Reposting version
         </v-btn>
       </router-link>
       <router-link to="/updating">
@@ -30,7 +30,7 @@
           class="mx-3"
           elevation="0"
         >
-          Updating Page
+          Switch to Updating version
         </v-btn>
       </router-link>
     </v-app-bar>

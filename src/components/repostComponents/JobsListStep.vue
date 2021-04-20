@@ -99,6 +99,13 @@
                     >Locations :</b
                   >
                   <span
+                    v-if="job.primaryJobLocation"
+                    class="text-secondary mx-1"
+                    >{{ job.primaryJobLocation }}
+                  </span>
+
+                  <span
+                    v-else
                     class="text-secondary"
                     v-for="location in job.displayLocation"
                     v-bind:key="location.location"

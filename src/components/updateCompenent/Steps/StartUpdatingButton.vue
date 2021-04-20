@@ -9,6 +9,7 @@ export default {
   methods: {
     startUpdatingSelectedJobs() {
       this.$store.dispatch("updatePageModule/startUpdatingSelectedJobs");
+      this.$store.commit("updatePageModule/initRegrabingJobsObject");
     },
   },
 };

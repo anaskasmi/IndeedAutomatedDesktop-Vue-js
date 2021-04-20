@@ -9,6 +9,21 @@ export const getters = {
     getJobsProgress: (state) => {
         return state.jobsProgress;
     },
+    getRegrabingJobsObj: (state) => {
+        return state.regrabingJobsObj;
+    },
+    getIsUpdateFinished: (state) => {
+        for (const job of state.jobsProgress) {
+            if (
+                job.updateStatus == 'not-done' ||
+                job.updateStatus == 'under-processing'
+            ) {
+                return false;
+            }
+        }
+        return true;
+    },
+
     getFetchJobsStatus: (state) => {
         return state.fetchJobsStatus;
     },
@@ -58,4 +73,21 @@ export const getters = {
     getBudgetEndDate: (state) => {
         return state.budgetEndDate;
     },
+
+    getUpdateData: (state) => {
+        return {
+            //general info
+            'jobTitle': state.jobTitle || null,
+            'location': {
+                'city': state.locationCity || null,
+                'state': state.locationState || null
+            },
+            //description
+            'description': state.description || null,
+            //budget info
+            'budget': state.budget || null,
+            'maxCPC': state.maxCPC || null,
+            'budgetEndDate': state.budgetEndDate || null,
+        }
+    }
 };

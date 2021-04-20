@@ -10,6 +10,10 @@ export const state = {
         failureMsg: null,
     },
     updatingSteps: {},
+    regrabingJobsObj: {
+        status: null,
+        message: null,
+    },
     failureMsgs: {},
     isProgressDialogShowing: false,
     // update form
