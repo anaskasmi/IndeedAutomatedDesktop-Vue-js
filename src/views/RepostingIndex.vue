@@ -27,6 +27,8 @@
         @click="openRepostingPage()"
         :complete="false"
         step="4"
+        :rules="[() => oneJobOrMoreSelected]"
+        error-icon="mdi-lock"
       >
         Reposting
       </v-stepper-step>
@@ -148,7 +150,6 @@ export default {
     async refreshJobs() {
       await this.$store.dispatch("repostPageModule/fetchJobs");
     },
-
   },
 };
 </script>

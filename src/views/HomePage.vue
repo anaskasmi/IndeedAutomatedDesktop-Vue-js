@@ -29,11 +29,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
+a {
+  text-decoration: none !important;
+}
 a:link {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 a:hover {
-  text-decoration: none;
+  text-decoration: none im !important;
 }
 </style>

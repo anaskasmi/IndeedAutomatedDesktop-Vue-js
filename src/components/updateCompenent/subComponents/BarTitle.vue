@@ -1,13 +1,15 @@
 <template>
-  <div >
+  <div>
     <v-alert
+      border="bottom"
       class="text-center akaya py-2"
-      style="font-size: 20px"
+      style="font-size: 24px"
       color="primary"
-      elevation="0"
-      tile
+      elevation="2"
     >
-      {{ title }}
+      <div class="mb-3">
+        {{ title }}
+        </div>
     </v-alert>
   </div>
 </template>
@@ -23,6 +25,6 @@ export default {
 <style scoped>
 .akaya {
   font-family: "Lato", sans-serif;
-  color: #ffffff ;
+  color: #ffffff;
 }
 </style>

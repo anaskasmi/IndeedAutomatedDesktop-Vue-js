@@ -34,6 +34,9 @@
         @click="openRepostingPage()"
         :complete="false"
         step="4"
+        :rules="[() => oneJobOrMoreSelected]"
+        error-icon="mdi-lock"
+        
       >
         Updating
       </v-stepper-step>

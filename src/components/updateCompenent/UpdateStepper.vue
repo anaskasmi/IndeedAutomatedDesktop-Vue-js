@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <v-alert outlined border="left" type="info" dismissible> You have {{ numberOfSelectedJobs }} Selected Jobs </v-alert>
     <br />
     <ProgressDialog />
     <BarTitle title="General Info" class="mt-10" />
@@ -30,6 +31,13 @@ export default {
     Budget,
     StartUpdatingButton,
     ProgressDialog,
+  },
+  computed: {
+    numberOfSelectedJobs: {
+      get: function () {
+        return this.$store.getters["updatePageModule/getSelectedJobs"].length;
+      },
+    },
   },
   data: () => {
     return {};
