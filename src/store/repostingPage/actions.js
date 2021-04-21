@@ -523,7 +523,7 @@ export const actions = {
     },
     execute_fillIn_RolesLocation({ state, getters }) {
         return new Promise((res, rej) => {
-            let locationArray = getters.getCurrentJob.displayLocation[0].location.split(
+            let locationArray = getters.getCurrentJob.primaryJobLocation.split(
                 ", "
             );
             let city = locationArray[0];

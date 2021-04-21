@@ -297,31 +297,31 @@ export default {
   computed: {
     jobs: {
       get: function () {
-        return this.$store.getters["repostPageModule/getJobs"];
+        return this.$store.getters["updatePageModule/getJobs"];
       },
       set: function (newVal) {
-        this.$store.commit("repostPageModule/setJobs", newVal);
+        this.$store.commit("updatePageModule/setJobs", newVal);
       },
     },
     selectedJobs: {
       get: function () {
-        return this.$store.getters["repostPageModule/getSelectedJobs"];
+        return this.$store.getters["updatePageModule/getSelectedJobs"];
       },
       set: function (newVal) {
-        this.$store.commit("repostPageModule/setSelectedJobs", newVal);
+        this.$store.commit("updatePageModule/setSelectedJobs", newVal);
       },
     },
     isAllSelected: {
       get: function () {
-        return this.$store.getters["repostPageModule/getIsAllSelected"];
+        return this.$store.getters["updatePageModule/getIsAllSelected"];
       },
       set: function (newVal) {
-        this.$store.commit("repostPageModule/setIsAllSelected", newVal);
+        this.$store.commit("updatePageModule/setIsAllSelected", newVal);
       },
     },
     fetchJobsStatus: {
       get: function () {
-        return this.$store.getters["repostPageModule/getFetchJobsStatus"];
+        return this.$store.getters["updatePageModule/getFetchJobsStatus"];
       },
     },
   },
@@ -334,7 +334,7 @@ export default {
     },
 
     async fetchItems() {
-      await this.$store.dispatch("repostPageModule/fetchJobs");
+      await this.$store.dispatch("updatePageModule/fetchJobs");
     },
     selectJob(e) {
       e.cancelBubble = true;
