@@ -61,10 +61,6 @@
           <FillInPaymentPer stepNumber="16" />
           <FillInOtherBenefits stepNumber="17" />
 
-          <AdditionalJobDetailsBar />
-          <FillInWebSite stepNumber="18" />
-
-
           <JobDescriptionBar />
 
           <FillInDescription stepNumber="19" />
@@ -84,10 +80,8 @@
           <br />
 
           <SponsoringPageBar />
-          <ClickAdvanced stepNumber="23" />
           <FillInAdDurationType stepNumber="24" />
           <FillInAdDurationDate stepNumber="25" />
-          <FillInCPC stepNumber="26" />
           <FillInAdBudget stepNumber="27" />
 
           <CloseOldJobBar />
@@ -125,9 +119,7 @@ import FillInPaymentPer from "./RepostingStepSubComponent/fillIn_paymentPer";
 import FillInSalaryFromAndTo from "./RepostingStepSubComponent/fillIn_salaryFromAndTo";
 import FillInDescription from "./RepostingStepSubComponent/fillIn_description";
 import FillInIsResumeRequired from "./RepostingStepSubComponent/fillIn_isResumeRequired";
-import ClickAdvanced from "./RepostingStepSubComponent/click_advanced";
 import FillInAdDurationDate from "./RepostingStepSubComponent/fillIn_adDurationDate";
-import FillInCPC from "./RepostingStepSubComponent/fillIn_CPC";
 import FillInAdBudget from "./RepostingStepSubComponent/fillIn_adBudget";
 import CloseJob from "./RepostingStepSubComponent/CloseJob";
 import FillInEmail from "./RepostingStepSubComponent/fillIn_email";
@@ -136,7 +128,6 @@ import RepostNextJobComponent from "./RepostingStepSubComponent/RepostNextJobCom
 import FillInIsJobRemote from "./RepostingStepSubComponent/fillIn_isJobRemote";
 import FillInOtherBenefits from "./RepostingStepSubComponent/fillIn_otherBenefits";
 import FillInAdDurationType from "./RepostingStepSubComponent/fillIn_adDurationType";
-import FillInWebSite from "./RepostingStepSubComponent/fillIn_webSite";
 import GettingStartedBar from "./bars/GettingStarted";
 import ApplicantQualificationsBar from "./bars/ApplicantQualifications";
 import ApplicationSettingsBar from "./bars/ApplicationSettings";
@@ -145,7 +136,6 @@ import JobDescriptionBar from "./bars/JobDescription";
 import JobDetailsBar from "./bars/JobDetails";
 import PreviewJobBar from "./bars/PreviewJob";
 import SponsoringPageBar from "./bars/SponsoringPage";
-import AdditionalJobDetailsBar from "./bars/AdditionalJobDetails";
 import CompensationDetailsBar from "./bars/CompensationDetails";
 import CustomizedScreeningBar from "./bars/CustomizedScreening";
 import DownloadJobDetailsBar from "./bars/DownloadJobDetails";
@@ -170,10 +160,8 @@ export default {
     FillInPaymentPer,
     FillInDescription,
     FillInIsResumeRequired,
-    ClickAdvanced,
     FillInAdDurationDate,
     FillInAdDurationType,
-    FillInCPC,
     FillInAdBudget,
     CloseJob,
     FillInEmail,
@@ -189,11 +177,9 @@ export default {
     JobDetailsBar,
     PreviewJobBar,
     SponsoringPageBar,
-    AdditionalJobDetailsBar,
     CompensationDetailsBar,
     CustomizedScreeningBar,
     DownloadJobDetailsBar,
-    FillInWebSite,
     FillInSalaryFromAndTo
   },
 
@@ -220,20 +206,7 @@ export default {
     };
   },
   methods: {
-    BASE_URL() {
-      return this.$store.state.BASE_URL;
-    },
-  
-    async fillInGettingStartedPage() {
-      await this.$store.dispatch("repostPageModule/execute_unlockCompanyNameInput");
-      await this.$store.dispatch("repostPageModule/execute_fillIn_CompanyName");
-      await this.$store.dispatch("repostPageModule/execute_fillIn_JobTitle");
-      await this.$store.dispatch("repostPageModule/execute_fillIn_JobCategory");
-      await this.$store.dispatch("repostPageModule/execute_fillIn_RolesLocation");
-      await this.$store.dispatch("repostPageModule/execute_fillIn_isJobRemote");
-      await this.$store.dispatch("repostPageModule/execute_fillIn_isJobRemote");
-      await this.$store.dispatch("repostPageModule/execute_clickSaveAndContinue");
-    },
+   
   },
 };
 </script>

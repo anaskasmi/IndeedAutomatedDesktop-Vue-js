@@ -1,5 +1,6 @@
 <template>
   <div class="mx-5 mb-10">
+    <div class="text -center">{{ queueLenght}} Jobs Selected</div>
     <div>
       <div class="my-10 text-right">
         <v-btn color="info" elevation="0" tile @click="fetchItems">
@@ -302,6 +303,11 @@ export default {
       },
       set: function (newVal) {
         this.$store.commit("repostPageModule/setJobs", newVal);
+      },
+    },
+    queueLenght: {
+      get() {
+        return this.$store.getters["repostPageModule/getQueueLength"];
       },
     },
     selectedJobs: {
