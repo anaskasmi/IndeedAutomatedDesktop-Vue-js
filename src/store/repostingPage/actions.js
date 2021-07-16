@@ -41,26 +41,7 @@ export const actions = {
 
 
     },
-    execute_click_advanced({ state }) {
-        return new Promise((res, rej) => {
-            state.repostingSteps.click_advanced = "doing";
-            state.failureMsgs.click_advanced = null;
-            let url = state.BASE_URL + "/jobs/click_advanced";
-            axios
-                .get(url)
-                .then(() => {
-                    state.repostingSteps.click_advanced = "done";
-                    res();
-                })
-                .catch((error) => {
-                    state.repostingSteps.click_advanced = "failed";
-                    state.failureMsgs.click_advanced = error.response.data.error;
-                    console.log(error);
-                    rej();
-                });
-        })
 
-    },
     execute_click_confirm({ state }) {
         return new Promise((res, rej) => {
             state.repostingSteps.click_confirm = "doing";
@@ -197,26 +178,6 @@ export const actions = {
                     state.failureMsgs.fillIn_CompanyName = error.response.data.error;
                     console.log(error);
                     rej(error)
-                });
-        })
-
-    },
-    execute_fillIn_CPC({ state, getters }) {
-        return new Promise((res, rej) => {
-            state.repostingSteps.fillIn_CPC = "doing";
-            state.failureMsgs.fillIn_CPC = null;
-            let url = state.BASE_URL + "/jobs/fillIn_CPC";
-            axios
-                .post(url, { 'budget_maxCPC': getters.getCurrentJob.budget_maxCPC })
-                .then(() => {
-                    state.repostingSteps.fillIn_CPC = "done";
-                    res();
-                })
-                .catch((error) => {
-                    state.repostingSteps.fillIn_CPC = "failed";
-                    state.failureMsgs.fillIn_CPC = error.response.data.error;
-                    console.log(error);
-                    rej(error);
                 });
         })
 

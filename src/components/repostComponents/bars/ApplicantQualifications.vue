@@ -1,7 +1,7 @@
 <template>
   <v-app-bar dark color="#0f3057">
     <v-toolbar-title class="ml-10"
-      >7- Applicant qualifications page</v-toolbar-title
+      >6- Applicant qualifications page</v-toolbar-title
     >
 
     <v-spacer></v-spacer>
