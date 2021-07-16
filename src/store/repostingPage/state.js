@@ -43,7 +43,6 @@ export const state = {
         fillIn_isJobRemote: 'notDone',
         fillIn_otherBenefits: 'notDone',
         RepostNextJobComponent: 'notDone',
-        fillIn_webSite: 'notDone',
         fillIn_salaryFromAndTo: 'notDone',
         fillIn_industry: 'notDone',
     },
@@ -79,7 +78,6 @@ export const state = {
         fillIn_isJobRemote: null,
         fillIn_otherBenefits: null,
         RepostNextJobComponent: null,
-        fillIn_webSite: null,
         fillIn_salaryFromAndTo: null,
         fillIn_industry: null,
 

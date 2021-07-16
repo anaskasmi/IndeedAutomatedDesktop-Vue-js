@@ -6,9 +6,16 @@
           <router-link to="/"
             ><span class="akaya text-white"
               >Indeed Automated
-              <small class="text-warning" v-if="isRepostingPage()">- Reposting version</small>
-              <small class="text-warning" v-if="isUpdatingPage()">- Updating version</small></span
-            >
+              <small class="text-warning" v-if="isRepostingPage()"
+                >- Reposting version</small
+              >
+              <small class="text-warning" v-if="isUpdatingPage()"
+                >- Updating version</small
+              >
+              <small class="text-warning" v-if="isResumePage()"
+                >- Resumes Transfer</small
+              >
+            </span>
           </router-link>
         </div>
       </v-toolbar-title>
@@ -31,6 +38,15 @@
           elevation="0"
         >
           Switch to Updating version
+        </v-btn> </router-link
+      ><router-link to="/resumeTransfer">
+        <v-btn
+          color="#28abb9"
+          :disabled="isResumePage()"
+          class="mx-3"
+          elevation="0"
+        >
+          Switch to Resume version
         </v-btn>
       </router-link>
     </v-app-bar>
@@ -52,6 +68,10 @@ export default {
     isUpdatingPage() {
       return this.$route.name === "UpdatingIndex";
     },
+    isResumePage()
+    {
+      return this.$route.name === "ResumeIndex";
+    }
   },
 };
 </script>

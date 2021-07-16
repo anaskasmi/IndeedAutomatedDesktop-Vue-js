@@ -93,6 +93,8 @@ export default {
       return this.$store.state.BASE_URL;
     },
     scrapAllJobs() {
+      this.jobs = [];
+      this.$store.commit("repostPageModule/setSelectedJobs", []);
       this.isLoading = true;
       this.scrapingFailed = false;
       let url = this.BASE_URL() + "/jobs/scrapAllJobs";

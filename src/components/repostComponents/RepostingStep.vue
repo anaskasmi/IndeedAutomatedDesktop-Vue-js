@@ -17,7 +17,7 @@
             currentJob.jobTitle
           }}</span>
           <span>
-            /
+            AND
             <span class="font-weight-bold" style="color: #ee6f57">{{
               queueLenght - 1
             }}</span>
@@ -36,8 +36,10 @@
         <GetJobFullDetails stepNumber="1" />
 
         <div v-if="doesJobHasFullDetails">
-          <GettingStartedBar />
+          <OpenPostJobBar />
           <OpenPostJobPage stepNumber="2" />
+
+          <GettingStartedBar />
           <UnlockCompanyNameInput stepNumber="3" />
           <FillInCompanyName stepNumber="4" />
           <FillInJobTitle stepNumber="5" />
@@ -57,26 +59,22 @@
 
           <FillInPaymentType stepNumber="14" />
           <FillInSalaryFromAndTo stepNumber="15" />
-          
+
           <FillInPaymentPer stepNumber="16" />
           <FillInOtherBenefits stepNumber="17" />
 
-          <AdditionalJobDetailsBar />
-          <FillInWebSite stepNumber="18" />
-
-
           <JobDescriptionBar />
 
-          <FillInDescription stepNumber="19" />
+          <FillInDescription stepNumber="18" />
 
           <ApplicationSettingsBar />
 
-          <FillInIsResumeRequired stepNumber="20" />
-          <FillInEmail stepNumber="21" />
+          <FillInIsResumeRequired stepNumber="19" />
+          <FillInEmail stepNumber="20" />
 
           <ApplicantQualificationsBar />
 
-          <CloseQuestions stepNumber="22" />
+          <CloseQuestions stepNumber="21" />
 
           <CustomizedScreeningBar />
           <br />
@@ -84,16 +82,16 @@
           <br />
 
           <SponsoringPageBar />
-          <ClickAdvanced stepNumber="23" />
-          <FillInAdDurationType stepNumber="24" />
-          <FillInAdDurationDate stepNumber="25" />
-          <FillInCPC stepNumber="26" />
-          <FillInAdBudget stepNumber="27" />
+          <ClickAdvanced stepNumber="22" />
+          <FillInAdDurationType stepNumber="23" />
+          <FillInAdDurationDate stepNumber="24" />
+          <FillInCPC stepNumber="25" />
+          <FillInAdBudget stepNumber="26" />
 
           <CloseOldJobBar />
 
-          <CloseJob stepNumber="28" />
-          <RepostNextJobComponent stepNumber="29" />
+          <CloseJob stepNumber="27" />
+          <RepostNextJobComponent stepNumber="28" />
         </div>
       </v-stepper>
     </div>
@@ -136,7 +134,7 @@ import RepostNextJobComponent from "./RepostingStepSubComponent/RepostNextJobCom
 import FillInIsJobRemote from "./RepostingStepSubComponent/fillIn_isJobRemote";
 import FillInOtherBenefits from "./RepostingStepSubComponent/fillIn_otherBenefits";
 import FillInAdDurationType from "./RepostingStepSubComponent/fillIn_adDurationType";
-import FillInWebSite from "./RepostingStepSubComponent/fillIn_webSite";
+import OpenPostJobBar from "./bars/OpenPostJobBar";
 import GettingStartedBar from "./bars/GettingStarted";
 import ApplicantQualificationsBar from "./bars/ApplicantQualifications";
 import ApplicationSettingsBar from "./bars/ApplicationSettings";
@@ -145,7 +143,6 @@ import JobDescriptionBar from "./bars/JobDescription";
 import JobDetailsBar from "./bars/JobDetails";
 import PreviewJobBar from "./bars/PreviewJob";
 import SponsoringPageBar from "./bars/SponsoringPage";
-import AdditionalJobDetailsBar from "./bars/AdditionalJobDetails";
 import CompensationDetailsBar from "./bars/CompensationDetails";
 import CustomizedScreeningBar from "./bars/CustomizedScreening";
 import DownloadJobDetailsBar from "./bars/DownloadJobDetails";
@@ -181,6 +178,7 @@ export default {
     FillInIsJobRemote,
     FillInOtherBenefits,
     RepostNextJobComponent,
+    OpenPostJobBar,
     GettingStartedBar,
     ApplicantQualificationsBar,
     ApplicationSettingsBar,
@@ -189,28 +187,26 @@ export default {
     JobDetailsBar,
     PreviewJobBar,
     SponsoringPageBar,
-    AdditionalJobDetailsBar,
     CompensationDetailsBar,
     CustomizedScreeningBar,
     DownloadJobDetailsBar,
-    FillInWebSite,
-    FillInSalaryFromAndTo
+    FillInSalaryFromAndTo,
   },
 
   computed: {
     currentJob: {
       get() {
-        return this.$store.getters['repostPageModule/getCurrentJob'];
+        return this.$store.getters["repostPageModule/getCurrentJob"];
       },
     },
     queueLenght: {
       get() {
-        return this.$store.getters['repostPageModule/getQueueLength'];
+        return this.$store.getters["repostPageModule/getQueueLength"];
       },
     },
     doesJobHasFullDetails: {
       get() {
-        return this.$store.getters['repostPageModule/doesJobHasFullDetails'];
+        return this.$store.getters["repostPageModule/doesJobHasFullDetails"];
       },
     },
   },
@@ -223,16 +219,22 @@ export default {
     BASE_URL() {
       return this.$store.state.BASE_URL;
     },
-  
+
     async fillInGettingStartedPage() {
-      await this.$store.dispatch("repostPageModule/execute_unlockCompanyNameInput");
+      await this.$store.dispatch(
+        "repostPageModule/execute_unlockCompanyNameInput"
+      );
       await this.$store.dispatch("repostPageModule/execute_fillIn_CompanyName");
       await this.$store.dispatch("repostPageModule/execute_fillIn_JobTitle");
       await this.$store.dispatch("repostPageModule/execute_fillIn_JobCategory");
-      await this.$store.dispatch("repostPageModule/execute_fillIn_RolesLocation");
+      await this.$store.dispatch(
+        "repostPageModule/execute_fillIn_RolesLocation"
+      );
       await this.$store.dispatch("repostPageModule/execute_fillIn_isJobRemote");
       await this.$store.dispatch("repostPageModule/execute_fillIn_isJobRemote");
-      await this.$store.dispatch("repostPageModule/execute_clickSaveAndContinue");
+      await this.$store.dispatch(
+        "repostPageModule/execute_clickSaveAndContinue"
+      );
     },
   },
 };

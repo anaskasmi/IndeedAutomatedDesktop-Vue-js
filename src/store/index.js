@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { repostPageModule } from './repostingPage/index';
 import { updatePageModule } from './updatePage/index';
+import { resumePageModule } from './resumePage/index';
 Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
@@ -12,6 +13,7 @@ export const store = new Vuex.Store({
     actions: {},
     modules: {
         repostPageModule,
-        updatePageModule
+        updatePageModule,
+        resumePageModule
     }
 });

@@ -41,13 +41,22 @@ export default {
     async fillInPage() {
       this.isLoading = true;
       try {
-        await this.$store.dispatch("repostPageModule/execute_openPostJobPage");
-        await this.$store.dispatch("repostPageModule/execute_unlockCompanyNameInput");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_CompanyName");
+        await this.$store.dispatch(
+          "repostPageModule/execute_unlockCompanyNameInput"
+        );
+        await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_CompanyName"
+        );
         await this.$store.dispatch("repostPageModule/execute_fillIn_JobTitle");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_RolesLocation");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_JobCategory");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_isJobRemote");
+        await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_RolesLocation"
+        );
+        await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_JobCategory"
+        );
+        await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_isJobRemote"
+        );
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;
@@ -57,23 +66,37 @@ export default {
     async fillInPageAndContinue() {
       this.isLoading = true;
       try {
-        await this.$store.dispatch("repostPageModule/execute_openPostJobPage");
         try {
-          await this.$store.dispatch("repostPageModule/execute_unlockCompanyNameInput");
+          await this.$store.dispatch(
+            "repostPageModule/execute_unlockCompanyNameInput"
+          );
         } catch (error) {
+          this.isLoading = false;
+
           console.log(error);
         }
-        await this.$store.dispatch("repostPageModule/execute_fillIn_CompanyName");
+        await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_CompanyName"
+        );
         await this.$store.dispatch("repostPageModule/execute_fillIn_JobTitle");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_RolesLocation");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_JobCategory");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_isJobRemote");
-        await this.$store.dispatch("repostPageModule/execute_clickSaveAndContinue");
+        await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_RolesLocation"
+        );
+        await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_JobCategory"
+        );
+        await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_isJobRemote"
+        );
+        await this.$store.dispatch(
+          "repostPageModule/execute_clickSaveAndContinue"
+        );
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;
         console.log(error);
       }
+      this.isLoading = false;
     },
   },
 };

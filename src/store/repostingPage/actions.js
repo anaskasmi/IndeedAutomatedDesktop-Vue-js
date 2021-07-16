@@ -388,25 +388,7 @@ export const actions = {
         })
 
     },
-    execute_fillIn_webSite({ state }) {
-        return new Promise((res, rej) => {
-            state.repostingSteps.fillIn_webSite = "doing";
-            state.failureMsgs.fillIn_webSite = null;
-            let url = state.BASE_URL + "/jobs/fillIn_webSite";
-            axios
-                .get(url).then(() => {
-                    state.repostingSteps.fillIn_webSite = "done";
-                    res();
-                })
-                .catch((error) => {
-                    state.repostingSteps.fillIn_webSite = "failed";
-                    state.failureMsgs.fillIn_webSite = error.response.data.error;
-                    console.log(error);
-                    rej(error);
-                });
-        })
 
-    },
     execute_fillIn_industry({ state }) {
         return new Promise((res, rej) => {
             state.repostingSteps.fillIn_industry = "doing";

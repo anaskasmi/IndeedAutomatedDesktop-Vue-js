@@ -1,6 +1,5 @@
 <template>
   <div class="mx-5 mb-10">
-    <div class="text -center">{{ queueLenght }} Jobs Selected</div>
     <div>
       <div class="my-10 text-right">
         <v-btn color="info" elevation="0" tile @click="fetchItems">
@@ -37,8 +36,16 @@
         please wait a second we are fetching the jobs from the database...
       </v-alert>
     </div>
-
     <div v-if="!fetchJobsStatus.failed && !fetchJobsStatus.isLoading">
+      <v-text-field
+        placeholder="Search Jobs"
+        prepend-inner-icon="mdi-magnify "
+        filled
+        rounded
+        v-model="searchKeyWord"
+        tile
+        clearable
+      ></v-text-field>
       <div class="row col-12 pb-0 mb-0 ml-1">
         <div class="col-2 pb-0 mb-0">
           <v-checkbox
@@ -52,7 +59,7 @@
       </div>
 
       <v-expansion-panels inset hover multiple>
-        <v-expansion-panel v-for="(job, i) in jobs" :key="i">
+        <v-expansion-panel v-for="job in filteredList" :key="job.job_id">
           <v-expansion-panel-header>
             <div class="row justify-content-around">
               <v-checkbox
@@ -151,134 +158,47 @@
           <v-expansion-panel-content>
             <v-card class="mt-2 p-0 shadow-none">
               <v-card-text class="my-4" v-if="job.applicationCount">
-                <panelTitle title="Applicants" />
-                <br />
+                <!-- row of buttons -->
+                <v-col class="my-4">
+                  <!-- total -->
+                  <v-row class="ml-6 align-center justify-center">
+                    <img class="cv-icon" src="/cv.svg" />
+                    <div class="mx-10 candidates-text">
+                      This job has
+                      <span class="candidates-number">{{
+                        job.applicationCount.total
+                      }}</span>
+                      Candidates
+                    </div>
+                  </v-row>
+                  <v-row class="align-center justify-center my-10">
+                    <v-btn
+                      color="success"
+                      class="py-6"
+                      elevation="0"
+                      @click="transferJobsResume(job.job_id)"
+                    >
+                      <v-icon class="mr-2">mdi-share-all</v-icon>
+                      Download & Transefer Resumes
+                    </v-btn>
+                  </v-row>
+                </v-col>
+              </v-card-text>
+
+              <v-card-text class="my-4" v-if="!job.applicationCount">
                 <!-- row of buttons -->
                 <div class="mx-5 px-5 my-4">
-                  <div class="row col-12 justify-content-between">
+                  <div class="row col-12 d-flex justify-center">
                     <!-- total -->
-                    <applicantButton
-                      icon="mdi-account-multiple-check"
-                      title="Total"
-                      :number="job.applicationCount.total"
-                    />
-
-                    <!-- new -->
-                    <applicantButton
-                      icon="mdi-account-star"
-                      title="New"
-                      :number="job.applicationCount.new"
-                    />
-                    <!-- reviewed -->
-                    <applicantButton
-                      icon="mdi-comment-account"
-                      title="Reviewed"
-                      :number="job.applicationCount.reviewed"
-                    />
-                    <!-- phoneScreened -->
-                    <applicantButton
-                      icon="mdi-badge-account-outline"
-                      title="Phone Screened"
-                      :number="job.applicationCount.phoneScreened"
-                    />
-                    <!-- interviewed -->
-                    <applicantButton
-                      icon="mdi-account-check"
-                      title="Interviewed"
-                      :number="job.applicationCount.interviewed"
-                    />
-                  </div>
-
-                  <div class="row col-12 justify-content-between">
-                    <!-- offerMade -->
-                    <applicantButton
-                      icon="mdi-account-details"
-                      title="Offer Made"
-                      :number="job.applicationCount.offerMade"
-                    />
-
-                    <!-- rejected -->
-                    <applicantButton
-                      icon="mdi-account-off"
-                      title="Rejected"
-                      :number="job.applicationCount.rejected"
-                    />
-
-                    <!-- hired -->
-                    <applicantButton
-                      icon="mdi-account-multiple-plus"
-                      title="Hired"
-                      :number="job.applicationCount.hired"
-                    />
-
-                    <!-- pending -->
-                    <applicantButton
-                      icon="mdi-account-clock"
-                      title="Pending"
-                      :number="job.applicationCount.pending"
-                    />
-                    <!-- sponsored -->
-                    <applicantButton
-                      icon="mdi-account-convert"
-                      title="Sponsored"
-                      :number="job.applicationCount.sponsored"
-                    />
+                    <v-row class="align-center justify-center">
+                      <img class="cv-icon" src="/cv.svg" />
+                      <div class="mx-10 candidates-text">
+                        This job has
+                        <span class="candidates-number">0</span> Candidates
+                      </div>
+                    </v-row>
                   </div>
                 </div>
-              </v-card-text>
-
-              <v-card-text class="my-4">
-                <panelTitle title="Budget" />
-                <div class="mt-5">
-                  <div class="row col-12 justify-content-around">
-                    <budgetPanel
-                      title="Amount"
-                      :value="'$' + job.budget_amount / 100"
-                    />
-                    <budgetPanel
-                      title="Display cost"
-                      :value="job.budget_displayCost"
-                    />
-                    <budgetPanel
-                      title="Max CPC"
-                      v-if="job.budget_maxCPC"
-                      :value="'$' + job.budget_maxCPC"
-                    />
-                    <budgetPanel title="Budget plan" :value="job.budget_plan" />
-                    <budgetPanel
-                      v-if="job.budget_endDate"
-                      title="budget End Date"
-                      :value="
-                        job.budget_endDate.replace(`T`, ` `).replace(`Z`, ``)
-                      "
-                    />
-                  </div>
-                </div>
-              </v-card-text>
-
-              <v-card-text class="my-4">
-                <panelTitle title="Description" />
-                <div
-                  class="text-muted pa-5 mt-5 shadow-sm border border-dark"
-                  style="
-                    font-size: 1.4em;
-                    background-color: #faf8f8;
-                    text-align: justify;
-                  "
-                  v-if="job.jobDescription && !job.jobDescriptionHtml"
-                >
-                  {{ job.jobDescription.split("*").join().replaceAll(",", "") }}
-                </div>
-                <div
-                  class="text-muted pa-5 mt-5 shadow-sm border border-dark"
-                  style="
-                    font-size: 1.4em;
-                    background-color: #faf8f8;
-                    text-align: justify;
-                  "
-                  v-if="job.jobDescriptionHtml"
-                  v-html="job.jobDescriptionHtml"
-                ></div>
               </v-card-text>
             </v-card>
           </v-expansion-panel-content>
@@ -288,70 +208,80 @@
   </div>
 </template>
 <script>
-import applicantButton from "../JobsListStepSubCompenent/applicantButton.vue";
-import budgetPanel from "../JobsListStepSubCompenent/budgetPanel.vue";
-import panelTitle from "../JobsListStepSubCompenent/panelTitle.vue";
-
 export default {
   name: "JobsList",
-
-  components: {
-    applicantButton,
-    budgetPanel,
-    panelTitle,
-  },
+  components: {},
   created() {
     this.fetchItems();
+  },
+  data() {
+    return {
+      searchKeyWord: null,
+    };
   },
   computed: {
     jobs: {
       get: function () {
-        return this.$store.getters["repostPageModule/getJobs"];
+        return this.$store.getters["resumePageModule/getJobs"];
       },
       set: function (newVal) {
-        this.$store.commit("repostPageModule/setJobs", newVal);
+        this.$store.commit("resumePageModule/setJobs", newVal);
       },
     },
-    queueLenght: {
-      get() {
-        return this.$store.getters["repostPageModule/getQueueLength"];
-      },
+    filteredList() {
+      if (!this.searchKeyWord) {
+        return this.jobs;
+      } else {
+        return this.jobs.filter((job) => {
+          return job.jobTitle
+            .toLowerCase()
+            .includes(this.searchKeyWord.toLowerCase());
+        });
+      }
     },
     selectedJobs: {
       get: function () {
-        return this.$store.getters["repostPageModule/getSelectedJobs"];
+        return this.$store.getters["resumePageModule/getSelectedJobs"];
       },
       set: function (newVal) {
-        this.$store.commit("repostPageModule/setSelectedJobs", newVal);
+        this.$store.commit("resumePageModule/setSelectedJobs", newVal);
       },
     },
     isAllSelected: {
       get: function () {
-        return this.$store.getters["repostPageModule/getIsAllSelected"];
+        return this.$store.getters["resumePageModule/getIsAllSelected"];
       },
       set: function (newVal) {
-        this.$store.commit("repostPageModule/setIsAllSelected", newVal);
+        if (!this.searchKeyWord) {
+          this.$store.commit("resumePageModule/setIsAllSelected", newVal);
+        } else {
+          this.$store.commit(
+            "resumePageModule/setIsAllSelectedForFilteredJobs",
+            { newVal, filteredList: this.filteredList }
+          );
+        }
       },
     },
     fetchJobsStatus: {
       get: function () {
-        return this.$store.getters["repostPageModule/getFetchJobsStatus"];
+        return this.$store.getters["resumePageModule/getFetchJobsStatus"];
       },
     },
   },
-  data() {
-    return {};
-  },
+
   methods: {
     BASE_URL() {
       return this.$store.state.BASE_URL;
     },
 
     async fetchItems() {
-      await this.$store.dispatch("repostPageModule/fetchJobs");
+      await this.$store.dispatch("resumePageModule/fetchJobs");
     },
     selectJob(e) {
       e.cancelBubble = true;
+    },
+    async transferJobsResume(job_id) {
+      await this.$store.dispatch("resumePageModule/transferJobsResume", job_id);
     },
   },
 };
@@ -359,9 +289,31 @@ export default {
 
 
 <style  scoped>
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
 .text-result {
   color: #ffbe0b;
   font-size: 1.3em;
+}
+
+.cv-icon {
+  max-width: 50px;
+}
+
+.candidates-text {
+  color: #5f5f5f;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+.candidates-number {
+  font-family: "Lobster", cursive !important;
+  color: #2c3e50;
+  color: #112e36;
+  font-size: 1.5em;
+  /* font-style: italic; */
+  font-weight: 600;
+  margin: 0px 3px;
 }
 
 .text-panel1-high {
