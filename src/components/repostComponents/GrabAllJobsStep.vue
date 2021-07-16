@@ -95,10 +95,6 @@ export default {
     scrapAllJobs() {
       this.jobs = [];
       this.$store.commit("repostPageModule/setSelectedJobs", []);
-<<<<<<< HEAD
-=======
-
->>>>>>> 02f6b0cd8ad8d5df37424606805a1ce3cde44ea4
       this.isLoading = true;
       this.scrapingFailed = false;
       let url = this.BASE_URL() + "/jobs/scrapAllJobs";

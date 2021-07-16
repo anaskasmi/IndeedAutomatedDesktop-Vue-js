@@ -82,17 +82,11 @@
           <br />
 
           <SponsoringPageBar />
-<<<<<<< HEAD
           <ClickAdvanced stepNumber="22" />
           <FillInAdDurationType stepNumber="23" />
           <FillInAdDurationDate stepNumber="24" />
           <FillInCPC stepNumber="25" />
           <FillInAdBudget stepNumber="26" />
-=======
-          <FillInAdDurationType stepNumber="24" />
-          <FillInAdDurationDate stepNumber="25" />
-          <FillInAdBudget stepNumber="27" />
->>>>>>> 02f6b0cd8ad8d5df37424606805a1ce3cde44ea4
 
           <CloseOldJobBar />
 
@@ -138,10 +132,7 @@ import RepostNextJobComponent from "./RepostingStepSubComponent/RepostNextJobCom
 import FillInIsJobRemote from "./RepostingStepSubComponent/fillIn_isJobRemote";
 import FillInOtherBenefits from "./RepostingStepSubComponent/fillIn_otherBenefits";
 import FillInAdDurationType from "./RepostingStepSubComponent/fillIn_adDurationType";
-<<<<<<< HEAD
 import OpenPostJobBar from "./bars/OpenPostJobBar";
-=======
->>>>>>> 02f6b0cd8ad8d5df37424606805a1ce3cde44ea4
 import GettingStartedBar from "./bars/GettingStarted";
 import ApplicantQualificationsBar from "./bars/ApplicantQualifications";
 import ApplicationSettingsBar from "./bars/ApplicationSettings";
@@ -195,11 +186,7 @@ export default {
     CompensationDetailsBar,
     CustomizedScreeningBar,
     DownloadJobDetailsBar,
-<<<<<<< HEAD
     FillInSalaryFromAndTo,
-=======
-    FillInSalaryFromAndTo
->>>>>>> 02f6b0cd8ad8d5df37424606805a1ce3cde44ea4
   },
 
   computed: {
@@ -225,7 +212,6 @@ export default {
     };
   },
   methods: {
-<<<<<<< HEAD
     BASE_URL() {
       return this.$store.state.BASE_URL;
     },
@@ -246,9 +232,6 @@ export default {
         "repostPageModule/execute_clickSaveAndContinue"
       );
     },
-=======
-   
->>>>>>> 02f6b0cd8ad8d5df37424606805a1ce3cde44ea4
   },
 };
 </script>

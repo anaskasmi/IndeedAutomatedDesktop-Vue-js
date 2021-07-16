@@ -1,10 +1,6 @@
 <template>
   <div class="mx-5 mb-10">
-<<<<<<< HEAD
     <div class="text -center">{{ queueLenght }} Jobs Selected</div>
-=======
-    <div class="text -center">{{ queueLenght}} Jobs Selected</div>
->>>>>>> 02f6b0cd8ad8d5df37424606805a1ce3cde44ea4
     <div>
       <div class="my-10 text-right">
         <v-btn color="info" elevation="0" tile @click="fetchItems">
