@@ -1,5 +1,7 @@
 <template>
   <div class="mx-5 mb-10">
+    <TransferDialogComponent />
+
     <div>
       <div class="my-10 text-right">
         <v-btn color="info" elevation="0" tile @click="fetchItems">
@@ -36,6 +38,7 @@
         please wait a second we are fetching the jobs from the database...
       </v-alert>
     </div>
+
     <div v-if="!fetchJobsStatus.failed && !fetchJobsStatus.isLoading">
       <v-text-field
         placeholder="Search Jobs"
@@ -58,9 +61,9 @@
         </div>
       </div>
 
-      <v-expansion-panels inset hover multiple>
+      <v-expansion-panels hover>
         <v-expansion-panel v-for="job in filteredList" :key="job.job_id">
-          <v-expansion-panel-header>
+          <v-expansion-panel-header @click="openTransferDialog(job)">
             <div class="row justify-content-around">
               <v-checkbox
                 v-model="selectedJobs"
@@ -155,62 +158,18 @@
               {{ job.status }}
             </div>
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <v-card class="mt-2 p-0 shadow-none">
-              <v-card-text class="my-4" v-if="job.applicationCount">
-                <!-- row of buttons -->
-                <v-col class="my-4">
-                  <!-- total -->
-                  <v-row class="ml-6 align-center justify-center">
-                    <img class="cv-icon" src="/cv.svg" />
-                    <div class="mx-10 candidates-text">
-                      This job has
-                      <span class="candidates-number">{{
-                        job.applicationCount.total
-                      }}</span>
-                      Candidates
-                    </div>
-                  </v-row>
-                  <v-row class="align-center justify-center my-10">
-                    <v-btn
-                      color="success"
-                      class="py-6"
-                      elevation="0"
-                      @click="transferJobsResume(job.job_id)"
-                    >
-                      <v-icon class="mr-2">mdi-share-all</v-icon>
-                      Download & Transefer Resumes
-                    </v-btn>
-                  </v-row>
-                </v-col>
-              </v-card-text>
-
-              <v-card-text class="my-4" v-if="!job.applicationCount">
-                <!-- row of buttons -->
-                <div class="mx-5 px-5 my-4">
-                  <div class="row col-12 d-flex justify-center">
-                    <!-- total -->
-                    <v-row class="align-center justify-center">
-                      <img class="cv-icon" src="/cv.svg" />
-                      <div class="mx-10 candidates-text">
-                        This job has
-                        <span class="candidates-number">0</span> Candidates
-                      </div>
-                    </v-row>
-                  </div>
-                </div>
-              </v-card-text>
-            </v-card>
-          </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
     </div>
   </div>
 </template>
 <script>
+import TransferDialogComponent from "./TransferDialog.vue";
 export default {
   name: "JobsList",
-  components: {},
+  components: {
+    TransferDialogComponent,
+  },
   created() {
     this.fetchItems();
   },
@@ -226,6 +185,27 @@ export default {
       },
       set: function (newVal) {
         this.$store.commit("resumePageModule/setJobs", newVal);
+      },
+    },
+    isTransferDialogVisible: {
+      get: function () {
+        return this.$store.getters[
+          "resumePageModule/getIsTransferDialogVisible"
+        ];
+      },
+      set: function (newVal) {
+        this.$store.commit(
+          "resumePageModule/setIsTransferDialogVisible",
+          newVal
+        );
+      },
+    },
+    currentJobOpened: {
+      get: function () {
+        return this.$store.getters["resumePageModule/getCurrentJobOpened"];
+      },
+      set: function (newVal) {
+        this.$store.commit("resumePageModule/setCurrentJobOpened", newVal);
       },
     },
     filteredList() {
@@ -273,7 +253,11 @@ export default {
     BASE_URL() {
       return this.$store.state.BASE_URL;
     },
-
+    openTransferDialog(job) {
+      console.log(job.job_id);
+      this.currentJobOpened = job;
+      this.isTransferDialogVisible = true;
+    },
     async fetchItems() {
       await this.$store.dispatch("resumePageModule/fetchJobs");
     },
@@ -289,33 +273,6 @@ export default {
 
 
 <style  scoped>
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-
-.text-result {
-  color: #ffbe0b;
-  font-size: 1.3em;
-}
-
-.cv-icon {
-  max-width: 50px;
-}
-
-.candidates-text {
-  color: #5f5f5f;
-  font-size: 1.3em;
-  font-weight: 600;
-}
-
-.candidates-number {
-  font-family: "Lobster", cursive !important;
-  color: #2c3e50;
-  color: #112e36;
-  font-size: 1.5em;
-  /* font-style: italic; */
-  font-weight: 600;
-  margin: 0px 3px;
-}
-
 .text-panel1-high {
   color: #1d3557;
 }

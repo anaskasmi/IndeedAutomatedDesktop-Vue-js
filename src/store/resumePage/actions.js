@@ -87,6 +87,70 @@ export const actions = {
                 });
         });
     },
+    async getJobEmailForCurrentJobOpened({ state, dispatch }) {
+        let url = state.BASE_URL + "/jobs/getJobEmail";
+        return new Promise((resolve, reject) => {
+            axios
+                .post(url, { jobId: state.currentJobOpened.job_id })
+                .then(async() => {
+                    await dispatch('reFetchCurrentJobOpened');
+                    resolve();
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    },
+    async getCandidatesDetailsForCurrentJobOpened({ state, dispatch }) {
+        let url = state.BASE_URL + "/jobs/getCandidatesDetails";
+        return new Promise((resolve, reject) => {
+            axios
+                .post(url, { jobId: state.currentJobOpened.job_id })
+                .then(async() => {
+                    await dispatch('reFetchCurrentJobOpened');
+                    resolve();
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    },
+    async transferResumeOfOneCandidate({ state, dispatch }, candidateId) {
+        let url = state.BASE_URL + "/jobs/transferResumeOfOneCandidate";
+        return new Promise((resolve, reject) => {
+            axios
+                .post(url, { jobId: state.currentJobOpened.job_id, candidateId })
+                .then(async() => {
+                    await dispatch('reFetchCurrentJobOpened');
+                    resolve();
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    },
 
+    async reFetchCurrentJobOpened({ state, commit }) {
+        let url = state.BASE_URL + "/jobs/getJobDataFromDb/" + state.currentJobOpened.job_id;
+        return new Promise((resolve) => {
+            axios
+                .get(url, )
+                .then((response) => {
+                    commit('setCurrentJobOpened', response.data.job)
+                    console.log(response);
+                    resolve(response);
+                })
+                .catch((error) => {
+                    if (error.response && error.response.data.error) {
+                        state.regrabingJobsObj.message = error.response.data.error;
+                        console.log(error.response.data.error);
+                    } else {
+                        state.regrabingJobsObj.message = error;
+                        console.log(error);
+                    }
+                    resolve();
+                });
+        });
+    },
 
 };

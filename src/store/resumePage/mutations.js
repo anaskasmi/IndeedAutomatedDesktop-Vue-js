@@ -27,5 +27,11 @@ export const mutations = {
         state.regrabingJobsObj.status = null;
         state.regrabingJobsObj.message = null;
     },
+    setIsTransferDialogVisible(state, newVal) {
+        state.isTransferDialogVisible = newVal;
+    },
+    setCurrentJobOpened(state, newVal) {
+        state.currentJobOpened = newVal;
+    },
 
 };

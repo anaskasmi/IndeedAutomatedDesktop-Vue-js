@@ -15,5 +15,11 @@ export const getters = {
     getFetchJobsStatus: (state) => {
         return state.fetchJobsStatus;
     },
+    getIsTransferDialogVisible: (state) => {
+        return state.isTransferDialogVisible;
+    },
+    getCurrentJobOpened: (state) => {
+        return state.currentJobOpened;
+    },
 
 };
