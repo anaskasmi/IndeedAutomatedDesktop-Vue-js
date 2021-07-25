@@ -2,6 +2,18 @@ export const mutations = {
     setJobs(state, newVal) {
         state.jobs = newVal;
     },
+    setIsGettingJobEmail(state, newVal) {
+        state.isGettingJobEmail = newVal;
+    },
+    setIsGettingJobsCandidates(state, newVal) {
+        state.isGettingJobsCandidates = newVal;
+    },
+    setCandidateIdUnderTransfer(state, newVal) {
+        state.candidateIdUnderTransfer = newVal;
+    },
+    setIsAllResumesUnderTransfer(state, newVal) {
+        state.isAllResumesUnderTransfer = newVal;
+    },
     setSelectedJobs(state, newVal) {
         state.selectedJobs = newVal;
     },

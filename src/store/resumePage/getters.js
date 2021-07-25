@@ -5,9 +5,20 @@ export const getters = {
     getSelectedJobs: (state) => {
         return state.selectedJobs;
     },
-
     getRegrabingJobsObj: (state) => {
         return state.regrabingJobsObj;
+    },
+    getIsGettingJobEmail: (state) => {
+        return state.isGettingJobEmail;
+    },
+    getIsGettingJobsCandidates: (state) => {
+        return state.isGettingJobsCandidates;
+    },
+    getCandidateIdUnderTransfer: (state) => {
+        return state.candidateIdUnderTransfer;
+    },
+    getIsAllResumesUnderTransfer: (state) => {
+        return state.isAllResumesUnderTransfer;
     },
     getIsAllSelected: (state) => {
         return state.isAllSelected;

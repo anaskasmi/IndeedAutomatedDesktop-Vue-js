@@ -66,29 +66,22 @@ export const actions = {
 
     },
 
-    async transferJobsResume({ state }, jobId) {
-        let url = state.BASE_URL + "/jobs/downloadResumesForOneJob";
-        return new Promise((res) => {
+    async getJobEmailForCurrentJobOpened({ state, dispatch }) {
+        let url = state.BASE_URL + "/jobs/getJobEmail";
+        return new Promise((resolve, reject) => {
             axios
-                .post(url, { jobId })
-                .then((response) => {
-                    console.log(response);
-                    res();
+                .post(url, { jobId: state.currentJobOpened.job_id })
+                .then(async() => {
+                    await dispatch('reFetchCurrentJobOpened');
+                    resolve();
                 })
                 .catch((error) => {
-                    if (error.response && error.response.data.error) {
-                        state.regrabingJobsObj.message = error.response.data.error;
-                        console.log(error.response.data.error);
-                    } else {
-                        state.regrabingJobsObj.message = error;
-                        console.log(error);
-                    }
-                    res();
+                    reject(error);
                 });
         });
     },
-    async getJobEmailForCurrentJobOpened({ state, dispatch }) {
-        let url = state.BASE_URL + "/jobs/getJobEmail";
+    async transferAllResumesForOneJob({ state, dispatch }) {
+        let url = state.BASE_URL + "/jobs/transferAllResumesForOneJob";
         return new Promise((resolve, reject) => {
             axios
                 .post(url, { jobId: state.currentJobOpened.job_id })

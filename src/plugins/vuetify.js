@@ -8,7 +8,7 @@ export default new Vuetify({
         thresholds: {
             xs: 340,
             sm: 800,
-            md: 1058,
+            md: 1068,
             lg: 1280,
         },
         scrollBarWidth: 24,
