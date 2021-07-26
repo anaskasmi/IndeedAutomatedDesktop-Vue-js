@@ -3,7 +3,7 @@
     <div>
       <div class="col d-flex justify-content-center mt-5">
         <router-link to="/reposting"
-          ><v-btn x-large elevation="1" color="#28527a"  dark class="mt-10 mx-5">
+          ><v-btn x-large elevation="1" color="#28527a" dark class="mt-10 mx-5">
             Start Reposting
           </v-btn></router-link
         >
@@ -12,20 +12,22 @@
             Start Updating
           </v-btn></router-link
         >
+        <router-link to="/resumeTransfer"
+          ><v-btn x-large elevation="1" color="#FF6767" dark class="mt-10 mx-5">
+            Resume Transfer
+          </v-btn></router-link
+        >
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  created() {
-  },
+  created() {},
   data() {
     return {};
   },
-  methods: {
-
-  },
+  methods: {},
 };
 </script>
 

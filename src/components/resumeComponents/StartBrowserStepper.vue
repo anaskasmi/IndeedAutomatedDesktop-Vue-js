@@ -3,7 +3,7 @@
     <v-container>
       <v-col class="">
         <v-row class="d-flex justify-center my-10">
-          <img src="/undraw_Hiring_re_yk5n.svg" class="w-25 mx-0" alt="" />
+          <img src="@/assets/img/undraw_Hiring_re_yk5n.svg" class="w-25 mx-0" alt="" />
         </v-row>
         <v-row class="d-flex justify-center">
           <div class="resume-title text-center">Welcome To Your Resume Transfer Helper</div>

@@ -10,7 +10,7 @@
         <v-card-text class="text-center">
           <img
             class="candidate-image"
-            src="/undraw_profile_pic_ic5t.svg"
+            src="@/assets/img/undraw_profile_pic_ic5t.svg"
             alt=""
           />
         </v-card-text>

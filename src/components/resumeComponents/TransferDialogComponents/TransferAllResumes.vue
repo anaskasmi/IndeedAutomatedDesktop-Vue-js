@@ -2,7 +2,7 @@
   <div>
     <v-col class="my-10">
       <v-row class="ml-6" align="center" justify="center">
-        <img class="cv-icon" src="/cv.svg" />
+        <img class="cv-icon" src="@/assets/img/cv.svg" />
         <div class="mx-10 candidates-text">
           This job has
           <span class="candidates-number">{{

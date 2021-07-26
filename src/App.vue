@@ -41,7 +41,7 @@
         </v-btn> </router-link
       ><router-link to="/resumeTransfer">
         <v-btn
-          color="#28abb9"
+          color="#FF6767"
           :disabled="isResumePage()"
           class="mx-3"
           elevation="0"

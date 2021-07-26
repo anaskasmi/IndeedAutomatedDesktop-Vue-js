@@ -66,7 +66,7 @@
           "
         >
           <v-icon>mdi-chevron-right </v-icon>
-          Select Jobs To Update
+          Transfer Resumes
         </v-btn>
       </v-stepper-content>
 
@@ -90,7 +90,7 @@ export default {
   },
   data() {
     return {
-      currentStep: 3,
+      currentStep: 1,
     };
   },
   computed: {
