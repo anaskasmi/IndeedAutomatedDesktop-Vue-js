@@ -62,6 +62,68 @@ export const actions = {
         })
 
     },
+
+    execute_fillIn_CPC({ state, getters }) {
+        return new Promise((res, rej) => {
+            state.repostingSteps.fillIn_CPC = "doing";
+            state.failureMsgs.fillIn_CPC = null;
+            let url = state.BASE_URL + "/jobs/fillIn_CPC";
+            axios
+                .post(url, { 'budget_maxCPC': getters.getCurrentJob.budget_maxCPC })
+                .then(() => {
+                    state.repostingSteps.fillIn_CPC = "done";
+                    res();
+                })
+                .catch((error) => {
+                    state.repostingSteps.fillIn_CPC = "failed";
+                    state.failureMsgs.fillIn_CPC = error.response.data.error;
+                    console.log(error);
+                    rej(error)
+                });
+        })
+
+    },
+
+    execute_click_advanced({ state }) {
+        return new Promise((res, rej) => {
+            state.repostingSteps.click_advanced = "doing";
+            state.failureMsgs.click_advanced = null;
+            let url = state.BASE_URL + "/jobs/click_advanced";
+            axios
+                .get(url)
+                .then(() => {
+                    state.repostingSteps.click_advanced = "done";
+                    res();
+                })
+                .catch((error) => {
+                    state.repostingSteps.click_advanced = "failed";
+                    state.failureMsgs.click_advanced = error.response.data.error;
+                    console.log(error);
+                    rej(error)
+                });
+        })
+
+    },
+    execute_click_skip({ state }) {
+        return new Promise((res, rej) => {
+            state.repostingSteps.click_skip = "doing";
+            state.failureMsgs.click_skip = null;
+            let url = state.BASE_URL + "/jobs/click_skip";
+            axios
+                .get(url)
+                .then(() => {
+                    state.repostingSteps.click_skip = "done";
+                    res();
+                })
+                .catch((error) => {
+                    state.repostingSteps.click_skip = "failed";
+                    state.failureMsgs.click_skip = error.response.data.error;
+                    console.log(error);
+                    rej(error)
+                });
+        })
+
+    },
     execute_clickSaveAndContinue({ state }) {
         return new Promise((res, rej) => {
             state.repostingSteps.clickSaveAndContinue = "doing";

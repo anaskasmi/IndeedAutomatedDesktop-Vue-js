@@ -1,6 +1,6 @@
 <template>
   <v-app-bar dark color="#0f3057">
-    <v-toolbar-title class="ml-10">9- Sponsoring page</v-toolbar-title>
+    <v-toolbar-title class="ml-10">8- Sponsoring page</v-toolbar-title>
 
     <v-spacer></v-spacer>
 
@@ -41,9 +41,15 @@ export default {
     async fillInPage() {
       this.isLoading = true;
       try {
-        await this.$store.dispatch("repostPageModule/execute_fillIn_adDurationType");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_adDurationDate");
+        await this.$store.dispatch("repostPageModule/execute_click_advanced");
+        await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_adDurationType"
+        );
+        await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_adDurationDate"
+        );
         await this.$store.dispatch("repostPageModule/execute_fillIn_adBudget");
+        await this.$store.dispatch("repostPageModule/execute_fillIn_CPC");
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;
@@ -53,10 +59,18 @@ export default {
     async fillInPageAndContinue() {
       this.isLoading = true;
       try {
-        await this.$store.dispatch("repostPageModule/execute_fillIn_adDurationType");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_adDurationDate");
+        await this.$store.dispatch("repostPageModule/execute_click_advanced");
+        await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_adDurationType"
+        );
+        await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_adDurationDate"
+        );
         await this.$store.dispatch("repostPageModule/execute_fillIn_adBudget");
-        await this.$store.dispatch("repostPageModule/execute_clickSaveAndContinue");
+        await this.$store.dispatch("repostPageModule/execute_fillIn_CPC");
+        await this.$store.dispatch(
+          "repostPageModule/execute_clickSaveAndContinue"
+        );
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;

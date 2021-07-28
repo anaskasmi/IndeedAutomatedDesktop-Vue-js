@@ -72,26 +72,25 @@
           <FillInIsResumeRequired stepNumber="19" />
           <FillInEmail stepNumber="20" />
 
-          <ApplicantQualificationsBar />
+          <CustomizedPreScreeningBar />
 
           <CloseQuestions stepNumber="21" />
-
-          <CustomizedScreeningBar />
+          <ClickSkip stepNumber="22" />
           <br />
           <PreviewJobBar />
           <br />
 
           <SponsoringPageBar />
-          <ClickAdvanced stepNumber="22" />
-          <FillInAdDurationType stepNumber="23" />
-          <FillInAdDurationDate stepNumber="24" />
-          <FillInCPC stepNumber="25" />
-          <FillInAdBudget stepNumber="26" />
+          <ClickAdvanced stepNumber="23" />
+          <FillInAdDurationType stepNumber="24" />
+          <FillInAdDurationDate stepNumber="25" />
+          <FillInCPC stepNumber="26" />
+          <FillInAdBudget stepNumber="27" />
 
           <CloseOldJobBar />
 
-          <CloseJob stepNumber="27" />
-          <RepostNextJobComponent stepNumber="28" />
+          <CloseJob stepNumber="28" />
+          <RepostNextJobComponent stepNumber="29" />
         </div>
       </v-stepper>
     </div>
@@ -132,9 +131,12 @@ import RepostNextJobComponent from "./RepostingStepSubComponent/RepostNextJobCom
 import FillInIsJobRemote from "./RepostingStepSubComponent/fillIn_isJobRemote";
 import FillInOtherBenefits from "./RepostingStepSubComponent/fillIn_otherBenefits";
 import FillInAdDurationType from "./RepostingStepSubComponent/fillIn_adDurationType";
+import ClickAdvanced from "./RepostingStepSubComponent/click_advanced";
+import FillInCPC from "./RepostingStepSubComponent/fillIn_CPC";
+import ClickSkip from "./RepostingStepSubComponent/click_skip";
 import OpenPostJobBar from "./bars/OpenPostJobBar";
 import GettingStartedBar from "./bars/GettingStarted";
-import ApplicantQualificationsBar from "./bars/ApplicantQualifications";
+import CustomizedPreScreeningBar from "./bars/CustomizedPreScreening";
 import ApplicationSettingsBar from "./bars/ApplicationSettings";
 import CloseOldJobBar from "./bars/CloseOldJob";
 import JobDescriptionBar from "./bars/JobDescription";
@@ -142,7 +144,6 @@ import JobDetailsBar from "./bars/JobDetails";
 import PreviewJobBar from "./bars/PreviewJob";
 import SponsoringPageBar from "./bars/SponsoringPage";
 import CompensationDetailsBar from "./bars/CompensationDetails";
-import CustomizedScreeningBar from "./bars/CustomizedScreening";
 import DownloadJobDetailsBar from "./bars/DownloadJobDetails";
 
 export default {
@@ -162,12 +163,15 @@ export default {
     FillInHiresNumber,
     FillInDeadline,
     FillInPaymentType,
+    ClickSkip,
     FillInPaymentPer,
     FillInDescription,
     FillInIsResumeRequired,
     FillInAdDurationDate,
     FillInAdDurationType,
     FillInAdBudget,
+    ClickAdvanced,
+    FillInCPC,
     CloseJob,
     FillInEmail,
     CloseQuestions,
@@ -176,7 +180,6 @@ export default {
     RepostNextJobComponent,
     OpenPostJobBar,
     GettingStartedBar,
-    ApplicantQualificationsBar,
     ApplicationSettingsBar,
     CloseOldJobBar,
     JobDescriptionBar,
@@ -184,7 +187,7 @@ export default {
     PreviewJobBar,
     SponsoringPageBar,
     CompensationDetailsBar,
-    CustomizedScreeningBar,
+    CustomizedPreScreeningBar,
     DownloadJobDetailsBar,
     FillInSalaryFromAndTo,
   },

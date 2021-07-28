@@ -1,8 +1,6 @@
 <template>
   <v-app-bar dark color="#0f3057">
-    <v-toolbar-title class="ml-10"
-      >6- Applicant qualifications page</v-toolbar-title
-    >
+    <v-toolbar-title class="ml-10">6- Customized Pre screening</v-toolbar-title>
 
     <v-spacer></v-spacer>
 
@@ -54,7 +52,10 @@ export default {
       this.isLoading = true;
       try {
         await this.$store.dispatch("repostPageModule/execute_close_questions");
-        await this.$store.dispatch("repostPageModule/execute_clickSaveAndContinue");
+        await this.$store.dispatch(
+          "repostPageModule/execute_clickSaveAndContinue"
+        );
+        await this.$store.dispatch("repostPageModule/execute_click_skip");
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;
