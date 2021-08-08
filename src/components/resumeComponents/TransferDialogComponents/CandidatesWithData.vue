@@ -68,7 +68,7 @@ export default {
     },
   },
   methods: {
-      transferResumeOfOneCandidate(candidateId) {
+    transferResumeOfOneCandidate(candidateId) {
       this.candidateIdUnderTransfer = candidateId;
       this.$store
         .dispatch("resumePageModule/transferResumeOfOneCandidate", candidateId)

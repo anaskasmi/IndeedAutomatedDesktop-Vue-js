@@ -29,6 +29,12 @@ export const getters = {
     getIsTransferDialogVisible: (state) => {
         return state.isTransferDialogVisible;
     },
+    getIsTransfeResumesByDateDialogVisible: (state) => {
+        return state.isTransfeResumesByDateDialogVisible;
+    },
+    getCandidatesBetweenTwoDates: (state) => {
+        return state.candidatesBetweenTwoDates;
+    },
     getCurrentJobOpened: (state) => {
         return state.currentJobOpened;
     },

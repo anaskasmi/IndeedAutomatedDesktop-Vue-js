@@ -108,6 +108,7 @@ export const actions = {
                 });
         });
     },
+
     async transferResumeOfOneCandidate({ state, dispatch }, candidateId) {
         let url = state.BASE_URL + "/jobs/transferResumeOfOneCandidate";
         return new Promise((resolve, reject) => {
@@ -123,6 +124,35 @@ export const actions = {
         });
     },
 
+    async transferResumesOfCandidatesList({ state, }, candidatesList) {
+        console.log(candidatesList);
+        let url = state.BASE_URL + "/jobs/transferResumesOfCandidatesList";
+        return new Promise((resolve, reject) => {
+            axios
+                .post(url, { candidatesList: candidatesList })
+                .then(async() => {
+                    resolve();
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    },
+
+    async getCandidatesBetweenTwoDates({ state, commit }, dates) {
+        let url = state.BASE_URL + "/jobs/getCandidatesBetweenTwoDates";
+        return new Promise((resolve, reject) => {
+            axios
+                .post(url, { "startDate": dates.startDate, "endDate": dates.endDate })
+                .then(async(res) => {
+                    commit('setCandidatesBetweenTwoDates', res.data.candidates);
+                    resolve();
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    },
     async reFetchCurrentJobOpened({ state, commit }) {
         let url = state.BASE_URL + "/jobs/getJobDataFromDb/" + state.currentJobOpened.job_id;
         return new Promise((resolve) => {

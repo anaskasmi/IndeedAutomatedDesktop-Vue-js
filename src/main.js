@@ -8,9 +8,17 @@ import router from './router'
 import { store } from './store'
 import CKEditor from 'ckeditor4-vue';
 import VueSweetalert2 from 'vue-sweetalert2';
+const moment = require('moment');
 
 // If you don't need the styles, do not connect
 import 'sweetalert2/dist/sweetalert2.min.css';
+require('moment/locale/es')
+
+Vue.use(require('vue-moment'), {
+    moment
+});
+
+console.log(Vue.moment().locale()) //es
 
 Vue.use(VueSweetalert2);
 

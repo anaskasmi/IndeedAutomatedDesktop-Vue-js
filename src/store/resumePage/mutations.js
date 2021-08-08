@@ -42,6 +42,12 @@ export const mutations = {
     setIsTransferDialogVisible(state, newVal) {
         state.isTransferDialogVisible = newVal;
     },
+    setIsTransfeResumesByDateDialogVisible(state, newVal) {
+        state.isTransfeResumesByDateDialogVisible = newVal;
+    },
+    setCandidatesBetweenTwoDates(state, newVal) {
+        state.candidatesBetweenTwoDates = newVal;
+    },
     setCurrentJobOpened(state, newVal) {
         state.currentJobOpened = newVal;
     },

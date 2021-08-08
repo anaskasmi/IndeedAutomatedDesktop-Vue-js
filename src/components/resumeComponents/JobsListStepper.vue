@@ -1,13 +1,27 @@
 <template>
   <div class="mx-5 mb-10">
+    <TransferResumesByDate />
     <TransferDialogComponent />
 
     <div>
-      <div class="my-10 text-right">
-        <v-btn color="info" elevation="0" tile @click="fetchItems">
-          <v-icon class="mr-2">mdi-refresh </v-icon>refresh page</v-btn
-        >
-      </div>
+      <v-row class="row text-center my-10 text-right">
+        <v-col>
+          <v-btn
+            color="#EEEEEE"
+            elevation="0"
+            tile
+            @click="openTransferResumesByDateDialog"
+          >
+            <v-icon class="mr-2">mdi-calendar </v-icon>Transfer Resumes By
+            Date</v-btn
+          >
+        </v-col>
+        <v-col>
+          <v-btn color="info" elevation="0" tile @click="fetchItems">
+            <v-icon class="mr-2">mdi-refresh </v-icon>refresh page</v-btn
+          >
+        </v-col>
+      </v-row>
       <v-alert
         outlined
         type="error"
@@ -165,10 +179,12 @@
 </template>
 <script>
 import TransferDialogComponent from "./TransferDialog.vue";
+import TransferResumesByDate from "./TransferResumesByDate/TransferResumesByDate.vue";
 export default {
   name: "JobsList",
   components: {
     TransferDialogComponent,
+    TransferResumesByDate,
   },
   created() {
     this.fetchItems();
@@ -185,6 +201,19 @@ export default {
       },
       set: function (newVal) {
         this.$store.commit("resumePageModule/setJobs", newVal);
+      },
+    },
+    isTransfeResumesByDateDialogVisible: {
+      get: function () {
+        return this.$store.getters[
+          "resumePageModule/getIsTransfeResumesByDateDialogVisible"
+        ];
+      },
+      set: function (newVal) {
+        this.$store.commit(
+          "resumePageModule/setIsTransfeResumesByDateDialogVisible",
+          newVal
+        );
       },
     },
     isTransferDialogVisible: {
@@ -257,6 +286,9 @@ export default {
       console.log(job.job_id);
       this.currentJobOpened = job;
       this.isTransferDialogVisible = true;
+    },
+    openTransferResumesByDateDialog() {
+      this.isTransfeResumesByDateDialogVisible = true;
     },
     async fetchItems() {
       await this.$store.dispatch("resumePageModule/fetchJobs");
