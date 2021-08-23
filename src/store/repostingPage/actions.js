@@ -184,13 +184,13 @@ export const actions = {
         })
 
     },
-    execute_fillIn_adDurationDate({ state }) {
+    execute_fillIn_adDurationDate({ state }, endDateIncreaseNumber) {
         return new Promise((res, rej) => {
             state.repostingSteps.fillIn_adDurationDate = "doing";
             state.failureMsgs.fillIn_adDurationDate = null;
             let url = state.BASE_URL + "/jobs/fillIn_adDurationDate";
             axios
-                .get(url)
+                .post(url, { endDateIncreaseNumber })
                 .then(() => {
                     state.repostingSteps.fillIn_adDurationDate = "done";
                     res();

@@ -5,6 +5,40 @@
     <v-spacer></v-spacer>
 
     <v-btn
+      color="#fff"
+      x-small
+      dark
+      class="align-middle mx-2 py-4"
+      elevation="0"
+      :disabled="isLoading"
+      @click="endDateIncreaseNumber++"
+    >
+      <v-icon color="#28abb9" medium>mdi-plus</v-icon>
+    </v-btn>
+
+    <v-tooltip top>
+      <template v-slot:activator="{ on, attrs }">
+        <v-chip class="ma-2 pa-5" color="#28abb9" label v-bind="attrs" v-on="on">
+          <div class="font-weight-bold">{{ endDateIncreaseNumber }} days</div>
+        </v-chip>
+      </template>
+      Number of days added to the old end-date
+    </v-tooltip>
+
+    <v-btn
+      color="#fff"
+      x-small
+      dark
+      class="align-middle py-4 mx-1"
+      elevation="0"
+      :disabled="isLoading"
+      @click="decreaseEndDate()"
+    >
+      <v-icon color="#28abb9" medium>mdi-minus</v-icon>
+    </v-btn>
+    <v-spacer></v-spacer>
+
+    <v-btn
       color="#f14668"
       large
       dark
@@ -35,6 +69,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      endDateIncreaseNumber: 3,
     };
   },
   methods: {
@@ -46,7 +81,7 @@ export default {
           "repostPageModule/execute_fillIn_adDurationType"
         );
         await this.$store.dispatch(
-          "repostPageModule/execute_fillIn_adDurationDate"
+          "repostPageModule/execute_fillIn_adDurationDate",this.endDateIncreaseNumber
         );
         await this.$store.dispatch("repostPageModule/execute_fillIn_adBudget");
         await this.$store.dispatch("repostPageModule/execute_fillIn_CPC");
@@ -56,6 +91,9 @@ export default {
         console.log(error);
       }
     },
+    decreaseEndDate() {
+      if (this.endDateIncreaseNumber > 0) this.endDateIncreaseNumber--;
+    },
     async fillInPageAndContinue() {
       this.isLoading = true;
       try {
@@ -64,7 +102,7 @@ export default {
           "repostPageModule/execute_fillIn_adDurationType"
         );
         await this.$store.dispatch(
-          "repostPageModule/execute_fillIn_adDurationDate"
+          "repostPageModule/execute_fillIn_adDurationDate",this.endDateIncreaseNumber
         );
         await this.$store.dispatch("repostPageModule/execute_fillIn_adBudget");
         await this.$store.dispatch("repostPageModule/execute_fillIn_CPC");
