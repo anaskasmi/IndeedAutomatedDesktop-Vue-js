@@ -18,7 +18,13 @@
 
     <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
-        <v-chip class="ma-2 pa-5" color="#28abb9" label v-bind="attrs" v-on="on">
+        <v-chip
+          class="ma-2 pa-5"
+          color="#28abb9"
+          label
+          v-bind="attrs"
+          v-on="on"
+        >
           <div class="font-weight-bold">{{ endDateIncreaseNumber }} days</div>
         </v-chip>
       </template>
@@ -69,8 +75,18 @@ export default {
   data() {
     return {
       isLoading: false,
-      endDateIncreaseNumber: 3,
     };
+  },
+  computed: {
+    endDateIncreaseNumber: {
+      get: function () {
+        return this.$store.getters["repostPageModule/getEndDateIncreaseNumber"];
+      },
+      set: function (newVal) {
+        console.log(newVal)
+        this.$store.commit("repostPageModule/setEndDateIncreaseNumber", newVal);
+      },
+    },
   },
   methods: {
     async fillInPage() {
@@ -81,7 +97,8 @@ export default {
           "repostPageModule/execute_fillIn_adDurationType"
         );
         await this.$store.dispatch(
-          "repostPageModule/execute_fillIn_adDurationDate",this.endDateIncreaseNumber
+          "repostPageModule/execute_fillIn_adDurationDate",
+          this.endDateIncreaseNumber
         );
         await this.$store.dispatch("repostPageModule/execute_fillIn_adBudget");
         await this.$store.dispatch("repostPageModule/execute_fillIn_CPC");
@@ -102,7 +119,8 @@ export default {
           "repostPageModule/execute_fillIn_adDurationType"
         );
         await this.$store.dispatch(
-          "repostPageModule/execute_fillIn_adDurationDate",this.endDateIncreaseNumber
+          "repostPageModule/execute_fillIn_adDurationDate",
+          this.endDateIncreaseNumber
         );
         await this.$store.dispatch("repostPageModule/execute_fillIn_adBudget");
         await this.$store.dispatch("repostPageModule/execute_fillIn_CPC");

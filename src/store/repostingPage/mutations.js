@@ -5,6 +5,10 @@ export const mutations = {
     setSelectedJobs(state, newVal) {
         state.selectedJobs = newVal;
     },
+    setEndDateIncreaseNumber(state, newVal) {
+        state.endDateIncreaseNumber = newVal;
+        localStorage.setItem("endDateIncreaseNumber", +newVal);
+    },
     setIsAllSelected(state, newVal) {
         if (newVal == true) {
             state.selectedJobs = state.jobs;
