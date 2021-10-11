@@ -1,6 +1,6 @@
 <template>
   <v-app-bar dark color="#0f3057">
-    <v-toolbar-title class="ml-10">8- Sponsoring page</v-toolbar-title>
+    <v-toolbar-title class="ml-10">8- Sponsor job</v-toolbar-title>
 
     <v-spacer></v-spacer>
 
@@ -83,7 +83,7 @@ export default {
         return this.$store.getters["repostPageModule/getEndDateIncreaseNumber"];
       },
       set: function (newVal) {
-        console.log(newVal)
+        console.log(newVal);
         this.$store.commit("repostPageModule/setEndDateIncreaseNumber", newVal);
       },
     },

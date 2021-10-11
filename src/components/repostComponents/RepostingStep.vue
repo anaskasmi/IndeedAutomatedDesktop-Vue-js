@@ -44,53 +44,48 @@
           <FillInCompanyName stepNumber="4" />
           <FillInJobTitle stepNumber="5" />
           <FillInRolesLocation stepNumber="6" />
-          <FillInJobCategory stepNumber="7" />
-          <FillInIsJobRemote stepNumber="8" />
-          <FillInIndustry stepNumber="9" />
 
           <JobDetailsBar />
 
-          <FillInIsJobFullTimeOrPartTime stepNumber="10" />
-          <FillInSchedule stepNumber="11" />
-          <FillInHiresNumber stepNumber="12" />
-          <FillInDeadline stepNumber="13" />
+          <FillInIsJobFullTimeOrPartTime stepNumber="7" />
+          <FillInSchedule stepNumber="8" />
+          <FillInHiresNumber stepNumber="9" />
+          <FillInDeadline stepNumber="10" />
 
           <CompensationDetailsBar />
 
-          <FillInPaymentType stepNumber="14" />
-          <FillInSalaryFromAndTo stepNumber="15" />
+          <FillInPaymentType stepNumber="11" />
+          <FillInSalaryFromAndTo stepNumber="12" />
 
-          <FillInPaymentPer stepNumber="16" />
-          <FillInOtherBenefits stepNumber="17" />
+          <FillInPaymentPer stepNumber="13" />
 
           <JobDescriptionBar />
 
-          <FillInDescription stepNumber="18" />
+          <FillInDescription stepNumber="14" />
 
           <ApplicationSettingsBar />
 
-          <FillInIsResumeRequired stepNumber="19" />
-          <FillInEmail stepNumber="20" />
+          <FillInIsResumeRequired stepNumber="15" />
+          <FillInEmail stepNumber="16" />
 
           <CustomizedPreScreeningBar />
 
-          <CloseQuestions stepNumber="21" />
-          <ClickSkip stepNumber="22" />
+          <CloseQuestions stepNumber="17" />
           <br />
           <PreviewJobBar />
           <br />
 
           <SponsoringPageBar />
-          <ClickAdvanced stepNumber="23" />
-          <FillInAdDurationType stepNumber="24" />
-          <FillInAdDurationDate stepNumber="25" />
-          <FillInCPC stepNumber="26" />
-          <FillInAdBudget stepNumber="27" />
+          <ClickAdvanced stepNumber="18" />
+          <FillInAdDurationType stepNumber="19" />
+          <FillInAdDurationDate stepNumber="20" />
+          <FillInCPC stepNumber="21" />
+          <FillInAdBudget stepNumber="22" />
 
           <CloseOldJobBar />
 
-          <CloseJob stepNumber="28" />
-          <RepostNextJobComponent stepNumber="29" />
+          <CloseJob stepNumber="23" />
+          <RepostNextJobComponent stepNumber="24" />
         </div>
       </v-stepper>
     </div>
@@ -110,9 +105,7 @@ import GetJobFullDetails from "./RepostingStepSubComponent/getJobFullDetails";
 import UnlockCompanyNameInput from "./RepostingStepSubComponent/unlockCompanyNameInput";
 import FillInCompanyName from "./RepostingStepSubComponent/fillIn_CompanyName";
 import FillInJobTitle from "./RepostingStepSubComponent/fillIn_JobTitle";
-import FillInJobCategory from "./RepostingStepSubComponent/fillIn_JobCategory";
 import FillInRolesLocation from "./RepostingStepSubComponent/fillIn_RolesLocation";
-import FillInIndustry from "./RepostingStepSubComponent/fillIn_industry";
 import FillInIsJobFullTimeOrPartTime from "./RepostingStepSubComponent/fillIn_isJobFullTimeOrPartTime";
 import FillInSchedule from "./RepostingStepSubComponent/fillIn_schedule";
 import FillInHiresNumber from "./RepostingStepSubComponent/fillIn_hiresNumber";
@@ -128,12 +121,9 @@ import CloseJob from "./RepostingStepSubComponent/CloseJob";
 import FillInEmail from "./RepostingStepSubComponent/fillIn_email";
 import CloseQuestions from "./RepostingStepSubComponent/close_questions";
 import RepostNextJobComponent from "./RepostingStepSubComponent/RepostNextJobComponent";
-import FillInIsJobRemote from "./RepostingStepSubComponent/fillIn_isJobRemote";
-import FillInOtherBenefits from "./RepostingStepSubComponent/fillIn_otherBenefits";
 import FillInAdDurationType from "./RepostingStepSubComponent/fillIn_adDurationType";
 import ClickAdvanced from "./RepostingStepSubComponent/click_advanced";
 import FillInCPC from "./RepostingStepSubComponent/fillIn_CPC";
-import ClickSkip from "./RepostingStepSubComponent/click_skip";
 import OpenPostJobBar from "./bars/OpenPostJobBar";
 import GettingStartedBar from "./bars/GettingStarted";
 import CustomizedPreScreeningBar from "./bars/CustomizedPreScreening";
@@ -155,15 +145,12 @@ export default {
     UnlockCompanyNameInput,
     FillInCompanyName,
     FillInJobTitle,
-    FillInJobCategory,
     FillInRolesLocation,
-    FillInIndustry,
     FillInIsJobFullTimeOrPartTime,
     FillInSchedule,
     FillInHiresNumber,
     FillInDeadline,
     FillInPaymentType,
-    ClickSkip,
     FillInPaymentPer,
     FillInDescription,
     FillInIsResumeRequired,
@@ -175,8 +162,6 @@ export default {
     CloseJob,
     FillInEmail,
     CloseQuestions,
-    FillInIsJobRemote,
-    FillInOtherBenefits,
     RepostNextJobComponent,
     OpenPostJobBar,
     GettingStartedBar,
@@ -225,12 +210,9 @@ export default {
       );
       await this.$store.dispatch("repostPageModule/execute_fillIn_CompanyName");
       await this.$store.dispatch("repostPageModule/execute_fillIn_JobTitle");
-      await this.$store.dispatch("repostPageModule/execute_fillIn_JobCategory");
       await this.$store.dispatch(
         "repostPageModule/execute_fillIn_RolesLocation"
       );
-      await this.$store.dispatch("repostPageModule/execute_fillIn_isJobRemote");
-      await this.$store.dispatch("repostPageModule/execute_fillIn_isJobRemote");
       await this.$store.dispatch(
         "repostPageModule/execute_clickSaveAndContinue"
       );

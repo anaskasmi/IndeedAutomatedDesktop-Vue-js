@@ -1,7 +1,7 @@
 <template>
   <v-app-bar dark color="#0f3057">
     <v-toolbar-title class="ml-10"
-      >3- Compensation Details page</v-toolbar-title
+      >3- Add compensation</v-toolbar-title
     >
 
     <v-spacer></v-spacer>
@@ -46,7 +46,6 @@ export default {
         await this.$store.dispatch("repostPageModule/execute_fillIn_paymentType");
         await this.$store.dispatch("repostPageModule/execute_fillIn_salaryFromAndTo");
         await this.$store.dispatch("repostPageModule/execute_fillIn_paymentPer");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_otherBenefits");
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;
@@ -59,7 +58,6 @@ export default {
         await this.$store.dispatch("repostPageModule/execute_fillIn_paymentType");
         await this.$store.dispatch("repostPageModule/execute_fillIn_salaryFromAndTo");
         await this.$store.dispatch("repostPageModule/execute_fillIn_paymentPer");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_otherBenefits");
         await this.$store.dispatch("repostPageModule/execute_clickSaveAndContinue");
         this.isLoading = false;
       } catch (error) {

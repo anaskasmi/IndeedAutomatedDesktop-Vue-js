@@ -104,26 +104,7 @@ export const actions = {
         })
 
     },
-    execute_click_skip({ state }) {
-        return new Promise((res, rej) => {
-            state.repostingSteps.click_skip = "doing";
-            state.failureMsgs.click_skip = null;
-            let url = state.BASE_URL + "/jobs/click_skip";
-            axios
-                .get(url)
-                .then(() => {
-                    state.repostingSteps.click_skip = "done";
-                    res();
-                })
-                .catch((error) => {
-                    state.repostingSteps.click_skip = "failed";
-                    state.failureMsgs.click_skip = error.response.data.error;
-                    console.log(error);
-                    rej(error)
-                });
-        })
 
-    },
     execute_clickSaveAndContinue({ state }) {
         return new Promise((res, rej) => {
             state.repostingSteps.clickSaveAndContinue = "doing";
@@ -349,26 +330,7 @@ export const actions = {
         })
 
     },
-    execute_fillIn_JobCategory({ state }) {
-        return new Promise((res, rej) => {
 
-            state.repostingSteps.fillIn_JobCategory = "doing";
-            state.failureMsgs.fillIn_JobCategory = null;
-            let url = state.BASE_URL + "/jobs/fillIn_JobCategory";
-            axios
-                .get(url)
-                .then(() => {
-                    state.repostingSteps.fillIn_JobCategory = "done";
-                    res();
-                })
-                .catch((error) => {
-                    state.repostingSteps.fillIn_JobCategory = "failed";
-                    state.failureMsgs.fillIn_JobCategory = error.response.data.error;
-                    console.log(error);
-                    rej();
-                });
-        })
-    },
     execute_fillIn_JobTitle({ state, getters }) {
         return new Promise((res, rej) => {
 
@@ -412,25 +374,7 @@ export const actions = {
 
     },
 
-    execute_fillIn_industry({ state }) {
-        return new Promise((res, rej) => {
-            state.repostingSteps.fillIn_industry = "doing";
-            state.failureMsgs.fillIn_industry = null;
-            let url = state.BASE_URL + "/jobs/fillIn_industry";
-            axios
-                .get(url).then(() => {
-                    state.repostingSteps.fillIn_industry = "done";
-                    res();
-                })
-                .catch((error) => {
-                    state.repostingSteps.fillIn_industry = "failed";
-                    state.failureMsgs.fillIn_industry = error.response.data.error;
-                    console.log(error);
-                    rej(error);
-                });
-        })
 
-    },
     execute_fillIn_salaryFromAndTo({ state, getters }) {
         return new Promise((res, rej) => {
             state.repostingSteps.fillIn_salaryFromAndTo = "doing";
@@ -672,41 +616,6 @@ export const actions = {
                 });
         })
     },
-    execute_fillIn_isJobRemote({ state }) {
-        return new Promise((res, rej) => {
-            state.repostingSteps.fillIn_isJobRemote = "doing";
-            state.failureMsgs.fillIn_isJobRemote = null;
-            let url = state.BASE_URL + "/jobs/fillIn_isJobRemote";
-            axios
-                .get(url).then(() => {
-                    state.repostingSteps.fillIn_isJobRemote = "done";
-                    res();
-                })
-                .catch((error) => {
-                    state.repostingSteps.fillIn_isJobRemote = "failed";
-                    state.failureMsgs.fillIn_isJobRemote = error.response.data.error;
-                    console.log(error);
-                    rej(error);
-                });
-        })
-    },
-    execute_fillIn_otherBenefits({ state }) {
-        return new Promise((res, rej) => {
-            state.repostingSteps.fillIn_otherBenefits = "doing";
-            state.failureMsgs.fillIn_otherBenefits = null;
-            let url = state.BASE_URL + "/jobs/fillIn_otherBenefits";
-            axios
-                .get(url).then(() => {
-                    state.repostingSteps.fillIn_otherBenefits = "done";
-                    res();
-                })
-                .catch((error) => {
-                    state.repostingSteps.fillIn_otherBenefits = "failed";
-                    state.failureMsgs.fillIn_otherBenefits = error.response.data.error;
-                    console.log(error);
-                    rej(error);
-                });
-        })
-    },
+
 
 };

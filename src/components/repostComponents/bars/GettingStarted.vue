@@ -1,6 +1,6 @@
 <template>
   <v-app-bar dark color="#0f3057">
-    <v-toolbar-title class="ml-10">1- Getting Started page</v-toolbar-title>
+    <v-toolbar-title class="ml-10">1- Provide basic information</v-toolbar-title>
 
     <v-spacer></v-spacer>
 
@@ -51,12 +51,7 @@ export default {
         await this.$store.dispatch(
           "repostPageModule/execute_fillIn_RolesLocation"
         );
-        await this.$store.dispatch(
-          "repostPageModule/execute_fillIn_JobCategory"
-        );
-        await this.$store.dispatch(
-          "repostPageModule/execute_fillIn_isJobRemote"
-        );
+
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;
@@ -82,12 +77,7 @@ export default {
         await this.$store.dispatch(
           "repostPageModule/execute_fillIn_RolesLocation"
         );
-        await this.$store.dispatch(
-          "repostPageModule/execute_fillIn_JobCategory"
-        );
-        await this.$store.dispatch(
-          "repostPageModule/execute_fillIn_isJobRemote"
-        );
+
         await this.$store.dispatch(
           "repostPageModule/execute_clickSaveAndContinue"
         );

@@ -35,9 +35,7 @@ export const mutations = {
             unlockCompanyNameInput: 'notDone',
             fillIn_CompanyName: 'notDone',
             fillIn_JobTitle: 'notDone',
-            fillIn_JobCategory: 'notDone',
             fillIn_RolesLocation: 'notDone',
-            fillIn_IsJobremote: 'notDone',
             clickSaveAndContinue: 'notDone',
             fillIn_isJobFullTimeOrPartTime: 'notDone',
             fillIn_schedule: 'notDone',
@@ -58,11 +56,8 @@ export const mutations = {
             CloseJob: 'notDone',
             fillIn_email: 'notDone',
             close_questions: 'notDone',
-            fillIn_isJobRemote: 'notDone',
-            fillIn_otherBenefits: 'notDone',
             RepostNextJobComponent: 'notDone',
             fillIn_salaryFromAndTo: 'notDone',
-            fillIn_industry: 'notDone',
         };
 
         //reset feilure messages
@@ -72,9 +67,7 @@ export const mutations = {
             unlockCompanyNameInput: null,
             fillIn_CompanyName: null,
             fillIn_JobTitle: null,
-            fillIn_JobCategory: null,
             fillIn_RolesLocation: null,
-            fillIn_IsJobremote: null,
             clickSaveAndContinue: null,
             fillIn_isJobFullTimeOrPartTime: null,
             fillIn_schedule: null,
@@ -95,11 +88,8 @@ export const mutations = {
             CloseJob: null,
             fillIn_email: null,
             close_questions: null,
-            fillIn_isJobRemote: null,
-            fillIn_otherBenefits: null,
             RepostNextJobComponent: null,
             fillIn_salaryFromAndTo: null,
-            fillIn_industry: null,
         };
     },
 
