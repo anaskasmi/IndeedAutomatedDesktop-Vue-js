@@ -131,7 +131,7 @@
                       outlined
                       block
                       @click="
-                        transferResumeOfOneCandidate(candidate.candidateId)
+                        transferResumeOfOneCandidate(candidate)
                       "
                       :disabled="candidateIdUnderTransfer != null"
                       :loading="
