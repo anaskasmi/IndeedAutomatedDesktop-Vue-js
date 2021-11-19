@@ -87,11 +87,36 @@ export default {
         this.$store.commit("repostPageModule/setEndDateIncreaseNumber", newVal);
       },
     },
+    budget_maxCPC: {
+      get: function () {
+        return this.$store.getters["repostPageModule/getCurrentJob"]
+          .budget_maxCPC;
+      },
+    },
   },
   methods: {
     async fillInPage() {
-      this.isLoading = true;
       try {
+        if (this.budget_maxCPC >= 0.35) {
+          let result = await this.$swal.fire({
+            title: "Max CPC is Higher than .35 !",
+            text:
+              "MAX CPC is " +
+              this.budget_maxCPC +
+              " Please double check, it seems higher than the usual.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Continue",
+            cancelButtonText: `Cancel`,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#ddd",
+          });
+          if (!result.isConfirmed) {
+            return;
+          }
+        }
+
+        this.isLoading = true;
         await this.$store.dispatch("repostPageModule/execute_click_advanced");
         await this.$store.dispatch(
           "repostPageModule/execute_fillIn_adDurationType"
@@ -112,6 +137,21 @@ export default {
       if (this.endDateIncreaseNumber > 0) this.endDateIncreaseNumber--;
     },
     async fillInPageAndContinue() {
+      if (this.budget_maxCPC >= 0.35) {
+        let result = await this.$swal.fire({
+          title: "Max CPC is Higher than .35 !",
+          text: "Please keep an eye on the Max CPC Field, it seems greater than the usual.",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Continue",
+          cancelButtonText: `Cancel`,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#ddd",
+        });
+        if (!result.isConfirmed) {
+          return;
+        }
+      }
       this.isLoading = true;
       try {
         await this.$store.dispatch("repostPageModule/execute_click_advanced");

@@ -12,7 +12,7 @@
       edit-icon="mdi-check"
       elevation="0"
     >
-      Fill In CPC
+      Fill In CPC <span class="font-weight-bold text-info">(${{ budget_maxCPC }})</span> 
     </v-stepper-step>
 
     <v-stepper-content :step="stepNumber" elevation="0">
@@ -32,7 +32,7 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually by filling the CPC input 
+        This task Failed, Rexecute it Or do it manually by filling the CPC input
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -76,19 +76,26 @@
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   props: ["stepNumber"],
   computed: {
     status: {
       get() {
-        return this.$store.getters['repostPageModule/getRepostingSteps'].fillIn_adDurationDate;
+        return this.$store.getters["repostPageModule/getRepostingSteps"]
+          .fillIn_adDurationDate;
       },
     },
     failureMsg: {
       get() {
-        return this.$store.getters['repostPageModule/getFailureMsgs'].fillIn_adDurationDate;
+        return this.$store.getters["repostPageModule/getFailureMsgs"]
+          .fillIn_adDurationDate;
+      },
+    },
+    budget_maxCPC: {
+      get: function () {
+        return this.$store.getters["repostPageModule/getCurrentJob"]
+          .budget_maxCPC;
       },
     },
   },
