@@ -1,13 +1,67 @@
 <template>
   <div>
-    <div>
-      <div class="col d-flex justify-content-center mt-5">
-        <router-link to="/reposting"
-          ><v-btn x-large elevation="1" color="#28527a" dark class="mt-10 mx-5">
+    <v-row justify="center" class="col-12">
+      <v-img
+        height="140"
+        width="140"
+        contain
+        :src="require('@/assets/img/logo.png')"
+      >
+      </v-img>
+    </v-row>
+    <v-divider class="mx-12"></v-divider>
+    <div class="col d-flex justify-content-center px-12">
+      <v-container>
+        <v-row>
+          <v-col cols="4" v-for="link in links" :key="link.name">
+            <router-link :to="link.route">
+              <v-hover v-slot="{ hover }">
+                <v-card
+                  rounded="lg"
+                  :elevation="hover ? 3 : 0"
+                  :class="{ 'on-hover ': hover }"
+                  class="pa-10 grow"
+                >
+                  <v-card-text>
+                    <v-img
+                      class="mx-auto"
+                      height="130"
+                      width="130"
+                      :src="link.icon"
+                    >
+                    </v-img>
+                  </v-card-text>
+                  <v-divider></v-divider>
+                  <v-card-actions class="text-center">
+                    <div
+                      style="font-size: 20px"
+                      class="
+                        text-info text--darken-3
+                        mx-auto
+                        font-weight-bold
+                        text-uppercase
+                        font-poppins
+                        grow
+                      "
+                    >
+                      {{ link.name }}
+                      <div
+                        class="grey--text font-weight-light"
+                        style="font-size: 12px"
+                      >
+                        {{ link.description }}
+                      </div>
+                    </div>
+                  </v-card-actions>
+                </v-card>
+              </v-hover>
+            </router-link>
+          </v-col>
+        </v-row>
+        <!-- <v-btn x-large elevation="1" color="#28527a" dark class="mt-10 mx-5">
             Start Reposting
-          </v-btn></router-link
-        >
-        <router-link to="/updating"
+          </v-btn> -->
+        <!-- <router-link to="/updating"
           ><v-btn x-large elevation="1" color="#28abb9" dark class="mt-10 mx-5">
             Start Updating
           </v-btn></router-link
@@ -16,8 +70,8 @@
           ><v-btn x-large elevation="1" color="#FF6767" dark class="mt-10 mx-5">
             Resume Transfer
           </v-btn></router-link
-        >
-      </div>
+        > -->
+      </v-container>
     </div>
   </div>
 </template>
@@ -25,7 +79,46 @@
 export default {
   created() {},
   data() {
-    return {};
+    return {
+      links: [
+        {
+          name: "Jobs Reposter",
+          route: { name: "JobsReposter" },
+          description: "Repost jobs on Indeed",
+          icon: require("@/assets/img/repost.png"),
+        },
+        {
+          name: "Jobs Editor",
+          route: { name: "JobsEditor" },
+          description: "Bullk Edit jobs on Indeed",
+          icon: require("@/assets/img/update.png"),
+        },
+        {
+          name: "Resume Transfer",
+          route: { name: "ResumeTransfer" },
+          description: "Transfer Resumes from Indeed to Crealet",
+          icon: require("@/assets/img/resume.png"),
+        },
+        {
+          name: "Crealet Reports",
+          route: { name: "CrealetReports" },
+          description: "Export Crealet reports",
+          icon: require("@/assets/img/crealet-report.png"),
+        },
+        {
+          name: "Invoice genrator",
+          route: { name: "IndeedInvoices" },
+          description: "Export Indeed Invoices, by job numbers",
+          icon: require("@/assets/img/invoice.png"),
+        },
+        {
+          name: "Description builder",
+          route: { name: "DescriptionBuilder" },
+          description: "To help you build Job descriptions ",
+          icon: require("@/assets/img/job-builder.png"),
+        },
+      ],
+    };
   },
   methods: {},
 };
@@ -40,5 +133,11 @@ a:link {
 }
 a:hover {
   text-decoration: none im !important;
+}
+.grow {
+  transition: all 0.2s ease-in-out;
+}
+.grow:hover {
+  transform: scale(1.1);
 }
 </style>

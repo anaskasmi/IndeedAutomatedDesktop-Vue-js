@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import RepostingIndex from '../views/RepostingIndex.vue'
 import UpdatingIndex from '../views/UpdatingIndex.vue'
-import ResumeIndex from '../views/ResumeIndex.vue'
+import ResumeTransfer from '../views/ResumeIndex.vue'
 import HomePage from '../views/HomePage.vue'
 
 Vue.use(VueRouter)
@@ -13,17 +13,35 @@ const routes = [{
         component: HomePage
     }, {
         path: '/reposting',
-        name: 'RepostingIndex',
+        name: 'JobsReposter',
         component: RepostingIndex
     },
     {
         path: '/updating',
-        name: 'UpdatingIndex',
+        name: 'JobsEditor',
         component: UpdatingIndex
     }, {
         path: '/resumeTransfer',
-        name: 'ResumeIndex',
-        component: ResumeIndex
+        name: 'ResumeTransfer',
+        component: ResumeTransfer
+    },
+    {
+        path: '/crealetReports',
+        name: 'CrealetReports',
+        component: () =>
+            import ('@/views/crealet-reports/CrealetReports.vue')
+    },
+    {
+        path: '/indeedInvoices',
+        name: 'IndeedInvoices',
+        component: () =>
+            import ('@/views/indeed-invoices/IndeedInvoices.vue')
+    },
+    {
+        path: '/descriptionBuilder',
+        name: 'DescriptionBuilder',
+        component: () =>
+            import ('@/views/description-builder/DescriptionBuilder.vue')
     },
 
 ]

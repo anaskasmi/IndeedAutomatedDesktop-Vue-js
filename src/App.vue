@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark class="">
+    <!-- <v-app-bar app color="primary" dark class="">
       <v-toolbar-title>
         <div class="text-center">
           <router-link to="/"
@@ -49,8 +49,8 @@
           Switch to Resume version
         </v-btn>
       </router-link>
-    </v-app-bar>
-    <v-main>
+    </v-app-bar> -->
+    <v-main style="background-color: #f5f8fa">
       <router-view />
     </v-main>
   </v-app>
@@ -63,15 +63,14 @@ export default {
   data: () => ({}),
   methods: {
     isRepostingPage() {
-      return this.$route.name === "RepostingIndex";
+      return this.$route.name === "JobsReposter";
     },
     isUpdatingPage() {
-      return this.$route.name === "UpdatingIndex";
+      return this.$route.name === "JobsEditor";
     },
-    isResumePage()
-    {
-      return this.$route.name === "ResumeIndex";
-    }
+    isResumePage() {
+      return this.$route.name === "ResumeTransfer";
+    },
   },
 };
 </script>
@@ -83,7 +82,15 @@ a:hover {
   text-decoration: none;
 }
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 .akaya {
   font-family: "Comfortaa", cursive;
+}
+.font-poppins {
+  font-family: "Inter", sans-serif !important;
+}
+.grow {
+  transition: all 0.2s ease-in-out;
 }
 </style>
