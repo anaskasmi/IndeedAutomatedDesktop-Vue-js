@@ -50,7 +50,7 @@
         </v-btn>
       </router-link>
     </v-app-bar> -->
-    <v-main style="background-color: #f5f8fa">
+    <v-main style="background-color: #f5f8fa" >
       <router-view />
     </v-main>
   </v-app>
