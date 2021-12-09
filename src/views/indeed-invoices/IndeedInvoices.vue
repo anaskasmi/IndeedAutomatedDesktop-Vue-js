@@ -8,13 +8,8 @@
 
         <v-divider></v-divider>
 
-        <v-stepper-step
-          editable
-          :complete="false"
-          step="2"
-          @click="initRegrabJobsObj()"
-        >
-          Grab All jobs
+        <v-stepper-step editable :complete="false" step="2">
+          Generate Invoice
         </v-stepper-step>
       </v-stepper-header>
 
@@ -31,7 +26,7 @@
             tile
             large
             class="float-right"
-            @click="initRegrabJobsObj()"
+            @click="currentStep = 2"
           >
             <v-icon>mdi-chevron-right </v-icon>
 
@@ -50,6 +45,9 @@
               tile
               x-large
               elevation="3"
+              @click="generateInvoice"
+              :loading="isLoading"
+              :disabled="isLoading"
             >
               <v-icon class="mr-2">mdi-file-download</v-icon>
               Generate Invoice
@@ -75,6 +73,7 @@ export default {
   data() {
     return {
       currentStep: 1,
+      isLoading: false,
     };
   },
   computed: {
@@ -98,13 +97,27 @@ export default {
     BASE_URL() {
       return this.$store.state.BASE_URL;
     },
-
-    initRegrabJobsObj() {
-      this.$store.commit("resumePageModule/initRegrabingJobsObject");
-      this.currentStep = 2;
-    },
-    async refreshJobs() {
-      await this.$store.dispatch("resumePageModule/fetchJobs");
+    async generateInvoice() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch("invoiceGeneratorModule/generateInvoice");
+        this.$swal({
+          title: "Success",
+          confirmButtonColor: "#3085d6",
+          text: "Generated successfully",
+          icon: "success",
+        });
+      } catch (error) {
+        this.$swal({
+          title: "Oops, Something went wrong ! ",
+          text: error,
+          icon: "warning",
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+        });
+      } finally {
+        this.isLoading = false;
+      }
     },
   },
 };
