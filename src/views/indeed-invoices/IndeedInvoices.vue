@@ -104,7 +104,7 @@ export default {
         this.$swal({
           title: "Success",
           confirmButtonColor: "#3085d6",
-          text: "Generated successfully",
+          text: "Hi, We puted the invoice on your Desktop !",
           icon: "success",
         });
       } catch (error) {
