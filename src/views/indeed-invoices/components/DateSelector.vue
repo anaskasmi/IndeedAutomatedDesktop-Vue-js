@@ -23,6 +23,13 @@
 export default {
   name: "",
   components: {},
+  watch: {
+    selectedDates() {
+      if (this.selectedDates && this.selectedDates.length == 2) {
+        this.reorderDates();
+      }
+    },
+  },
   data() {
     return {
       currentStep: 1,
@@ -42,6 +49,14 @@ export default {
   methods: {
     BASE_URL() {
       return this.$store.state.BASE_URL;
+    },
+    reorderDates() {
+      let firstDate = this.$moment(this.selectedDates[0],"YYYY-MM-DD").format("YYYY-MM-DD");
+      let secondDate = this.$moment(this.selectedDates[1],"YYYY-MM-DD").format("YYYY-MM-DD");
+      if (firstDate > secondDate) {
+        this.selectedDates[0] = secondDate;
+        this.selectedDates[1] = firstDate;
+      }
     },
   },
 };

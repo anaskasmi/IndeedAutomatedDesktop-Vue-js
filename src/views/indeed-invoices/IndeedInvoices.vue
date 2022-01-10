@@ -1,62 +1,75 @@
 <template>
-  <v-card>
-    <v-stepper v-model="currentStep" non-linear elevation="0">
-      <v-stepper-header>
-        <v-stepper-step editable :complete="false" step="1">
-          Start Browser
-        </v-stepper-step>
+  <v-container>
+    <div class="text-center mt-12 primary--text grow text-h4 text-uppercase">
+      <span class="carter"> Invoices Generator </span>
+    </div>
+    <div class="text-center mt-2 grey--text text--darken-2">
+      <span class="akaya"> Export Indeed invoices by jobs number </span>
+    </div>
+    <v-row class="col-12 mb-6" justify="center">
+      <v-col cols="3">
+        <v-divider ></v-divider>
+      </v-col>
+    </v-row>
+    <v-card rounded="lg" elevation="0">
+      <v-stepper v-model="currentStep" non-linear elevation="0">
+        <v-stepper-header>
+          <v-stepper-step editable :complete="false" step="1">
+            Start Browser
+          </v-stepper-step>
 
-        <v-divider></v-divider>
+          <v-divider></v-divider>
 
-        <v-stepper-step editable :complete="false" step="2">
-          Generate Invoice
-        </v-stepper-step>
-      </v-stepper-header>
+          <v-stepper-step editable :complete="false" step="2">
+            Generate Invoice
+          </v-stepper-step>
+        </v-stepper-header>
 
-      <!-- steps cards -->
-      <v-stepper-items elevation="0">
-        <v-stepper-content step="1" elevation="0">
-          <v-card elevation="0">
-            <StartBrowserStepper />
-          </v-card>
-          <hr />
+        <!-- steps cards -->
+        <v-stepper-items elevation="0">
+          <v-stepper-content step="1" elevation="0">
+            <v-card elevation="0">
+              <StartBrowserStepper />
+            </v-card>
+            <hr />
 
-          <v-btn
-            color="primary"
-            tile
-            large
-            class="float-right"
-            @click="currentStep = 2"
-          >
-            <v-icon>mdi-chevron-right </v-icon>
-
-            Set the dates and job number
-          </v-btn>
-        </v-stepper-content>
-
-        <v-stepper-content step="2" class="text-center">
-          <DatePicker />
-          <v-divider class="my-3 mx-12"></v-divider>
-          <NumbersInput />
-          <v-row class="col-12" justify="center">
             <v-btn
-              color="success"
-              class="my-12 px-12"
+              color="primary"
               tile
-              x-large
-              elevation="3"
-              @click="generateInvoice"
-              :loading="isLoading"
-              :disabled="isLoading"
+              large
+              class="float-right"
+              @click="currentStep = 2"
             >
-              <v-icon class="mr-2">mdi-file-download</v-icon>
-              Generate Invoice
+              <v-icon>mdi-chevron-right </v-icon>
+
+              Set the dates and job number
             </v-btn>
-          </v-row>
-        </v-stepper-content>
-      </v-stepper-items>
-    </v-stepper>
-  </v-card>
+          </v-stepper-content>
+
+          <v-stepper-content step="2" class="text-center">
+            <DatePicker />
+            <v-divider class="my-3 mx-12"></v-divider>
+            <NumbersInput />
+            <v-row class="col-12" justify="center">
+              <v-btn
+                color="success"
+                class="my-12 px-12"
+                tile
+                x-large
+                elevation="3"
+                @click="generateInvoice"
+                :loading="isLoading"
+                :disabled="isLoading"
+              >
+                <v-icon class="mr-2">mdi-file-download</v-icon>
+                Generate Invoice
+              </v-btn>
+            </v-row>
+          </v-stepper-content>
+        </v-stepper-items>
+      </v-stepper>
+    </v-card>
+  </v-container>
 </template>
 
 <script>

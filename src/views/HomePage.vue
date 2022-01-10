@@ -96,11 +96,11 @@ export default {
         {
           name: "Resume Transfer",
           route: { name: "ResumeTransfer" },
-          description: "Transfer Resumes from Indeed to Crealet",
+          description: "Transfer Resumes from Indeed to Crelate",
           icon: require("@/assets/img/resume.png"),
         },
         {
-          name: "Crealet Reports",
+          name: "Crelate Reports",
           route: { name: "CrealetReports" },
           description: "Export Crealet reports",
           icon: require("@/assets/img/crealet-report.png"),
