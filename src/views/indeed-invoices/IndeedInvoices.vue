@@ -8,7 +8,7 @@
     </div>
     <v-row class="col-12 mb-6" justify="center">
       <v-col cols="3">
-        <v-divider ></v-divider>
+        <v-divider></v-divider>
       </v-col>
     </v-row>
     <v-card rounded="lg" elevation="0">
@@ -59,7 +59,7 @@
                 elevation="3"
                 @click="generateInvoice"
                 :loading="isLoading"
-                :disabled="isLoading"
+                :disabled="isLoading || !submitEnabled"
               >
                 <v-icon class="mr-2">mdi-file-download</v-icon>
                 Generate Invoice
@@ -90,26 +90,28 @@ export default {
     };
   },
   computed: {
-    oneJobOrMoreSelected: {
-      get() {
-        return this.$store.getters[
-          "updatePageModule/getIsRepostingPageEnabled"
-        ];
-      },
-    },
-    jobs: {
+    jobsNumbers: {
       get: function () {
-        return this.$store.getters["updatePageModule/getJobs"];
+        return this.$store.getters["invoiceGeneratorModule/getJobsNumbers"];
       },
       set: function (newVal) {
-        this.$store.commit("updatePageModule/setJobs", newVal);
+        this.$store.commit("invoiceGeneratorModule/setJobsNumbers", newVal);
       },
+    },
+    selectedDates: {
+      get: function () {
+        return this.$store.getters["invoiceGeneratorModule/getSelectedDates"];
+      },
+      set: function (newVal) {
+        this.$store.commit("invoiceGeneratorModule/setsSelectedDates", newVal);
+      },
+    },
+
+    submitEnabled() {
+      return this.jobsNumbers.length && this.selectedDates.length == 2;
     },
   },
   methods: {
-    BASE_URL() {
-      return this.$store.state.BASE_URL;
-    },
     async generateInvoice() {
       this.isLoading = true;
       try {
