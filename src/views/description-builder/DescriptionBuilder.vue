@@ -1,48 +1,30 @@
 <template>
   <div>
     <v-navigation-drawer color="#f6f9fb" v-model="drawer" app>
-      <v-list>
-        <!-- home page -->
-        <v-list-item>
-          <v-img
-            height="100"
-            width="120"
-            contain
-            class="grow"
-            style="cursor: pointer"
-            :src="require('@/assets/img/logo.png')"
-          >
-          </v-img>
-        </v-list-item>
-        <v-divider></v-divider>
-        <v-list-group
-          v-for="(item, i) in links"
-          :key="i"
-          :prepend-icon="item.icon"
-          sub-group
+      <!-- home page -->
+      <v-list-item>
+        <v-img
+          height="100"
+          width="120"
+          contain
+          class="grow"
+          style="cursor: pointer"
+          :src="require('@/assets/img/logo.png')"
         >
-          <template v-slot:activator>
-            <v-list-item-title>{{ item.text }}</v-list-item-title>
-          </template>
-
-          <v-list-item class="ml-10" link>
-            <v-icon small class="mr-2 info--text text--darken-3"
-              >mdi-checkbox-outline</v-icon
-            >
-            <v-list-item-title class="info--text text--darken-3"
-              >Items</v-list-item-title
-            >
+        </v-img>
+      </v-list-item>
+      <v-divider></v-divider>
+      <v-list >
+        <v-list-item-group v-model="selectedItem" color="primary">
+          <v-list-item v-for="(item, i) in links" :key="i">
+            <v-list-item-icon>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.text"></v-list-item-title>
+            </v-list-item-content>
           </v-list-item>
-
-          <v-list-item class="ml-10" link>
-            <v-icon small class="mr-2 info--text text--darken-3"
-              >mdi-checkbox-multiple-marked-outline
-            </v-icon>
-            <v-list-item-title class="info--text text--darken-3"
-              >Sets Of Items</v-list-item-title
-            >
-          </v-list-item>
-        </v-list-group>
+        </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
 
