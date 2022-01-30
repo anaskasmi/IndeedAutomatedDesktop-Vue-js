@@ -7,14 +7,15 @@
 
     <v-tabs-items v-model="tab">
       <v-tab-item> <Items /></v-tab-item>
-      <v-tab-item> <Items /> </v-tab-item>
+      <v-tab-item> <Sets /> </v-tab-item>
     </v-tabs-items>
   </v-card>
 </template>
 <script>
 import Items from "@/views/description-builder/experiences/components/Items.vue";
+import Sets from "@/views/description-builder/experiences/components/sets/Sets.vue";
 export default {
-  components: { Items },
+  components: { Items, Sets },
   data: () => {
     return {
       tab: null,

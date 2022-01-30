@@ -25,9 +25,9 @@
 export default {
   data() {
     return {
+      isLoading: false,
       item: {
         name: null,
-        isLoading: false,
       },
     };
   },
