@@ -4,6 +4,7 @@ import RepostingIndex from '../views/RepostingIndex.vue'
 import UpdatingIndex from '../views/UpdatingIndex.vue'
 import ResumeTransfer from '../views/ResumeIndex.vue'
 import HomePage from '../views/HomePage.vue'
+import descriptionBuilderRoutes from './descriptionBuilderRoutes'
 
 Vue.use(VueRouter)
 
@@ -41,7 +42,9 @@ const routes = [{
         path: '/descriptionBuilder',
         name: 'DescriptionBuilder',
         component: () =>
-            import ('@/views/description-builder/DescriptionBuilder.vue')
+            import ('@/views/description-builder/DescriptionBuilder.vue'),
+        children: descriptionBuilderRoutes
+
     },
 
 ]

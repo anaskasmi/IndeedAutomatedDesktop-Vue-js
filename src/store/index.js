@@ -4,6 +4,7 @@ import { repostPageModule } from './repostingPage/index';
 import { updatePageModule } from './updatePage/index';
 import { resumePageModule } from './resumePage/index';
 import { invoiceGeneratorModule } from './invoiceGenerator/index';
+import { DescriptionBuilderExperiencesModule } from './../views/description-builder/experiences/store/index';
 Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
@@ -16,6 +17,7 @@ export const store = new Vuex.Store({
         repostPageModule,
         updatePageModule,
         resumePageModule,
-        invoiceGeneratorModule
+        invoiceGeneratorModule,
+        DescriptionBuilderExperiencesModule
     }
 });

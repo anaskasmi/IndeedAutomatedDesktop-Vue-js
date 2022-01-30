@@ -14,9 +14,13 @@
         </v-img>
       </v-list-item>
       <v-divider></v-divider>
-      <v-list >
+      <v-list>
         <v-list-item-group v-model="selectedItem" color="primary">
-          <v-list-item v-for="(item, i) in links" :key="i">
+          <v-list-item
+            @click="$router.push(item.route)"
+            v-for="(item, i) in links"
+            :key="i"
+          >
             <v-list-item-icon>
               <v-icon v-text="item.icon"></v-icon>
             </v-list-item-icon>
@@ -33,12 +37,22 @@
 
       <v-toolbar-title>Job Description Builder</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn color="pink lighten-1" tile elevation="1">
-        <v-icon class="mr-2">mdi-pencil</v-icon> Job Builder</v-btn
+      <v-btn
+        light
+        color="white darken-1"
+        style="color: #2e4c6d"
+        class="font-weight-bold"
+        depressed
+        rounded
+        large
+      >
+        <v-icon color="#2E4C6D" class="mr-2">mdi-plus</v-icon> New Job</v-btn
       >
     </v-app-bar>
 
-    <v-main> </v-main>
+    <v-container>
+      <router-view></router-view>
+    </v-container>
   </div>
 </template>
 <script>
@@ -49,32 +63,39 @@ export default {
       selectedItem: null,
       links: [
         {
-          icon: "mdi-account-hard-hat ",
+          icon: "mdi-account-hard-hat",
           text: "positions",
+          route: { name: "descriptionBuilder.positions" },
         },
         {
           icon: "mdi-archive-check ",
           text: "Apply Methods",
+          route: { name: "descriptionBuilder.applyMethods" },
         },
         {
           icon: "mdi-format-list-checks ",
           text: "Qualities",
+          route: { name: "descriptionBuilder.qualities" },
         },
         {
           icon: "mdi-medical-bag ",
           text: "Compensation",
+          route: { name: "descriptionBuilder.compensation" },
         },
         {
           icon: "mdi-file-compare  ",
           text: "Experience",
+          route: { name: "descriptionBuilder.experiences" },
         },
         {
           icon: "mdi-puzzle-star ",
           text: "Incentive",
+          route: { name: "descriptionBuilder.incentives" },
         },
         {
           icon: "mdi-tag-multiple ",
           text: "Tags",
+          route: { name: "descriptionBuilder.tags" },
         },
       ],
     };
