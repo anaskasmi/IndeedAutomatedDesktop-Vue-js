@@ -22,19 +22,25 @@ export const actions = {
     async fetchSets(context) {
         const response = await ApiService.get('/description-builder/experiences/sets');
         const sets = response.data.data;
-        context.commit('sets', sets)
+        await context.commit('sets', sets)
     },
-    async createSets(context, set) {
+    async createSet(context, set) {
         await ApiService.post(`description-builder/experiences/sets`, set);
-        context.dispatch('fetchSets');
+        await context.dispatch('fetchSets');
     },
     async updateSet(context, set) {
         await ApiService.patch(`description-builder/experiences/sets/${set._id}`, set);
-        context.dispatch('fetchSets');
+        await context.dispatch('fetchSets');
     },
     async deleteSet(context, id) {
         await ApiService.delete(`description-builder/experiences/sets/${id}`);
-        context.dispatch('fetchSets');
+        await context.dispatch('fetchSets');
+    },
+    async deleteItemFromSet(context, data) {
+        await ApiService.post(`description-builder/experiences/sets/remove-item/${data.setId}`, {
+            "experience": data.itemId
+        });
+        await context.dispatch('fetchSets');
     }
 
 }

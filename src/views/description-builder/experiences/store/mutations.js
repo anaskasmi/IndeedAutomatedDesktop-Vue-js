@@ -8,6 +8,9 @@ export const mutations = {
     },
     createItemDialogVisible(state, newVal) {
         state.createItemDialogVisible = newVal;
-    }
+    },
+    createSetDialogVisible(state, newVal) {
+        state.createSetDialogVisible = newVal;
+    },
 
 }

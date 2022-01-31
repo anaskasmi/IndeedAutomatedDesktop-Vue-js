@@ -1,5 +1,6 @@
 export const state = {
     items: [],
     sets: [],
-    createItemDialogVisible: false
+    createItemDialogVisible: false,
+    createSetDialogVisible: false
 }

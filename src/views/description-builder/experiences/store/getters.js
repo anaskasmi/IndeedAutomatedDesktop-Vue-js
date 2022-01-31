@@ -8,5 +8,8 @@ export const getters = {
     },
     createItemDialogVisible(state) {
         return state.createItemDialogVisible;
+    },
+    createSetDialogVisible(state) {
+        return state.createSetDialogVisible;
     }
 }

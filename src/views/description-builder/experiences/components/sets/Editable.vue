@@ -14,9 +14,9 @@
         edit = false;
       "
     ></v-text-field>
-    <p v-else @click="edit = true">
+    <div class="font-weight-bold text-uppercase" v-else @click="edit = true">
       {{ set.name }}
-    </p>
+    </div>
   </div>
 </template>
 
