@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="createSetDialogVisible" max-width="690">
+  <v-dialog persistent v-model="createSetDialogVisible" max-width="690">
     <v-card :loading="isLoading" rounded="lg">
       <v-card-title> New Set </v-card-title>
       <v-card-text>
@@ -31,7 +31,7 @@
         ><v-btn
           @click="createSetDialogVisible = false"
           :loading="isLoading"
-          :disabled="isLoading || !set.name"
+          :disabled="isLoading"
           tile
           block
           color="grey"
@@ -62,7 +62,9 @@ export default {
           this.set
         );
         this.set.name = null;
+        this.set.experiences = [];
         this.createSetDialogVisible = false;
+        this.$store.commit("showSuccessNotification", "Created successfully!");
       } catch (error) {
         console.log(error);
       } finally {

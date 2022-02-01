@@ -2,6 +2,16 @@
   <v-app>
     <v-main style="background-color: #f5f8fa">
       <router-view />
+      <!-- snack bar  -->
+      <v-snackbar v-model="snackbar.isVisible" :color="snackbar.color" clo>
+        {{ snackbar.message }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn text v-bind="attrs" @click="snackbar.isVisible = false">
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-main>
   </v-app>
 </template>
@@ -22,6 +32,16 @@ export default {
       return this.$route.name === "ResumeTransfer";
     },
   },
+  computed: {
+    snackbar: {
+      get: function () {
+        return this.$store.getters["snackbar"];
+      },
+      set: function (newVal) {
+        this.$store.commit("snackbar", newVal);
+      },
+    },
+  },
 };
 </script>
 <style >
@@ -33,7 +53,7 @@ a:hover {
 }
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Bevan&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bevan&display=swap");
 
 .akaya {
   font-family: "Comfortaa", cursive !important;

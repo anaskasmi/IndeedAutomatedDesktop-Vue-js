@@ -1,7 +1,9 @@
 <template>
-  <div class="my-4">
+  <div class="my-4 col-4">
     <v-text-field
-      outlined
+      solo-inverted
+      prepend-icon="mdi-pencil"
+      hint="click ENTER to save, or ESC to cancel"
       v-if="edit"
       dense
       v-model="set.name"
@@ -13,9 +15,15 @@
         updateSet();
         edit = false;
       "
+      @keyup.esc="
+        edit = false;
+        fetchSets();
+      "
     ></v-text-field>
-    <div class="font-weight-bold text-uppercase" v-else @click="edit = true">
-      {{ set.name }}
+    <div class="font-weight-bold text-uppercase text-edit-mouse" v-else>
+      <span v-on:dblclick.stop="edit = true">
+        {{ set.name }}
+      </span>
     </div>
   </div>
 </template>
@@ -31,11 +39,26 @@ export default {
     };
   },
   methods: {
-    updateSet() {
-      this.$store.dispatch(
-        "DescriptionBuilderExperiencesModule/updateSet",
-        this.set
-      );
+    async updateSet() {
+      try {
+        await this.$store.dispatch(
+          "DescriptionBuilderExperiencesModule/updateSet",
+          this.set
+        );
+        this.$store.commit("showSuccessNotification", "Updated successfully!");
+      } catch (error) {
+        this.$store.commit("showErrorNotification", error);
+      }
+    },
+    async fetchSets() {
+      try {
+        await this.$store.dispatch(
+          "DescriptionBuilderExperiencesModule/fetchSets",
+          this.set
+        );
+      } catch (error) {
+        this.$store.commit("showErrorNotification", error);
+      }
     },
   },
 
@@ -54,3 +77,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.text-edit-mouse {
+  cursor: text;
+}
+</style>

@@ -12,7 +12,7 @@
   </v-card>
 </template>
 <script>
-import Items from "@/views/description-builder/experiences/components/Items.vue";
+import Items from "@/views/description-builder/experiences/components/items/Items.vue";
 import Sets from "@/views/description-builder/experiences/components/sets/Sets.vue";
 export default {
   components: { Items, Sets },

@@ -6,12 +6,12 @@
       <v-data-table
         :headers="headers"
         :items="sets"
-        set-key="id"
         class="elevation-0"
         :search="search"
         :expanded.sync="expanded"
         item-key="_id"
         show-expand
+        @click:row="(item, slot) => slot.expand(!slot.isExpanded)"
       >
         <template v-slot:top>
           <v-row>
@@ -51,8 +51,10 @@
               :key="experience._id"
               :color="itemIdUnderDelete == experience._id ? 'red' : 'info'"
               close
+              :small="itemIdUnderDelete != experience._id"
+              :medium="itemIdUnderDelete == experience._id"
               :close-icon="
-                itemIdUnderDelete == experience._id ? 'mdi-check' : 'mdi-delete'
+                itemIdUnderDelete == experience._id ? 'mdi-close' : 'mdi-delete'
               "
               text-color="white"
               @click:close="deleteItemFromSet(item._id, experience._id)"
@@ -208,6 +210,7 @@ export default {
         );
       } catch (error) {
         console.log(error);
+        this.$store.commit("showErrorNotification", error);
       } finally {
         this.isLoading = false;
         this.theSetUnderUpdate = null;
@@ -221,8 +224,10 @@ export default {
           "DescriptionBuilderExperiencesModule/updateSet",
           set
         );
+        this.$store.commit("showSuccessNotification", "Updated successfully!");
       } catch (error) {
         console.log(error);
+        this.$store.commit("showErrorNotification", error);
       } finally {
         this.isLoading = false;
         this.theSetUnderUpdate = null;
@@ -240,8 +245,10 @@ export default {
           "DescriptionBuilderExperiencesModule/deleteItemFromSet",
           { setId, itemId }
         );
+        this.$store.commit("showSuccessNotification", "Deleted successfully!");
       } catch (error) {
         console.log(error);
+        this.$store.commit("showErrorNotification", error);
       } finally {
         this.isLoading = false;
         this.itemIdUnderDelete = null;
@@ -255,6 +262,7 @@ export default {
         );
       } catch (error) {
         console.log(error);
+        this.$store.commit("showErrorNotification", error);
       } finally {
         this.isLoading = false;
       }
@@ -285,6 +293,7 @@ export default {
               });
             } catch (error) {
               console.log(error);
+              this.$store.commit("showErrorNotification", error);
             } finally {
               this.isLoading = false;
             }
