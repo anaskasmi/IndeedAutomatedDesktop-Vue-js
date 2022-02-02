@@ -7,6 +7,7 @@ import { invoiceGeneratorModule } from './invoiceGenerator/index';
 import { DescriptionBuilderExperiencesModule } from './../views/description-builder/experiences/store/index';
 import { DescriptionBuilderPositionsModule } from './../views/description-builder/positions/store/index';
 import { DescriptionBuilderCompensationsModule } from './../views/description-builder/compensations/store/index';
+import { DescriptionBuilderIncentivesModule } from './../views/description-builder/incentives/store/index';
 Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
@@ -51,6 +52,7 @@ export const store = new Vuex.Store({
         invoiceGeneratorModule,
         DescriptionBuilderExperiencesModule,
         DescriptionBuilderPositionsModule,
-        DescriptionBuilderCompensationsModule
+        DescriptionBuilderCompensationsModule,
+        DescriptionBuilderIncentivesModule
     }
 });
