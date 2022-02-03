@@ -30,11 +30,22 @@ const descriptionBuilderRoutes = [{
         name: 'descriptionBuilder.qualities',
         component: () =>
             import ('@/views/description-builder/qualities/views/Qualities.vue'),
-    }, {
+    },
+    {
         path: 'tags',
         name: 'descriptionBuilder.tags',
         component: () =>
             import ('@/views/description-builder/tags/views/Tags.vue'),
+    }, {
+        path: 'create-job-description',
+        name: 'descriptionBuilder.createJobdescription',
+        component: () =>
+            import ('@/views/description-builder/create-job-description/views/CreateJobdescription.vue'),
+    }, {
+        path: 'companies',
+        name: 'descriptionBuilder.companies',
+        component: () =>
+            import ('@/views/description-builder/companies/views/Companies.vue'),
     },
 ];
 

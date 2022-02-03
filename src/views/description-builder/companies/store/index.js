@@ -3,7 +3,7 @@ import { mutations } from './mutations';
 import { actions } from './actions';
 import { getters } from './getters';
 
-export const DescriptionBuilderQualitiesModule = {
+export const DescriptionBuildercompaniesModule = {
     namespaced: true,
     state: state,
     getters: getters,

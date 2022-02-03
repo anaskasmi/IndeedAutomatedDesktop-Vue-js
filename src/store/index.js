@@ -8,6 +8,9 @@ import { DescriptionBuilderExperiencesModule } from './../views/description-buil
 import { DescriptionBuilderPositionsModule } from './../views/description-builder/positions/store/index';
 import { DescriptionBuilderCompensationsModule } from './../views/description-builder/compensations/store/index';
 import { DescriptionBuilderIncentivesModule } from './../views/description-builder/incentives/store/index';
+import { DescriptionBuilderApplyMethodsModule } from './../views/description-builder/apply-methods/store/index';
+import { DescriptionBuilderQualitiesModule } from './../views/description-builder/qualities/store/index';
+import { DescriptionBuilderTemplateModule } from './../views/description-builder/create-job-description/store/index';
 Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
@@ -42,7 +45,6 @@ export const store = new Vuex.Store({
             state.snackbar.isVisible = true;
             state.snackbar.color = "info";
         }
-
     },
     actions: {},
     modules: {
@@ -53,6 +55,9 @@ export const store = new Vuex.Store({
         DescriptionBuilderExperiencesModule,
         DescriptionBuilderPositionsModule,
         DescriptionBuilderCompensationsModule,
-        DescriptionBuilderIncentivesModule
+        DescriptionBuilderIncentivesModule,
+        DescriptionBuilderApplyMethodsModule,
+        DescriptionBuilderQualitiesModule,
+        DescriptionBuilderTemplateModule
     }
 });

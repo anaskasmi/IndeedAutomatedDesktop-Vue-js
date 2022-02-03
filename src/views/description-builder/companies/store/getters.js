@@ -1,10 +1,7 @@
 export const getters = {
 
-    items(state) {
-        return state.items;
-    },
-    sets(state) {
-        return state.sets;
+    companies(state) {
+        return state.companies;
     },
     createItemDialogVisible(state) {
         return state.createItemDialogVisible;

@@ -10,6 +10,7 @@
           class="grow"
           style="cursor: pointer"
           :src="require('@/assets/img/logo.png')"
+          @click="$router.push({ name: 'HomePage' })"
         >
         </v-img>
       </v-list-item>
@@ -45,9 +46,13 @@
         depressed
         rounded
         large
+        @click="
+          $router.push({ name: 'descriptionBuilder.createJobdescription' })
+        "
       >
-        <v-icon color="#2E4C6D" class="mr-2">mdi-plus</v-icon> New Job</v-btn
-      >
+        <v-icon color="#2E4C6D" class="mr-2">mdi-plus</v-icon>
+        New Job
+      </v-btn>
     </v-app-bar>
 
     <v-container>
@@ -62,6 +67,11 @@ export default {
       drawer: true,
       selectedItem: null,
       links: [
+        {
+          icon: "mdi-office-building",
+          text: "companies",
+          route: { name: "descriptionBuilder.companies" },
+        },
         {
           icon: "mdi-account-hard-hat",
           text: "positions",
