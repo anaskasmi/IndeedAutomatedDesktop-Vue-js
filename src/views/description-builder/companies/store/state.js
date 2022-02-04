@@ -1,6 +1,6 @@
 export const state = {
     companies: [],
-    companyUnderEdit: {},
+    companyUnderUpdate: {},
     createDialogVisible: false,
-    editDialogVisible: false,
+    updateDialogVisible: false,
 }

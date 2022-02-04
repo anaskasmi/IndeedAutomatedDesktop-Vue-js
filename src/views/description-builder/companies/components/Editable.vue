@@ -21,7 +21,7 @@
       "
     ></v-text-field>
     <p v-else>
-      <span  v-on:dblclick="edit = true">
+      <span v-on:dblclick="edit = true">
         {{ item.name }}
       </span>
     </p>

@@ -1,12 +1,14 @@
 export const getters = {
-
     companies(state) {
         return state.companies;
     },
-    createItemDialogVisible(state) {
-        return state.createItemDialogVisible;
+    createDialogVisible(state) {
+        return state.createDialogVisible;
     },
-    createSetDialogVisible(state) {
-        return state.createSetDialogVisible;
-    }
+    updateDialogVisible(state) {
+        return state.updateDialogVisible;
+    },
+    companyUnderUpdate(state) {
+        return state.companyUnderUpdate;
+    },
 }

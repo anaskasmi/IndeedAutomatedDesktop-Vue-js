@@ -11,6 +11,7 @@ import { DescriptionBuilderIncentivesModule } from './../views/description-build
 import { DescriptionBuilderApplyMethodsModule } from './../views/description-builder/apply-methods/store/index';
 import { DescriptionBuilderQualitiesModule } from './../views/description-builder/qualities/store/index';
 import { DescriptionBuilderTemplateModule } from './../views/description-builder/create-job-description/store/index';
+import { DescriptionBuilderCompaniesModule } from './../views/description-builder/companies/store/index';
 Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
@@ -58,6 +59,7 @@ export const store = new Vuex.Store({
         DescriptionBuilderIncentivesModule,
         DescriptionBuilderApplyMethodsModule,
         DescriptionBuilderQualitiesModule,
-        DescriptionBuilderTemplateModule
+        DescriptionBuilderTemplateModule,
+        DescriptionBuilderCompaniesModule
     }
 });

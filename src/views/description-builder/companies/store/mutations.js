@@ -6,8 +6,11 @@ export const mutations = {
     createDialogVisible(state, newVal) {
         state.createDialogVisible = newVal;
     },
-    editDialogVisible(state, newVal) {
-        state.editDialogVisible = newVal;
+    updateDialogVisible(state, newVal) {
+        state.updateDialogVisible = newVal;
+    },
+    companyUnderUpdate(state, newVal) {
+        state.companyUnderUpdate = newVal;
     },
 
 

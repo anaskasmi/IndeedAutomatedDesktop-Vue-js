@@ -1,11 +1,11 @@
 <template>
-    <Items />
+    <CompaniesTable />
   
 </template>
 <script>
-import Items from "@/views/description-builder/companies/components/Items.vue";
+import CompaniesTable from "@/views/description-builder/companies/components/CompaniesTable.vue";
 export default {
-  components: { Items },
+  components: { CompaniesTable },
   data: () => {
     return {
       tab: null,
