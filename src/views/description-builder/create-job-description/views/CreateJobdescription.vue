@@ -1,13 +1,13 @@
 <template>
   <div>
     <v-row class="col-12">
-      <v-col>
+      <v-col :cols="isExpanded ? 12 : 6">
         <v-card outlined elevation="0">
           <v-card-title>
             <v-row class="col-12" justify="space-between">
               <div>Description Builder</div>
               <div>
-                <v-btn dark text color="info">
+                <v-btn dark text color="info" @click="isExpanded = !isExpanded">
                   <v-icon class="mr-2" color="primary"
                     >mdi-arrow-expand-horizontal</v-icon
                   >
@@ -45,15 +45,19 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col>
+      <v-col :cols="isExpanded ? 12 : 6">
         <v-card outlined elevation="0">
           <v-card-title>
             <v-row class="col-12" justify="space-between">
               <div>Preview</div>
               <div>
-                <v-btn dark color="green">
+                <v-btn dark depressed color="green">
                   <v-icon class="mr-2" small>mdi-content-copy</v-icon>
                   Copy
+                </v-btn>
+                <v-btn depressed dark class="ml-2" color="info">
+                  <v-icon class="mr-2" small>mdi-file-download</v-icon>
+                  Save Job
                 </v-btn>
               </div>
             </v-row>
@@ -96,6 +100,11 @@ export default {
     ApplyMethods,
     Signature,
     Preview,
+  },
+  data() {
+    return {
+      isExpanded: false,
+    };
   },
 };
 </script>

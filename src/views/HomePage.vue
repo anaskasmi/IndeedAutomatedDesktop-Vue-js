@@ -58,19 +58,6 @@
             </router-link>
           </v-col>
         </v-row>
-        <!-- <v-btn x-large elevation="1" color="#28527a" dark class="mt-10 mx-5">
-            Start Reposting
-          </v-btn> -->
-        <!-- <router-link to="/updating"
-          ><v-btn x-large elevation="1" color="#28abb9" dark class="mt-10 mx-5">
-            Start Updating
-          </v-btn></router-link
-        >
-        <router-link to="/resumeTransfer"
-          ><v-btn x-large elevation="1" color="#FF6767" dark class="mt-10 mx-5">
-            Resume Transfer
-          </v-btn></router-link
-        > -->
       </v-container>
     </div>
   </div>
@@ -113,7 +100,7 @@ export default {
         },
         {
           name: "Description builder",
-          route: { name: "DescriptionBuilder" },
+          route: { name: "descriptionBuilder.home" },
           description: "To help you build Job descriptions ",
           icon: require("@/assets/img/job-builder.png"),
         },

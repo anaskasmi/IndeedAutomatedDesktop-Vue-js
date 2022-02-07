@@ -1,4 +1,10 @@
 const descriptionBuilderRoutes = [{
+        path: '',
+        name: 'descriptionBuilder.home',
+        component: () =>
+            import ('@/views/description-builder/home/Home.vue'),
+    },
+    {
         path: 'apply-methods',
         name: 'descriptionBuilder.applyMethods',
         component: () =>

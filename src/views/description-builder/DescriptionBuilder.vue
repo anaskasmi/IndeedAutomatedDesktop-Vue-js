@@ -1,8 +1,10 @@
 <template>
   <div>
-    <v-navigation-drawer color="#f6f9fb" v-model="drawer" app>
+    <v-navigation-drawer color="#f6f9fb" v-model="drawer"       app
+      width="300"
+> 
       <!-- home page -->
-      <v-list-item>
+      <v-list-item >
         <v-img
           height="100"
           width="120"
@@ -34,9 +36,14 @@
     </v-navigation-drawer>
 
     <v-app-bar app color="primary" dark>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Job Description Builder</v-toolbar-title>
+      <v-toolbar-title
+        style="cursor: pointer"
+        class="Lobster ml-3 my-auto"
+        @click="$router.push({ name: 'descriptionBuilder.home' })"
+        >
+        Description Builder</v-toolbar-title
+      >
       <v-spacer></v-spacer>
       <v-btn
         light
@@ -112,3 +119,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+.Lobster {
+font-family: 'Lobster', cursive;}
+</style>
