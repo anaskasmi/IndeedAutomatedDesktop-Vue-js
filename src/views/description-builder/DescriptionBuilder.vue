@@ -1,10 +1,9 @@
 <template>
   <div>
-    <v-navigation-drawer color="#f6f9fb" v-model="drawer"       app
-      width="300"
-> 
+    <CollectInfoStepper />
+    <v-navigation-drawer color="#f6f9fb" v-model="drawer" app width="300">
       <!-- home page -->
-      <v-list-item >
+      <v-list-item>
         <v-img
           height="100"
           width="120"
@@ -19,6 +18,23 @@
       <v-divider></v-divider>
       <v-list>
         <v-list-item-group v-model="selectedItem" color="primary">
+          <v-btn
+            color="#2c3e50"
+            class="mb-4 mx-4"
+            dark
+            depressed
+            width="250"
+            @click="
+              collectInfoStepperIsVisible = true;
+
+              $router.push(
+                { name: 'descriptionBuilder.createJobdescription' },
+                () => {}
+              );
+            "
+          >
+            <v-icon class="mr-4">mdi-shape-square-rounded-plus</v-icon>New Job
+          </v-btn>
           <v-list-item
             @click="$router.push(item.route)"
             v-for="(item, i) in links"
@@ -36,28 +52,33 @@
     </v-navigation-drawer>
 
     <v-app-bar app color="primary" dark>
-
       <v-toolbar-title
         style="cursor: pointer"
         class="Lobster ml-3 my-auto"
         @click="$router.push({ name: 'descriptionBuilder.home' })"
-        >
+      >
         Description Builder</v-toolbar-title
       >
       <v-spacer></v-spacer>
       <v-btn
         light
         color="white darken-1"
-        style="color: #2e4c6d"
+        style="color: #2c3e50"
         class="font-weight-bold"
         depressed
         rounded
         large
         @click="
-          $router.push({ name: 'descriptionBuilder.createJobdescription' })
+          $router.push(
+            { name: 'descriptionBuilder.createJobdescription' },
+            () => {}
+          );
+          collectInfoStepperIsVisible = true;
         "
       >
-        <v-icon color="#2E4C6D" class="mr-2">mdi-plus</v-icon>
+        <v-icon color="#2E4C6D" class="mr-2"
+          >mdi-shape-square-rounded-plus</v-icon
+        >
         New Job
       </v-btn>
     </v-app-bar>
@@ -68,7 +89,24 @@
   </div>
 </template>
 <script>
+import CollectInfoStepper from "@/views/description-builder/create-job-description/components/collect-info-stepper/CollectInfoStepper.vue";
 export default {
+  components: { CollectInfoStepper },
+  computed: {
+    collectInfoStepperIsVisible: {
+      get: function () {
+        return this.$store.getters[
+          "DescriptionBuilderTemplateModule/collectInfoStepperIsVisible"
+        ];
+      },
+      set: function (newVal) {
+        this.$store.commit(
+          "DescriptionBuilderTemplateModule/collectInfoStepperIsVisible",
+          newVal
+        );
+      },
+    },
+  },
   data() {
     return {
       drawer: true,
@@ -120,7 +158,8 @@ export default {
 };
 </script>
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 .Lobster {
-font-family: 'Lobster', cursive;}
+  font-family: "Lobster", cursive;
+}
 </style>

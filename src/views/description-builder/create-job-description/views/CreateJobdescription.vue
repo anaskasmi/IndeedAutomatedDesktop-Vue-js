@@ -51,7 +51,7 @@
             <v-row class="col-12" justify="space-between">
               <div>Preview</div>
               <div>
-                <v-btn dark depressed color="green">
+                <v-btn dark depressed color="green" @click="copyDescription">
                   <v-icon class="mr-2" small>mdi-content-copy</v-icon>
                   Copy
                 </v-btn>
@@ -105,6 +105,16 @@ export default {
     return {
       isExpanded: false,
     };
+  },
+  methods: {
+    async copyDescription() {
+      try {
+        await navigator.clipboard.writeText("description goes here ");
+        this.$store.commit("showSuccessNotification", "Copied successfully!");
+      } catch (error) {
+        this.$store.commit("showErrorNotification", error);
+      }
+    },
   },
 };
 </script>
