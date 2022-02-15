@@ -5,19 +5,19 @@
         <v-text-field
           hide-details
           clearable
+          solo-inverted
           light
           autocomplete="nope"
           label="company name"
-          filled
           v-model="job.company.name"
         ></v-text-field>
       </v-col>
       <v-col cols="6">
         <v-text-field
           hide-details
-          filled
           autocomplete="nope"
           clearable
+          solo-inverted
           light
           label="company website"
           v-model="job.company.website"
@@ -30,11 +30,11 @@
         <v-text-field
           hide-details
           clearable
+          solo-inverted
           light
           v-model="job.company.city"
           label="City"
           autocomplete="nope"
-          filled
         ></v-text-field
       ></v-col>
 
@@ -42,11 +42,11 @@
         <v-text-field
           hide-details
           clearable
+          solo-inverted
           light
           v-model="job.company.state"
           label="State"
           autocomplete="nope"
-          filled
         ></v-text-field>
       </v-col>
       ,
@@ -57,25 +57,31 @@
         <v-combobox
           hide-details
           clearable
+          solo-inverted
           v-model="job.jobType"
           light
           label="Job Type"
           autocomplete="nope"
           :items="['full-time', 'part-time']"
-          filled
           chips
+          multiple
         ></v-combobox
       ></v-col>
       <v-col>
         <v-combobox
           hide-details
           clearable
+          solo-inverted
           light
           v-model="job.roleDescription"
           label="Role Desc"
           autocomplete="nope"
-          :items="['talented', 'great', 'experienced']"
-          filled
+          :items="roleDescriptions"
+          item-text="name"
+          item-value="name"
+          :return-object="false"
+          :loading="isLoading"
+          :disabled="isLoading"
           chips
         ></v-combobox>
       </v-col>
@@ -83,14 +89,19 @@
         <v-combobox
           hide-details
           clearable
+          solo-inverted
           light
           multiple
           label="Positions"
-          :items="['position 1', 'position 2', 'position 3', 'position 4']"
-          filled
           v-model="job.positions"
-          autocomplete="nope"
+          :items="positions"
+          item-text="name"
+          item-value="name"
+          :loading="isLoading"
+          :disabled="isLoading"
           chips
+          :return-object="false"
+          autocomplete="nope"
         ></v-combobox>
       </v-col>
       .
@@ -106,6 +117,27 @@ export default {
       },
       set: function (newVal) {
         this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
+      },
+    },
+    roleDescriptions: {
+      get: function () {
+        return this.$store.getters[
+          "DescriptionBuilderRoleDescriptionsModule/roleDescriptions"
+        ];
+      },
+      set: function (newVal) {
+        this.$store.commit(
+          "DescriptionBuilderRoleDescriptionsModule/roleDescriptions",
+          newVal
+        );
+      },
+    },
+    positions: {
+      get: function () {
+        return this.$store.getters["DescriptionBuilderPositionsModule/items"];
+      },
+      set: function (newVal) {
+        this.$store.commit("DescriptionBuilderPositionsModule/items", newVal);
       },
     },
   },

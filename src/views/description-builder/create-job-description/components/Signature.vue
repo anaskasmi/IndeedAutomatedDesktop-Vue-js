@@ -4,8 +4,8 @@
     <v-text-field
       autocomplete="nope"
       label="signature"
+      solo-inverted
       hide-details
-      filled
       clearable
       light
       v-model="job.signature"

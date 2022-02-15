@@ -20,51 +20,23 @@
 
           <v-card-text>
             <ApplyOnly />
-            <v-divider></v-divider>
             <CompanyCulture />
-            <v-divider></v-divider>
             <CompanyAndPosition />
-            <v-divider></v-divider>
             <CompanyDescription />
-            <v-divider></v-divider>
             <CandidateDescription />
-            <v-divider></v-divider>
             <Positions />
-            <v-divider></v-divider>
             <Compensations />
-            <v-divider></v-divider>
             <Incentives />
-            <v-divider></v-divider>
             <Experiences />
-            <v-divider></v-divider>
             <Qualities />
-            <v-divider></v-divider>
             <ApplyMethods />
-            <v-divider></v-divider>
             <Signature />
+            <Tags />
           </v-card-text>
         </v-card>
       </v-col>
       <v-col :cols="isExpanded ? 12 : 6">
-        <v-card outlined elevation="0">
-          <v-card-title>
-            <v-row class="col-12" justify="space-between">
-              <div>Preview</div>
-              <div>
-                <v-btn dark depressed color="green" @click="copyDescription">
-                  <v-icon class="mr-2" small>mdi-content-copy</v-icon>
-                  Copy
-                </v-btn>
-                <v-btn depressed dark class="ml-2" color="info">
-                  <v-icon class="mr-2" small>mdi-file-download</v-icon>
-                  Save Job
-                </v-btn>
-              </div>
-            </v-row>
-          </v-card-title>
-          <v-divider></v-divider>
-          <v-card-text> <Preview /> </v-card-text>
-        </v-card>
+        <EditorPreview />
       </v-col>
     </v-row>
   </div>
@@ -84,7 +56,9 @@ import Experiences from "@/views/description-builder/create-job-description/comp
 import Qualities from "@/views/description-builder/create-job-description/components/Qualities.vue";
 import ApplyMethods from "@/views/description-builder/create-job-description/components/ApplyMethods.vue";
 import Signature from "@/views/description-builder/create-job-description/components/Signature.vue";
-import Preview from "@/views/description-builder/create-job-description/components/Preview.vue";
+import Tags from "@/views/description-builder/create-job-description/components/Tags.vue";
+import EditorPreview from "@/views/description-builder/create-job-description/components/editor-preview/EditorPreview.vue";
+
 export default {
   components: {
     ApplyOnly,
@@ -99,7 +73,8 @@ export default {
     Qualities,
     ApplyMethods,
     Signature,
-    Preview,
+    Tags,
+    EditorPreview,
   },
   data() {
     return {
@@ -107,14 +82,7 @@ export default {
     };
   },
   methods: {
-    async copyDescription() {
-      try {
-        await navigator.clipboard.writeText("description goes here ");
-        this.$store.commit("showSuccessNotification", "Copied successfully!");
-      } catch (error) {
-        this.$store.commit("showErrorNotification", error);
-      }
-    },
+   
   },
 };
 </script>

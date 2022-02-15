@@ -1,11 +1,11 @@
 <template >
   <v-row align="center" class="col-12 mb-2">
-    <div class="my-0 mr-4">Apply only:</div>
+    <div class="my-0 mr-4">Apply only if you </div>
     <v-text-field
       autocomplete="nope"
       label="Apply Only"
       hide-details
-      filled
+      solo-inverted
       clearable
       light
       v-model="job.applyOnly"

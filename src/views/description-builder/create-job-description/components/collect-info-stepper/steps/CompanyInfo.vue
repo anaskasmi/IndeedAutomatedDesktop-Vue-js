@@ -13,6 +13,7 @@
         item-text="name"
         autocomplete="nope"
         v-model="job.company"
+        return-object
       ></v-autocomplete>
     </v-card-text>
   </v-card>

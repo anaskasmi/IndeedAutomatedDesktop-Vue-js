@@ -14,6 +14,7 @@
           :items="items"
           item-text="name"
           item-value="name"
+          :return-object="false"
           :loading="isLoading"
           :disabled="isLoading"
           v-model="job.qualities"

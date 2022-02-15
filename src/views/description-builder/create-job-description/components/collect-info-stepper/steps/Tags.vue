@@ -2,7 +2,7 @@
   <v-card class="pa-16">
     <v-card-text>
       <div class="akaya pb-4" style="font-size: 20px; color: #30475e">
-        How to apply to your job :
+        Tag(s) :
       </div>
       <v-row align="center" class="col-12">
         <v-combobox
@@ -10,25 +10,24 @@
           clearable
           light
           multiple
-          label="Apply methods"
-          :items="items"
+          label="Tags"
+          v-model="job.tags"
+          :items="tags"
           item-text="name"
-          item-value="name"
+          item-value="content"
           :loading="isLoading"
           :disabled="isLoading"
-          :return-object="false"
-          v-model="job.applyMethods"
           chips
+          :return-object="false"
           autocomplete="nope"
         ></v-combobox>
       </v-row>
     </v-card-text>
   </v-card>
-</template>
-<script>
+</template><script>
 export default {
   created() {
-    this.fetchItems();
+    this.fetchTags();
   },
   data() {
     return {
@@ -36,11 +35,11 @@ export default {
     };
   },
   methods: {
-    async fetchItems() {
+    async fetchTags() {
       this.isLoading = true;
       try {
         await this.$store.dispatch(
-          "DescriptionBuilderApplyMethodsModule/fetchApplyMethodsItems"
+          "DescriptionBuilderTagsModule/fetchTags"
         );
       } catch (error) {
         console.log(error);
@@ -50,25 +49,20 @@ export default {
     },
   },
   computed: {
-    items: {
-      get: function () {
-        return this.$store.getters[
-          "DescriptionBuilderApplyMethodsModule/items"
-        ];
-      },
-      set: function (newVal) {
-        this.$store.commit(
-          "DescriptionBuilderApplyMethodsModule/items",
-          newVal
-        );
-      },
-    },
     job: {
       get: function () {
         return this.$store.getters["DescriptionBuilderTemplateModule/job"];
       },
       set: function (newVal) {
         this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
+      },
+    },
+    tags: {
+      get: function () {
+        return this.$store.getters["DescriptionBuilderTagsModule/tags"];
+      },
+      set: function (newVal) {
+        this.$store.commit("DescriptionBuilderTagsModule/tags", newVal);
       },
     },
   },

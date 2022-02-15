@@ -1,7 +1,7 @@
 <template>
   <v-card :loading="isLoading" :disabled="isLoading">
     <CreateItemDialog />
-    <v-card-title style="color: #30475e">ApplyMethods Items</v-card-title>
+    <v-card-title style="color: #30475e">Apply Methods Items</v-card-title>
     <v-card-text class="pa-12">
       <v-data-table
         :headers="headers"

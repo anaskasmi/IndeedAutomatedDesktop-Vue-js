@@ -15,6 +15,7 @@
           :items="roleDescriptions"
           item-text="name"
           item-value="name"
+          :return-object="false"
           :loading="isLoading"
           :disabled="isLoading"
           chips

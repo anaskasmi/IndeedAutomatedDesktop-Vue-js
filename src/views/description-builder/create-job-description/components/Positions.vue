@@ -4,20 +4,27 @@
     <v-combobox
       hide-details
       clearable
+      solo-inverted
       light
       multiple
       label="Positions"
-      :items="['position 1', 'position 2', 'position 3', 'position 4']"
-      filled
       v-model="job.positions"
+      :items="positions"
+      item-text="name"
+      item-value="name"
+      :loading="isLoading"
+      :disabled="isLoading"
       chips
+      :return-object="false"
       autocomplete="nope"
     ></v-combobox>
   </v-row>
 </template>
 
 <script>
+import PositionsMixin from "@/views/description-builder/create-job-description/mixins/positionsMixin.js";
 export default {
+  mixins:[PositionsMixin],
   computed: {
     job: {
       get: function () {

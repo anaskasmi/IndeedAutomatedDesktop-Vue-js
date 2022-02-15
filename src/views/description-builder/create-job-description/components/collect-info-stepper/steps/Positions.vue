@@ -12,41 +12,25 @@
           multiple
           label="Positions"
           v-model="job.positions"
-          :items="items"
+          :items="positions"
           item-text="name"
           item-value="name"
           :loading="isLoading"
           :disabled="isLoading"
           chips
+          :return-object="false"
           autocomplete="nope"
         ></v-combobox>
       </v-row>
     </v-card-text>
   </v-card>
-</template><script>
+</template>
+<script>
+import PositionsMixin from "@/views/description-builder/create-job-description/mixins/positionsMixin.js";
+
 export default {
-  created() {
-    this.fetchPositions();
-  },
-  data() {
-    return {
-      isLoading: false,
-    };
-  },
-  methods: {
-    async fetchPositions() {
-      this.isLoading = true;
-      try {
-        await this.$store.dispatch(
-          "DescriptionBuilderPositionsModule/fetchPositionsItems"
-        );
-      } catch (error) {
-        console.log(error);
-      } finally {
-        this.isLoading = false;
-      }
-    },
-  },
+  mixins: [PositionsMixin],
+
   computed: {
     job: {
       get: function () {
@@ -54,14 +38,6 @@ export default {
       },
       set: function (newVal) {
         this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
-      },
-    },
-    items: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderPositionsModule/items"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderPositionsModule/items", newVal);
       },
     },
   },
