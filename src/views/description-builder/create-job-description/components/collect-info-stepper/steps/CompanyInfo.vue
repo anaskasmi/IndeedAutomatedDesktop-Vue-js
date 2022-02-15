@@ -1,6 +1,6 @@
 <template>
   <v-card class="pa-16">
-    <v-cardt-text>
+    <v-card-text>
       <div class="akaya pb-4" style="font-size: 20px; color: #30475e">
         I'm promoting for the company :
       </div>
@@ -10,11 +10,11 @@
         tile
         label="Company"
         :items="companies"
-        item-text="name"	
+        item-text="name"
         autocomplete="nope"
         v-model="job.company"
       ></v-autocomplete>
-    </v-cardt-text>
+    </v-card-text>
   </v-card>
 </template>
 <script>
@@ -34,6 +34,14 @@ export default {
           "DescriptionBuilderCompaniesModule/companies",
           newVal
         );
+      },
+    },
+    job: {
+      get: function () {
+        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
+      },
+      set: function (newVal) {
+        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
       },
     },
   },

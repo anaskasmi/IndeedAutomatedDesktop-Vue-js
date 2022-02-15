@@ -13,6 +13,7 @@ import { DescriptionBuilderQualitiesModule } from './../views/description-builde
 import { DescriptionBuilderTemplateModule } from './../views/description-builder/create-job-description/store/index';
 import { DescriptionBuilderCompaniesModule } from './../views/description-builder/companies/store/index';
 import { DescriptionBuilderTagsModule } from './../views/description-builder/tags/store/index';
+import { DescriptionBuilderRoleDescriptionsModule } from './../views/description-builder/roleDescriptions/store/index';
 Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
@@ -62,6 +63,7 @@ export const store = new Vuex.Store({
         DescriptionBuilderQualitiesModule,
         DescriptionBuilderTemplateModule,
         DescriptionBuilderCompaniesModule,
-        DescriptionBuilderTagsModule
+        DescriptionBuilderTagsModule,
+        DescriptionBuilderRoleDescriptionsModule
     }
 });

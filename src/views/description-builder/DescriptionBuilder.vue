@@ -152,6 +152,11 @@ export default {
           text: "Tags",
           route: { name: "descriptionBuilder.tags" },
         },
+        {
+          icon: "mdi-star-face",
+          text: "roles descriptions",
+          route: { name: "descriptionBuilder.roleDescriptions" },
+        },
       ],
     };
   },

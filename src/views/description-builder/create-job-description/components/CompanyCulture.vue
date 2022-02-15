@@ -7,7 +7,7 @@
       filled
       label="Company Culture"
       clearable
-      v-model="job.companyCulture"
+      v-model="job.company.culture"
       light
     ></v-text-field>
   </v-row>

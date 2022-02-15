@@ -1,6 +1,6 @@
 <template>
   <v-card class="pa-16">
-    <v-cardt-text>
+    <v-card-text>
       <div class="akaya pb-4" style="font-size: 20px; color: #30475e">
         Signature :
       </div>
@@ -14,7 +14,7 @@
       <v-row v-if="job.showSignature">
         <v-text-field label="Signature" v-model="job.signature"></v-text-field>
       </v-row>
-    </v-cardt-text>
+    </v-card-text>
   </v-card>
 </template><script>
 export default {

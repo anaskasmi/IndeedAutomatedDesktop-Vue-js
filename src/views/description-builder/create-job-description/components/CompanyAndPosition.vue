@@ -2,16 +2,15 @@
   <div>
     <v-row align="center" class="col-12">
       <v-col cols="6">
-        <v-combobox
+        <v-text-field
           hide-details
           clearable
           light
           autocomplete="nope"
           label="company name"
-          :items="['company1', 'company2', 'company3', 'company4']"
           filled
-          v-model="job.companyName"
-        ></v-combobox>
+          v-model="job.company.name"
+        ></v-text-field>
       </v-col>
       <v-col cols="6">
         <v-text-field
@@ -21,36 +20,34 @@
           clearable
           light
           label="company website"
-          v-model="job.companyWebsite"
+          v-model="job.company.website"
         ></v-text-field>
       </v-col>
     </v-row>
     <v-row align="center" class="col-12">
       <v-col cols="1"> In </v-col>
       <v-col>
-        <v-combobox
+        <v-text-field
           hide-details
           clearable
           light
-          v-model="job.city"
+          v-model="job.company.city"
           label="City"
           autocomplete="nope"
-          :items="['Austin', 'Houston', 'Fargo']"
           filled
-        ></v-combobox
+        ></v-text-field
       ></v-col>
 
       <v-col>
-        <v-combobox
+        <v-text-field
           hide-details
           clearable
           light
-          v-model="job.state"
+          v-model="job.company.state"
           label="State"
           autocomplete="nope"
-          :items="['AL', 'FL', 'AK', 'OH', 'AZ', 'AR']"
           filled
-        ></v-combobox>
+        ></v-text-field>
       </v-col>
       ,
     </v-row>

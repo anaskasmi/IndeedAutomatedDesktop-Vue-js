@@ -1,6 +1,6 @@
 <template>
   <v-card class="pa-16">
-    <v-cardt-text>
+    <v-card-text>
       <div class="akaya pb-4" style="font-size: 20px; color: #30475e">
         Do you want to save this job posting for future use ?
       </div>
@@ -9,7 +9,7 @@
       </v-row>
       <v-btn color="info">Save</v-btn>
       <v-btn color="info" text>Not now</v-btn>
-    </v-cardt-text>
+    </v-card-text>
   </v-card>
 </template><script>
 export default {

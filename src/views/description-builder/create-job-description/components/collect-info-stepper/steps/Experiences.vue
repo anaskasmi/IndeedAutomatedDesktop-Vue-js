@@ -1,6 +1,6 @@
 <template>
   <v-card class="pa-16">
-    <v-cardt-text>
+    <v-card-text>
       <div class="akaya pb-4" style="font-size: 20px; color: #30475e">
         Experience(s) :
       </div>
@@ -11,23 +11,52 @@
           light
           multiple
           label="Experiences"
-          :items="[
-            'experience 1',
-            'experience 2',
-            'experience 3',
-            'experience 4',
-          ]"
-          
+          :items="items"
+          item-text="name"
+          item-value="name"
+          :loading="isLoading"
+          :disabled="isLoading"
           v-model="job.experiences"
           chips
           autocomplete="nope"
         ></v-combobox>
       </v-row>
-    </v-cardt-text>
+    </v-card-text>
   </v-card>
-</template><script>
+</template>
+<script>
 export default {
+  created() {
+    this.fetchItems();
+  },
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
+  methods: {
+    async fetchItems() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch(
+          "DescriptionBuilderExperiencesModule/fetchExperiencesItems"
+        );
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+  },
   computed: {
+    items: {
+      get: function () {
+        return this.$store.getters["DescriptionBuilderExperiencesModule/items"];
+      },
+      set: function (newVal) {
+        this.$store.commit("DescriptionBuilderExperiencesModule/items", newVal);
+      },
+    },
     job: {
       get: function () {
         return this.$store.getters["DescriptionBuilderTemplateModule/job"];

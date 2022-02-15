@@ -43,6 +43,11 @@ const descriptionBuilderRoutes = [{
         component: () =>
             import ('@/views/description-builder/tags/views/Tags.vue'),
     }, {
+        path: 'roleDescriptions',
+        name: 'descriptionBuilder.roleDescriptions',
+        component: () =>
+            import ('@/views/description-builder/roleDescriptions/views/RoleDescription.vue'),
+    }, {
         path: 'create-job-description',
         name: 'descriptionBuilder.createJobdescription',
         component: () =>

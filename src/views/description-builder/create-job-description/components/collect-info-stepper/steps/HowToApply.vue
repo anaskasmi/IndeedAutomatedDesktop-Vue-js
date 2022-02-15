@@ -1,6 +1,6 @@
 <template>
   <v-card class="pa-16">
-    <v-cardt-text>
+    <v-card-text>
       <div class="akaya pb-4" style="font-size: 20px; color: #30475e">
         How to apply to your job :
       </div>
@@ -10,24 +10,58 @@
           clearable
           light
           multiple
-          label=""
-          :items="[
-            'HTA 1',
-            'HTA 2',
-            'HTA 3',
-            'HTA 4',
-          ]"
-          
-          v-model="job.hta"
+          label="Apply methods"
+          :items="items"
+          item-text="name"
+          item-value="name"
+          :loading="isLoading"
+          :disabled="isLoading"
+          v-model="job.applyMethods"
           chips
           autocomplete="nope"
         ></v-combobox>
       </v-row>
-    </v-cardt-text>
+    </v-card-text>
   </v-card>
-</template><script>
+</template>
+<script>
 export default {
+  created() {
+    this.fetchItems();
+  },
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
+  methods: {
+    async fetchItems() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch(
+          "DescriptionBuilderApplyMethodsModule/fetchApplyMethodsItems"
+        );
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+  },
   computed: {
+    items: {
+      get: function () {
+        return this.$store.getters[
+          "DescriptionBuilderApplyMethodsModule/items"
+        ];
+      },
+      set: function (newVal) {
+        this.$store.commit(
+          "DescriptionBuilderApplyMethodsModule/items",
+          newVal
+        );
+      },
+    },
     job: {
       get: function () {
         return this.$store.getters["DescriptionBuilderTemplateModule/job"];

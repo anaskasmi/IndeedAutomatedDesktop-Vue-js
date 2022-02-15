@@ -1,10 +1,10 @@
 <template>
   <v-card class="pa-16">
-    <v-cardt-text>
+    <v-card-text>
       <div class="akaya pb-4" style="font-size: 20px; color: #30475e">
         Can you describe your candidate in one word :
       </div>
-      <v-row align="center" class="col-12 ">
+      <v-row align="center" class="col-12">
         <v-combobox
           hide-details
           clearable
@@ -12,14 +12,26 @@
           v-model="job.roleDescription"
           label="Role Desc"
           autocomplete="nope"
-          :items="['talented', 'great', 'experienced']"
+          :items="roleDescriptions"
+          item-text="name"
+          item-value="name"
+          :loading="isLoading"
+          :disabled="isLoading"
           chips
         ></v-combobox>
       </v-row>
-    </v-cardt-text>
+    </v-card-text>
   </v-card>
 </template><script>
 export default {
+  created() {
+    this.fetchRoleDescriptions();
+  },
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
   computed: {
     job: {
       get: function () {
@@ -28,6 +40,33 @@ export default {
       set: function (newVal) {
         this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
       },
+    },
+    roleDescriptions: {
+      get: function () {
+        return this.$store.getters[
+          "DescriptionBuilderRoleDescriptionsModule/roleDescriptions"
+        ];
+      },
+      set: function (newVal) {
+        this.$store.commit(
+          "DescriptionBuilderRoleDescriptionsModule/roleDescriptions",
+          newVal
+        );
+      },
+    },
+  },
+  methods: {
+    async fetchRoleDescriptions() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch(
+          "DescriptionBuilderRoleDescriptionsModule/fetchRoleDescriptions"
+        );
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.isLoading = false;
+      }
     },
   },
 };

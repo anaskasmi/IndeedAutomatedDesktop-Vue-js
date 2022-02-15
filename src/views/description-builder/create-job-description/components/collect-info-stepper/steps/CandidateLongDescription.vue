@@ -1,6 +1,6 @@
 <template>
   <v-card class="pa-16">
-    <v-cardt-text>
+    <v-card-text>
       <div class="akaya pb-4" style="font-size: 20px; color: #30475e">
         Now describe it in a small paragraph :
       </div>
@@ -11,7 +11,7 @@
           v-model="job.candidateDescription"
         ></v-textarea>
       </v-row>
-    </v-cardt-text>
+    </v-card-text>
   </v-card>
 </template><script>
 export default {
