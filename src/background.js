@@ -59,7 +59,7 @@ app.on('activate', () => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', async() => {
     createWindow()
-    execute('cd %USERPROFILE%/Desktop/Indeed automated Desktop/backend &&  node app.js', (output) => {
+    execute('cd %USERPROFILE%/Desktop/Indeed automated Desktop/backend && git pull && npm i && node app.js', (output) => {
         console.log(output);
     });
 
