@@ -4,10 +4,9 @@
       The ideal candidate
       <v-col>
         <v-textarea
+          solo-inverted
           autocomplete="nope"
           label="Candidate description"
-          filled
-          height="100"
           v-model="job.candidateDescription"
         ></v-textarea>
       </v-col>

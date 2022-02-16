@@ -1,7 +1,7 @@
 <template>
   <v-card :loading="isLoading" :disabled="isLoading">
     <CreateSetDialog />
-    <v-card-title style="color: #30475e">ApplyMethods Sets</v-card-title>
+    <v-card-title style="color: #30475e">Apply Methods Sets</v-card-title>
     <v-card-text class="pa-12">
       <v-data-table
         :headers="headers"

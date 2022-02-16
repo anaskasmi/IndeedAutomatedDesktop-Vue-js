@@ -6,9 +6,14 @@
       clearable
       light
       multiple
+      solo-inverted
       label="Experiences"
-      :items="['experience 1', 'experience 2', 'experience 3', 'experience 4']"
-      filled
+      :items="items"
+      item-text="name"
+      item-value="name"
+      :return-object="false"
+      :loading="isLoading"
+      :disabled="isLoading"
       v-model="job.experiences"
       chips
       autocomplete="nope"
@@ -19,6 +24,14 @@
 <script>
 export default {
   computed: {
+    items: {
+      get: function () {
+        return this.$store.getters["DescriptionBuilderExperiencesModule/items"];
+      },
+      set: function (newVal) {
+        this.$store.commit("DescriptionBuilderExperiencesModule/items", newVal);
+      },
+    },
     job: {
       get: function () {
         return this.$store.getters["DescriptionBuilderTemplateModule/job"];

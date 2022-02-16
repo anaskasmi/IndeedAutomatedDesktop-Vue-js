@@ -2,7 +2,7 @@
   <v-card class="pa-16">
     <v-card-text>
       <div class="akaya pb-4" style="font-size: 20px; color: #30475e">
-        How to apply to your job :
+        Compensation(s) :
       </div>
       <v-row align="center" class="col-12">
         <v-combobox
@@ -10,16 +10,16 @@
           clearable
           light
           multiple
-          label="Apply methods"
-          :items="items"
+          label="Compensations"
+          :items="compensations"
           item-text="name"
           item-value="name"
           :loading="isLoading"
           :disabled="isLoading"
-          :return-object="false"
-          v-model="job.applyMethods"
+          v-model="job.compensations"
           chips
           autocomplete="nope"
+          :return-object="false"
         ></v-combobox>
       </v-row>
     </v-card-text>
@@ -40,7 +40,7 @@ export default {
       this.isLoading = true;
       try {
         await this.$store.dispatch(
-          "DescriptionBuilderApplyMethodsModule/fetchApplyMethodsItems"
+          "DescriptionBuilderCompensationsModule/fetchCompensationsItems"
         );
       } catch (error) {
         console.log(error);
@@ -50,15 +50,15 @@ export default {
     },
   },
   computed: {
-    items: {
+    compensations: {
       get: function () {
         return this.$store.getters[
-          "DescriptionBuilderApplyMethodsModule/items"
+          "DescriptionBuilderCompensationsModule/items"
         ];
       },
       set: function (newVal) {
         this.$store.commit(
-          "DescriptionBuilderApplyMethodsModule/items",
+          "DescriptionBuilderCompensationsModule/items",
           newVal
         );
       },

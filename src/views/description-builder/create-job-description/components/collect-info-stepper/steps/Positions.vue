@@ -12,41 +12,42 @@
           multiple
           label="Positions"
           v-model="job.positions"
-          :items="items"
+          :items="positionsSets"
           item-text="name"
           item-value="name"
           :loading="isLoading"
           :disabled="isLoading"
           chips
+          :return-object="true"
           autocomplete="nope"
         ></v-combobox>
       </v-row>
+      <v-row class="col-12">
+        <v-row class="col-12" v-if="job.positions.length">
+          <v-alert color="primary"  tile dense class="col-12" outlined border="left"> You picked </v-alert>
+        </v-row>
+        <div v-for="set in job.positions" :key="set">
+          <v-chip
+            color="info"
+            outlined
+            
+            class="mx-2"
+            v-for="item in set.positions"
+            :key="item.name"
+          >
+            {{ item.name }}
+          </v-chip>
+        </div>
+      </v-row>
     </v-card-text>
   </v-card>
-</template><script>
+</template>
+<script>
+import PositionsMixin from "@/views/description-builder/create-job-description/mixins/positionsMixin.js";
+
 export default {
-  created() {
-    this.fetchPositions();
-  },
-  data() {
-    return {
-      isLoading: false,
-    };
-  },
-  methods: {
-    async fetchPositions() {
-      this.isLoading = true;
-      try {
-        await this.$store.dispatch(
-          "DescriptionBuilderPositionsModule/fetchPositionsItems"
-        );
-      } catch (error) {
-        console.log(error);
-      } finally {
-        this.isLoading = false;
-      }
-    },
-  },
+  mixins: [PositionsMixin],
+
   computed: {
     job: {
       get: function () {
@@ -54,14 +55,6 @@ export default {
       },
       set: function (newVal) {
         this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
-      },
-    },
-    items: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderPositionsModule/items"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderPositionsModule/items", newVal);
       },
     },
   },

@@ -3,12 +3,17 @@
     <div class="my-0 mr-4">How to apply :</div>
     <v-combobox
       hide-details
+      solo-inverted
       clearable
       light
       multiple
       label="Apply methods"
-      :items="['position 1', 'position 2', 'position 3', 'position 4']"
-      filled
+      :items="items"
+      item-text="name"
+      item-value="name"
+      :loading="isLoading"
+      :disabled="isLoading"
+      :return-object="false"
       v-model="job.applyMethods"
       chips
       autocomplete="nope"
@@ -18,7 +23,21 @@
 
 <script>
 export default {
+  mixins: [],
   computed: {
+    items: {
+      get: function () {
+        return this.$store.getters[
+          "DescriptionBuilderApplyMethodsModule/items"
+        ];
+      },
+      set: function (newVal) {
+        this.$store.commit(
+          "DescriptionBuilderApplyMethodsModule/items",
+          newVal
+        );
+      },
+    },
     job: {
       get: function () {
         return this.$store.getters["DescriptionBuilderTemplateModule/job"];

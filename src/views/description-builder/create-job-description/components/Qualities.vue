@@ -5,10 +5,15 @@
       hide-details
       clearable
       light
+      solo-inverted
       multiple
       label="Qualities"
-      :items="['quality 1', 'quality 2', 'quality 3', 'quality 4']"
-      filled
+      :items="items"
+      item-text="name"
+      item-value="name"
+      :return-object="false"
+      :loading="isLoading"
+      :disabled="isLoading"
       v-model="job.qualities"
       chips
       autocomplete="nope"
@@ -19,6 +24,14 @@
 <script>
 export default {
   computed: {
+    items: {
+      get: function () {
+        return this.$store.getters["DescriptionBuilderQualitiesModule/items"];
+      },
+      set: function (newVal) {
+        this.$store.commit("DescriptionBuilderQualitiesModule/items", newVal);
+      },
+    },
     job: {
       get: function () {
         return this.$store.getters["DescriptionBuilderTemplateModule/job"];

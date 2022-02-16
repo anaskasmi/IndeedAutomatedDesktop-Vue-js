@@ -4,9 +4,9 @@
     <v-text-field
       autocomplete="nope"
       hide-details
-      filled
       label="Company Culture"
       clearable
+      solo-inverted
       v-model="job.company.culture"
       light
     ></v-text-field>

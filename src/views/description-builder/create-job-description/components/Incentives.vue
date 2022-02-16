@@ -4,12 +4,17 @@
     <v-combobox
       hide-details
       clearable
+      solo-inverted
       light
       multiple
       label="Incentives"
-      :items="['incentive 1', 'incentive 2', 'incentive 3', 'incentive 4']"
-      filled
+      :items="items"
+      item-text="name"
+      item-value="name"
+      :loading="isLoading"
+      :disabled="isLoading"
       v-model="job.incentives"
+      :return-object="false"
       chips
       autocomplete="nope"
     ></v-combobox>
@@ -19,6 +24,14 @@
 <script>
 export default {
   computed: {
+    items: {
+      get: function () {
+        return this.$store.getters["DescriptionBuilderIncentivesModule/items"];
+      },
+      set: function (newVal) {
+        this.$store.commit("DescriptionBuilderIncentivesModule/items", newVal);
+      },
+    },
     job: {
       get: function () {
         return this.$store.getters["DescriptionBuilderTemplateModule/job"];

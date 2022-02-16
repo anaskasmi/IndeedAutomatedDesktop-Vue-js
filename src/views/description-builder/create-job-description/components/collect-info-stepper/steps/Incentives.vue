@@ -19,6 +19,7 @@
           v-model="job.incentives"
           chips
           autocomplete="nope"
+          :return-object="false"
         ></v-combobox>
       </v-row>
     </v-card-text>

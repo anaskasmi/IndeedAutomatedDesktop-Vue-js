@@ -2,12 +2,13 @@
   <v-row justify="space-around">
     <v-col cols="auto">
       <v-dialog
+        fullscreen
         v-model="collectInfoStepperIsVisible"
         transition="dialog-bottom-transition"
         max-width="800"
         persistent
       >
-        <v-card rounded="md" min-height="400">
+        <v-card>
           <v-toolbar class="font-weight-bold" color="#30475E" dark
             >✨ Let's build your job posting ({{ currentStep }}/{{
               stepsTotal
@@ -39,18 +40,24 @@
                   <Incentives />
                 </v-stepper-content>
                 <v-stepper-content step="7">
-                  <Experiences />
+                  <Compensations />
                 </v-stepper-content>
                 <v-stepper-content step="8">
-                  <Qualities />
+                  <Experiences />
                 </v-stepper-content>
                 <v-stepper-content step="9">
-                  <HowToApply />
+                  <Qualities />
                 </v-stepper-content>
                 <v-stepper-content step="10">
-                  <Signature />
+                  <HowToApply />
                 </v-stepper-content>
                 <v-stepper-content step="11">
+                  <Tags />
+                </v-stepper-content>
+                <v-stepper-content step="12">
+                  <Signature />
+                </v-stepper-content>
+                <v-stepper-content step="13">
                   <SaveJobPosting />
                 </v-stepper-content>
               </v-stepper-items>
@@ -87,17 +94,19 @@ import JobType from "@/views/description-builder/create-job-description/componen
 import CandidateShortDescription from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/CandidateShortDescription.vue";
 import CandidateLongDescription from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/CandidateLongDescription.vue";
 import Positions from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/Positions.vue";
+import Compensations from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/Compensations.vue";
 import Incentives from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/Incentives.vue";
 import Experiences from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/Experiences.vue";
 import Qualities from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/Qualities.vue";
 import HowToApply from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/HowToApply.vue";
+import Tags from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/Tags.vue";
 import Signature from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/Signature.vue";
 import SaveJobPosting from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/SaveJobPosting.vue";
 export default {
   data() {
     return {
       currentStep: 1,
-      stepsTotal: 11,
+      stepsTotal: 12,
     };
   },
   components: {
@@ -106,10 +115,12 @@ export default {
     CandidateShortDescription,
     CandidateLongDescription,
     Positions,
+    Compensations,
     Incentives,
     Experiences,
     Qualities,
     HowToApply,
+    Tags,
     Signature,
     SaveJobPosting,
   },
