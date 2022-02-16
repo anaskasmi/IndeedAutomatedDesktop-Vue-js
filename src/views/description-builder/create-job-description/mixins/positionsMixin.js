@@ -14,6 +14,9 @@ export default {
                 await this.$store.dispatch(
                     "DescriptionBuilderPositionsModule/fetchPositionsItems"
                 );
+                await this.$store.dispatch(
+                    "DescriptionBuilderPositionsModule/fetchSets"
+                );
             } catch (error) {
                 console.log(error);
             } finally {
@@ -28,6 +31,17 @@ export default {
             },
             set: function(newVal) {
                 this.$store.commit("DescriptionBuilderPositionsModule/items", newVal);
+            },
+        },
+        pickedPositions() {
+            return this.job.positions;
+        },
+        positionsSets: {
+            get: function() {
+                return this.$store.getters["DescriptionBuilderPositionsModule/sets"];
+            },
+            set: function(newVal) {
+                this.$store.commit("DescriptionBuilderPositionsModule/sets", newVal);
             },
         },
     },

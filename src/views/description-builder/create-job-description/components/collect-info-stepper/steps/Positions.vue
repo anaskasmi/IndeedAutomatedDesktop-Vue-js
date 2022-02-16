@@ -12,15 +12,32 @@
           multiple
           label="Positions"
           v-model="job.positions"
-          :items="positions"
+          :items="positionsSets"
           item-text="name"
           item-value="name"
           :loading="isLoading"
           :disabled="isLoading"
           chips
-          :return-object="false"
+          :return-object="true"
           autocomplete="nope"
         ></v-combobox>
+      </v-row>
+      <v-row class="col-12">
+        <v-row class="col-12" v-if="job.positions.length">
+          <v-alert color="primary"  tile dense class="col-12" outlined border="left"> You picked </v-alert>
+        </v-row>
+        <div v-for="set in job.positions" :key="set">
+          <v-chip
+            color="info"
+            outlined
+            
+            class="mx-2"
+            v-for="item in set.positions"
+            :key="item.name"
+          >
+            {{ item.name }}
+          </v-chip>
+        </div>
       </v-row>
     </v-card-text>
   </v-card>
