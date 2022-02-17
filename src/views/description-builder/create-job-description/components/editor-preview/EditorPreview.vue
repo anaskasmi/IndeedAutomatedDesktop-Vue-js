@@ -137,10 +137,12 @@ export default {
       if (!this.job.positions || !this.job.positions.length) return "";
       let result = "<b>Positions: </b>";
       result = result + "<ul>";
-      for (const position of this.job.positions) {
-        result = result + "<li>";
-        result = result + position;
-        result = result + "</li>";
+      for (const positionSet of this.job.positions) {
+        for (const position of positionSet.positions) {
+          result = result + "<li>";
+          result = result + position.name;
+          result = result + "</li>";
+        }
       }
       result = result + "</ul>";
       return result;
@@ -150,10 +152,13 @@ export default {
       let result = "<b>Compensations: </b>";
 
       result = result + "<ul>";
-      for (const compensation of this.job.compensations) {
-        result = result + "<li>";
-        result = result + compensation;
-        result = result + "</li>";
+
+      for (const compensationSet of this.job.compensations) {
+        for (const compensation of compensationSet.compensations) {
+          result = result + "<li>";
+          result = result + compensation.name;
+          result = result + "</li>";
+        }
       }
       result = result + "</ul>";
       return result;
@@ -163,10 +168,13 @@ export default {
       let result = "<b>Incentives: </b>";
 
       result = result + "<ul>";
-      for (const incentive of this.job.incentives) {
-        result = result + "<li>";
-        result = result + incentive;
-        result = result + "</li>";
+
+      for (const incentiveSet of this.job.incentives) {
+        for (const incentive of incentiveSet.incentives) {
+          result = result + "<li>";
+          result = result + incentive.name;
+          result = result + "</li>";
+        }
       }
       result = result + "</ul>";
       return result;
@@ -176,10 +184,13 @@ export default {
       let result = "<b>Experiences: </b>";
 
       result = result + "<ul>";
-      for (const experience of this.job.experiences) {
-        result = result + "<li>";
-        result = result + experience;
-        result = result + "</li>";
+
+      for (const experienceSet of this.job.experiences) {
+        for (const experience of experienceSet.experiences) {
+          result = result + "<li>";
+          result = result + experience.name;
+          result = result + "</li>";
+        }
       }
       result = result + "</ul>";
       return result;
@@ -189,10 +200,13 @@ export default {
       let result = "<b>Qualities: </b>";
 
       result = result + "<ul>";
-      for (const quality of this.job.qualities) {
-        result = result + "<li>";
-        result = result + quality;
-        result = result + "</li>";
+
+      for (const qualitySet of this.job.qualities) {
+        for (const quality of qualitySet.qualities) {
+          result = result + "<li>";
+          result = result + quality.name;
+          result = result + "</li>";
+        }
       }
       result = result + "</ul>";
       return result;
@@ -202,16 +216,18 @@ export default {
       let result = "<b>How To Apply: </b>";
 
       result = result + "<ul>";
-      for (const applyMethod of this.job.applyMethods) {
-        result = result + "<li>";
-        result = result + applyMethod;
-        result = result + "</li>";
+      for (const applyMethodSet of this.job.positions) {
+        for (const applyMethod of applyMethodSet.positions) {
+          result = result + "<li>";
+          result = result + applyMethod.name;
+          result = result + "</li>";
+        }
       }
       result = result + "</ul>";
       return result;
     },
     getSignatureHtml() {
-      if (!this.job.signature) return "";
+      if (!this.job.signature || !this.job.showSignature) return "";
       let result = "<p><b>";
       result = result + this.job.signature;
       result = result + "</b></p>";

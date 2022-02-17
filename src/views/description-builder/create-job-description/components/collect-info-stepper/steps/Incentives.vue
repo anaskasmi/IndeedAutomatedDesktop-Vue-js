@@ -4,68 +4,41 @@
       <div class="akaya pb-4" style="font-size: 20px; color: #30475e">
         Incentive(s) :
       </div>
-      <v-row align="center" class="col-12">
-        <v-combobox
-          hide-details
-          clearable
-          light
-          multiple
-          label="Incentives"
-          :items="items"
-          item-text="name"
-          item-value="name"
-          :loading="isLoading"
-          :disabled="isLoading"
-          v-model="job.incentives"
-          chips
-          autocomplete="nope"
-          :return-object="false"
-        ></v-combobox>
+      <v-row align="center" class="col-12"> <IncentivesInput /> </v-row>
+      <v-row class="col-12" justify="start">
+        <v-row class="col-12" v-if="job.incentives && job.incentives.length">
+          <v-alert
+            color="#30475e"
+            dark
+            elevation="0"
+            class="col-12 akaya py-5 font-weight-bold"
+            border="top"
+          >
+            You picked
+          </v-alert>
+        </v-row>
+
+        <div v-for="set in job.incentives" :key="set._id">
+          <v-chip
+            v-for="item in set.incentives"
+            :key="item._id"
+            color="info"
+            outlined
+            class="ma-2 akaya"
+          >
+            {{ item.name }}
+          </v-chip>
+        </div>
       </v-row>
     </v-card-text>
   </v-card>
 </template>
 <script>
+import IncentivesMixin from "@/views/description-builder/create-job-description/mixins/incentivesMixin.js";
+import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
+import IncentivesInput from "@/views/description-builder/create-job-description/components/inputs/IncentivesInput.vue";
 export default {
-  created() {
-    this.fetchItems();
-  },
-  data() {
-    return {
-      isLoading: false,
-    };
-  },
-  methods: {
-    async fetchItems() {
-      this.isLoading = true;
-      try {
-        await this.$store.dispatch(
-          "DescriptionBuilderIncentivesModule/fetchIncentivesItems"
-        );
-      } catch (error) {
-        console.log(error);
-      } finally {
-        this.isLoading = false;
-      }
-    },
-  },
-  computed: {
-    items: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderIncentivesModule/items"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderIncentivesModule/items", newVal);
-      },
-    },
-    job: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
-      },
-    },
-  },
+  components: { IncentivesInput },
+  mixins: [IncentivesMixin, JobMixin],
 };
 </script>

@@ -1,7 +1,6 @@
 export default {
-
     created() {
-        this.fetchPositions();
+        this.fetchQualities();
     },
     data() {
         return {
@@ -9,14 +8,14 @@ export default {
         };
     },
     methods: {
-        async fetchPositions() {
+        async fetchQualities() {
             this.isLoading = true;
             try {
                 await this.$store.dispatch(
-                    "DescriptionBuilderPositionsModule/fetchPositionsItems"
+                    "DescriptionBuilderQualitiesModule/fetchQualitiesItems"
                 );
                 await this.$store.dispatch(
-                    "DescriptionBuilderPositionsModule/fetchSets"
+                    "DescriptionBuilderQualitiesModule/fetchSets"
                 );
             } catch (error) {
                 console.log(error);
@@ -26,20 +25,20 @@ export default {
         },
     },
     computed: {
-        positions: {
+        qualities: {
             get: function() {
-                return this.$store.getters["DescriptionBuilderPositionsModule/items"];
+                return this.$store.getters["DescriptionBuilderQualitiesModule/items"];
             },
             set: function(newVal) {
-                this.$store.commit("DescriptionBuilderPositionsModule/items", newVal);
+                this.$store.commit("DescriptionBuilderQualitiesModule/items", newVal);
             },
         },
-        positionsSets: {
+        qualitiesSets: {
             get: function() {
-                return this.$store.getters["DescriptionBuilderPositionsModule/sets"];
+                return this.$store.getters["DescriptionBuilderQualitiesModule/sets"];
             },
             set: function(newVal) {
-                this.$store.commit("DescriptionBuilderPositionsModule/sets", newVal);
+                this.$store.commit("DescriptionBuilderQualitiesModule/sets", newVal);
             },
         },
     },

@@ -5,31 +5,15 @@
         My Job is of type(s) :
       </div>
       <v-row align="center" class="col-12">
-        <v-combobox
-          hide-details
-          clearable
-          v-model="job.jobType"
-          light
-          label="Job Type"
-          autocomplete="nope"
-          :items="['full-time', 'part-time']"
-          chips
-          multiple
-        ></v-combobox>
+        <JobTypeInput />
       </v-row>
     </v-card-text>
   </v-card>
 </template><script>
+import JobTypeInput from "@/views/description-builder/create-job-description/components/inputs/JobTypeInput.vue";
 export default {
-  computed: {
-    job: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
-      },
-    },
+  components: {
+    JobTypeInput,
   },
 };
 </script>

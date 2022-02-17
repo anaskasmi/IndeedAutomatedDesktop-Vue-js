@@ -5,72 +5,48 @@
         Compensation(s) :
       </div>
       <v-row align="center" class="col-12">
-        <v-combobox
-          hide-details
-          clearable
-          light
-          multiple
-          label="Compensations"
-          :items="compensations"
-          item-text="name"
-          item-value="name"
-          :loading="isLoading"
-          :disabled="isLoading"
-          v-model="job.compensations"
-          chips
-          autocomplete="nope"
-          :return-object="false"
-        ></v-combobox>
+        <CompenstationsInput />
+      </v-row>
+      <v-row class="col-12" justify="start">
+        <v-row
+          class="col-12"
+          v-if="job.compensations && job.compensations.length"
+        >
+          <v-alert
+            color="#30475e"
+            dark
+            elevation="0"
+            class="col-12 akaya py-5 font-weight-bold"
+            border="top"
+          >
+            You picked
+          </v-alert>
+        </v-row>
+
+        <div v-for="set in job.compensations" :key="set._id">
+          <v-chip
+            v-for="item in set.compensations"
+            :key="item._id"
+            color="info"
+            outlined
+            class="ma-2 akaya"
+          >
+            {{ item.name }}
+          </v-chip>
+        </div>
       </v-row>
     </v-card-text>
   </v-card>
 </template>
 <script>
+import CompenstationsInput from "@/views/description-builder/create-job-description/components/inputs/CompenstationsInput.vue";
+import CompensationsMixin from "@/views/description-builder/create-job-description/mixins/compensationsMixin.js";
+import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
+
 export default {
-  created() {
-    this.fetchItems();
-  },
-  data() {
-    return {
-      isLoading: false,
-    };
-  },
-  methods: {
-    async fetchItems() {
-      this.isLoading = true;
-      try {
-        await this.$store.dispatch(
-          "DescriptionBuilderCompensationsModule/fetchCompensationsItems"
-        );
-      } catch (error) {
-        console.log(error);
-      } finally {
-        this.isLoading = false;
-      }
-    },
-  },
-  computed: {
-    compensations: {
-      get: function () {
-        return this.$store.getters[
-          "DescriptionBuilderCompensationsModule/items"
-        ];
-      },
-      set: function (newVal) {
-        this.$store.commit(
-          "DescriptionBuilderCompensationsModule/items",
-          newVal
-        );
-      },
-    },
-    job: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
-      },
-    },
+  mixins: [CompensationsMixin, JobMixin],
+  components: {
+    CompenstationsInput,
   },
 };
 </script>

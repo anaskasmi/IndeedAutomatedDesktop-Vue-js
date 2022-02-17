@@ -3,12 +3,7 @@
     <v-row align="center" class="col-12">
       The ideal candidate
       <v-col>
-        <v-textarea
-          solo-inverted
-          autocomplete="nope"
-          label="Candidate description"
-          v-model="job.candidateDescription"
-        ></v-textarea>
+        <CandidateDescriptionInput isSoloInverted />
       </v-col>
     </v-row>
   </div>
@@ -16,16 +11,11 @@
 
 
 <script>
+import CandidateDescriptionInput from "@/views/description-builder/create-job-description/components/inputs/CandidateDescriptionInput.vue";
+
 export default {
-  computed: {
-    job: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
-      },
-    },
+  components: {
+    CandidateDescriptionInput,
   },
 };
 </script>

@@ -59,10 +59,19 @@ app.on('activate', () => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', async() => {
     createWindow()
-    execute('cd %USERPROFILE%/Desktop/Indeed automated Desktop/backend && git pull && npm i && node app.js', (output) => {
-        console.log(output);
-    });
-
+    if (isDevelopment) {
+        console.log("Running in developement mode, skipping updates...");
+    } else {
+        if (process.platform === 'win32') {
+            execute('cd %USERPROFILE%/Desktop/Indeed automated && git pull && npm i && node app.js', (output) => {
+                console.log(output);
+            });
+        } else if (process.platform === 'darwin') {
+            execute('cd ~/Desktop/Indeed automated && git pull && npm i && node app.js', (output) => {
+                console.log(output);
+            });
+        }
+    }
 })
 
 // Exit cleanly on request from parent process in development mode.

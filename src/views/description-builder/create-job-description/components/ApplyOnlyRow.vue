@@ -1,29 +1,17 @@
 <template >
   <v-row align="center" class="col-12 mb-2">
-    <div class="my-0 mr-4">Apply only if you </div>
-    <v-text-field
-      autocomplete="nope"
-      label="Apply Only"
-      hide-details
-      solo-inverted
-      clearable
-      light
-      v-model="job.applyOnly"
-    ></v-text-field>
+    <div class="my-0 mr-4">Apply only if you</div>
+    <ApplyOnlyInput isSoloInverted />
   </v-row>
 </template>
 
 <script>
+import ApplyOnlyInput from "@/views/description-builder/create-job-description/components/inputs/ApplyOnlyInput.vue";
+import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
 export default {
-  computed: {
-    job: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
-      },
-    },
+  mixins: [JobMixin,],
+  components: {
+    ApplyOnlyInput,
   },
 };
 </script>

@@ -3,69 +3,46 @@
     <v-card-text>
       <div class="akaya pb-4" style="font-size: 20px; color: #30475e">
         Experience(s) :
+        <ExperiencesInput />
       </div>
-      <v-row align="center" class="col-12">
-        <v-combobox
-          hide-details
-          clearable
-          light
-          multiple
-          label="Experiences"
-          :items="items"
-          item-text="name"
-          item-value="name"
-          :return-object="false"
-          :loading="isLoading"
-          :disabled="isLoading"
-          v-model="job.experiences"
-          chips
-          autocomplete="nope"
-        ></v-combobox>
+      <v-row align="center" class="col-12"> </v-row>
+      <v-row class="col-12" justify="start">
+        <v-row class="col-12" v-if="job.experiences && job.experiences.length">
+          <v-alert
+            color="#30475e"
+            dark
+            elevation="0"
+            class="col-12 akaya py-5 font-weight-bold"
+            border="top"
+          >
+            You picked
+          </v-alert>
+        </v-row>
+
+        <div v-for="set in job.experiences" :key="set._id">
+          <v-chip
+            v-for="item in set.experiences"
+            :key="item._id"
+            color="info"
+            outlined
+            class="ma-2 akaya"
+          >
+            {{ item.name }}
+          </v-chip>
+        </div>
       </v-row>
     </v-card-text>
   </v-card>
 </template>
 <script>
+import ExperiencesMixin from "@/views/description-builder/create-job-description/mixins/experiencesMixin.js";
+import ExperiencesInput from "@/views/description-builder/create-job-description/components/inputs/ExperiencesInput.vue";
+import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
+
 export default {
-  created() {
-    this.fetchItems();
-  },
-  data() {
-    return {
-      isLoading: false,
-    };
-  },
-  methods: {
-    async fetchItems() {
-      this.isLoading = true;
-      try {
-        await this.$store.dispatch(
-          "DescriptionBuilderExperiencesModule/fetchExperiencesItems"
-        );
-      } catch (error) {
-        console.log(error);
-      } finally {
-        this.isLoading = false;
-      }
-    },
-  },
-  computed: {
-    items: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderExperiencesModule/items"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderExperiencesModule/items", newVal);
-      },
-    },
-    job: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
-      },
-    },
+  mixins: [ExperiencesMixin, JobMixin],
+  components: {
+    ExperiencesInput,
   },
 };
 </script>

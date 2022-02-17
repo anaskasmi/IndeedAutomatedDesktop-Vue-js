@@ -1,45 +1,19 @@
 <template >
   <v-row align="center" class="col-12 mb-2">
     <div class="my-0 mr-4">Experience(s) :</div>
-    <v-combobox
-      hide-details
-      clearable
-      light
-      multiple
-      solo-inverted
-      label="Experiences"
-      :items="items"
-      item-text="name"
-      item-value="name"
-      :return-object="false"
-      :loading="isLoading"
-      :disabled="isLoading"
-      v-model="job.experiences"
-      chips
-      autocomplete="nope"
-    ></v-combobox>
+    <ExperiencesInput isSoloInverted />
   </v-row>
 </template>
 
 <script>
+import ExperiencesMixin from "@/views/description-builder/create-job-description/mixins/experiencesMixin.js";
+import ExperiencesInput from "@/views/description-builder/create-job-description/components/inputs/ExperiencesInput.vue";
+import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
+
 export default {
-  computed: {
-    items: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderExperiencesModule/items"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderExperiencesModule/items", newVal);
-      },
-    },
-    job: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
-      },
-    },
+  mixins: [ExperiencesMixin, JobMixin],
+  components: {
+    ExperiencesInput,
   },
 };
 </script>

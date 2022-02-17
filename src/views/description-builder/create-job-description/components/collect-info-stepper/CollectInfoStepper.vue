@@ -49,7 +49,7 @@
                   <Qualities />
                 </v-stepper-content>
                 <v-stepper-content step="10">
-                  <HowToApply />
+                  <ApplyMethods />
                 </v-stepper-content>
                 <v-stepper-content step="11">
                   <Tags />
@@ -98,7 +98,7 @@ import Compensations from "@/views/description-builder/create-job-description/co
 import Incentives from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/Incentives.vue";
 import Experiences from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/Experiences.vue";
 import Qualities from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/Qualities.vue";
-import HowToApply from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/HowToApply.vue";
+import ApplyMethods from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/ApplyMethods.vue";
 import Tags from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/Tags.vue";
 import Signature from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/Signature.vue";
 import SaveJobPosting from "@/views/description-builder/create-job-description/components/collect-info-stepper/steps/SaveJobPosting.vue";
@@ -119,7 +119,7 @@ export default {
     Incentives,
     Experiences,
     Qualities,
-    HowToApply,
+    ApplyMethods,
     Tags,
     Signature,
     SaveJobPosting,

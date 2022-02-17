@@ -1,7 +1,6 @@
 export default {
-
     created() {
-        this.fetchPositions();
+        this.fetchExperiences();
     },
     data() {
         return {
@@ -9,14 +8,14 @@ export default {
         };
     },
     methods: {
-        async fetchPositions() {
+        async fetchExperiences() {
             this.isLoading = true;
             try {
                 await this.$store.dispatch(
-                    "DescriptionBuilderPositionsModule/fetchPositionsItems"
+                    "DescriptionBuilderExperiencesModule/fetchExperiencesItems"
                 );
                 await this.$store.dispatch(
-                    "DescriptionBuilderPositionsModule/fetchSets"
+                    "DescriptionBuilderExperiencesModule/fetchSets"
                 );
             } catch (error) {
                 console.log(error);
@@ -26,20 +25,20 @@ export default {
         },
     },
     computed: {
-        positions: {
+        experiences: {
             get: function() {
-                return this.$store.getters["DescriptionBuilderPositionsModule/items"];
+                return this.$store.getters["DescriptionBuilderExperiencesModule/items"];
             },
             set: function(newVal) {
-                this.$store.commit("DescriptionBuilderPositionsModule/items", newVal);
+                this.$store.commit("DescriptionBuilderExperiencesModule/items", newVal);
             },
         },
-        positionsSets: {
+        experiencesSets: {
             get: function() {
-                return this.$store.getters["DescriptionBuilderPositionsModule/sets"];
+                return this.$store.getters["DescriptionBuilderExperiencesModule/sets"];
             },
             set: function(newVal) {
-                this.$store.commit("DescriptionBuilderPositionsModule/sets", newVal);
+                this.$store.commit("DescriptionBuilderExperiencesModule/sets", newVal);
             },
         },
     },

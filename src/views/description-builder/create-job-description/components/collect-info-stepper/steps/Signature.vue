@@ -17,16 +17,7 @@
     </v-card-text>
   </v-card>
 </template><script>
-export default {
-  computed: {
-    job: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
-      },
-    },
-  },
-};
+import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
+
+export default { mixins: [JobMixin] };
 </script>

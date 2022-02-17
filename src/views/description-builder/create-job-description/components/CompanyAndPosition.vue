@@ -54,92 +54,30 @@
     <v-row align="center" class="col-12">
       <v-col cols="2"> Is Seeking </v-col>
       <v-col>
-        <v-combobox
-          hide-details
-          clearable
-          solo-inverted
-          v-model="job.jobType"
-          light
-          label="Job Type"
-          autocomplete="nope"
-          :items="['full-time', 'part-time']"
-          chips
-          multiple
-        ></v-combobox
-      ></v-col>
-      <v-col>
-        <v-combobox
-          hide-details
-          clearable
-          solo-inverted
-          light
-          v-model="job.roleDescription"
-          label="Role Desc"
-          autocomplete="nope"
-          :items="roleDescriptions"
-          item-text="name"
-          item-value="name"
-          :return-object="false"
-          :loading="isLoading"
-          :disabled="isLoading"
-          chips
-        ></v-combobox>
+        <JobTypeInput isSoloInverted />
       </v-col>
       <v-col>
-        <v-combobox
-          hide-details
-          clearable
-          solo-inverted
-          light
-          multiple
-          label="Positions"
-          v-model="job.positions"
-          :items="positions"
-          item-text="name"
-          item-value="name"
-          :loading="isLoading"
-          :disabled="isLoading"
-          chips
-          :return-object="false"
-          autocomplete="nope"
-        ></v-combobox>
+        <RoleDescriptionInput isSoloInverted />
+      </v-col>
+      <v-col>
+        <PositionsInput isSoloInverted />
       </v-col>
       .
     </v-row>
   </div>
 </template>
 <script>
+import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
+import RoleDescriptionInput from "@/views/description-builder/create-job-description/components/inputs/RoleDescriptionInput.vue";
+import JobTypeInput from "@/views/description-builder/create-job-description/components/inputs/JobTypeInput.vue";
+import PositionsInput from "@/views/description-builder/create-job-description/components/inputs/PositionsInput.vue";
+
 export default {
-  computed: {
-    job: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
-      },
-    },
-    roleDescriptions: {
-      get: function () {
-        return this.$store.getters[
-          "DescriptionBuilderRoleDescriptionsModule/roleDescriptions"
-        ];
-      },
-      set: function (newVal) {
-        this.$store.commit(
-          "DescriptionBuilderRoleDescriptionsModule/roleDescriptions",
-          newVal
-        );
-      },
-    },
-    positions: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderPositionsModule/items"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderPositionsModule/items", newVal);
-      },
-    },
+  components: {
+    RoleDescriptionInput,
+    JobTypeInput,
+    PositionsInput,
   },
+  mixins: [JobMixin],
 };
 </script>
