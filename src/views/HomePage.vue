@@ -13,7 +13,7 @@
     <div class="col d-flex justify-content-center px-12">
       <v-container>
         <v-row>
-          <v-col cols="4" v-for="link in links" :key="link.name">
+          <v-col class="col-lg-4 col-md-6 col-sm-12 " v-for="link in links" :key="link.name">
             <router-link :to="link.route">
               <v-hover v-slot="{ hover }">
                 <v-card
