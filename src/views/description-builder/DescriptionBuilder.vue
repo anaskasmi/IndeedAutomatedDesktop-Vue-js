@@ -25,12 +25,11 @@
             depressed
             width="250"
             @click="
-              collectInfoStepperIsVisible = true;
-
               $router.push(
                 { name: 'descriptionBuilder.createJobdescription' },
                 () => {}
               );
+              collectInfoStepperIsVisible = true;
             "
           >
             <v-icon class="mr-4">mdi-shape-square-rounded-plus</v-icon>New Job

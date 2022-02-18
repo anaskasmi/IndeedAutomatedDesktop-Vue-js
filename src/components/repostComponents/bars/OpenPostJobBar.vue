@@ -11,7 +11,13 @@
       class="align-middle mx-3"
       elevation="0"
       :disabled="isLoading"
-      @click="goToPostJobPage"
+      @click="
+        $router.push(
+          { name: 'descriptionBuilder.createJobdescription' },
+          () => {}
+        );
+        collectInfoStepperIsVisible = true;
+      "
     >
       <v-icon class="mr-3">mdi-skip-next</v-icon>
       Go To Post A New Job Page
@@ -35,6 +41,21 @@ export default {
         this.isLoading = false;
         console.log(error);
       }
+    },
+  },
+  computed: {
+    collectInfoStepperIsVisible: {
+      get: function () {
+        return this.$store.getters[
+          "DescriptionBuilderTemplateModule/collectInfoStepperIsVisible"
+        ];
+      },
+      set: function (newVal) {
+        this.$store.commit(
+          "DescriptionBuilderTemplateModule/collectInfoStepperIsVisible",
+          newVal
+        );
+      },
     },
   },
 };

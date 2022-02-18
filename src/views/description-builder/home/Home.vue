@@ -23,7 +23,11 @@
           depressed
           class="my-10 mx-auto"
           @click="
-            $router.push({ name: 'descriptionBuilder.createJobdescription' })
+            $router.push(
+              { name: 'descriptionBuilder.createJobdescription' },
+              () => {}
+            );
+            collectInfoStepperIsVisible = true;
           "
         >
           Create a Job Description
@@ -31,7 +35,27 @@
       </v-row>
     </v-container>
   </div>
-</template><style scoped>
+</template>
+<script>
+export default {
+  computed: {
+    collectInfoStepperIsVisible: {
+      get: function () {
+        return this.$store.getters[
+          "DescriptionBuilderTemplateModule/collectInfoStepperIsVisible"
+        ];
+      },
+      set: function (newVal) {
+        this.$store.commit(
+          "DescriptionBuilderTemplateModule/collectInfoStepperIsVisible",
+          newVal
+        );
+      },
+    },
+  },
+};
+</script>
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 .resume-title {
   font-family: "Lobster", cursive !important;
