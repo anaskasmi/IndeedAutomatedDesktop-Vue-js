@@ -106,7 +106,7 @@ export default {
   data() {
     return {
       currentStep: 1,
-      stepsTotal: 12,
+      stepsTotal: 13,
     };
   },
   components: {

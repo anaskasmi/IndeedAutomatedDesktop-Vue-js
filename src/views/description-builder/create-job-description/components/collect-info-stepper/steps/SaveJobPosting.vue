@@ -5,23 +5,40 @@
         Do you want to save this job posting for future use ?
       </div>
       <v-row align="center" class="col-12">
-        <v-text-field label="Job posting name"></v-text-field>
+        <v-text-field
+          filled
+          v-model="job.name"
+          :disabled="isLoading"
+          clearable
+          hint="naming your postings will help you find them easier"
+          label="Job posting name"
+        >
+        </v-text-field>
       </v-row>
-      <v-btn color="info">Save</v-btn>
-      <v-btn color="info" text>Not now</v-btn>
+      <v-btn
+        color="info"
+        :disabled="!job.name || isLoading"
+        :loading="isLoading"
+        @click="savePosting"
+      >
+        Save
+      </v-btn>
+      <v-btn
+        color="info"
+        @click="
+          showSuccessMessage('Generated successfully');
+          collectInfoStepperIsVisible = false;
+        "
+        text
+        >Later</v-btn
+      >
     </v-card-text>
   </v-card>
 </template><script>
+import collectInfoStepperMixin from "@/views/description-builder/create-job-description/mixins/collectInfoStepperMixin.js";
+import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
+
 export default {
-  computed: {
-    job: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
-      },
-    },
-  },
+  mixins: [collectInfoStepperMixin, JobMixin],
 };
 </script>

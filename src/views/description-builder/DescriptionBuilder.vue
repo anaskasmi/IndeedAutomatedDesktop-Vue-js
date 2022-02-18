@@ -34,7 +34,22 @@
           >
             <v-icon class="mr-4">mdi-shape-square-rounded-plus</v-icon>New Job
           </v-btn>
+          <v-btn
+            color="info"
+            class="mb-4 mx-4"
+            dark
+            outlined
+            depressed
+            width="250"
+            @click="
+              $router.push({ name: 'descriptionBuilder.postings' }, () => {})
+            "
+          >
+            <v-icon class="mr-4">mdi-cards</v-icon>My Job Posting
+          </v-btn>
+
           <v-list-item
+            class="grow"
             @click="$router.push(item.route)"
             v-for="(item, i) in links"
             :key="i"

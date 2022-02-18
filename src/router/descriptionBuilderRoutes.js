@@ -57,6 +57,11 @@ const descriptionBuilderRoutes = [{
         name: 'descriptionBuilder.companies',
         component: () =>
             import ('@/views/description-builder/companies/views/Companies.vue'),
+    }, {
+        path: 'postings',
+        name: 'descriptionBuilder.postings',
+        component: () =>
+            import ('@/views/description-builder/postings/views/Postings.vue'),
     },
 ];
 

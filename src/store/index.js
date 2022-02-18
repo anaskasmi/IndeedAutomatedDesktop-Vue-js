@@ -14,6 +14,7 @@ import { DescriptionBuilderTemplateModule } from './../views/description-builder
 import { DescriptionBuilderCompaniesModule } from './../views/description-builder/companies/store/index';
 import { DescriptionBuilderTagsModule } from './../views/description-builder/tags/store/index';
 import { DescriptionBuilderRoleDescriptionsModule } from './../views/description-builder/roleDescriptions/store/index';
+import { DescriptionBuilderPostingsModule } from './../views/description-builder/postings/store/index';
 Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
@@ -64,6 +65,7 @@ export const store = new Vuex.Store({
         DescriptionBuilderTemplateModule,
         DescriptionBuilderCompaniesModule,
         DescriptionBuilderTagsModule,
-        DescriptionBuilderRoleDescriptionsModule
+        DescriptionBuilderRoleDescriptionsModule,
+        DescriptionBuilderPostingsModule
     }
 });
