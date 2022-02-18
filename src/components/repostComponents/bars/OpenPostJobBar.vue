@@ -11,13 +11,7 @@
       class="align-middle mx-3"
       elevation="0"
       :disabled="isLoading"
-      @click="
-        $router.push(
-          { name: 'descriptionBuilder.createJobdescription' },
-          () => {}
-        );
-        collectInfoStepperIsVisible = true;
-      "
+      @click="goToPostJobPage"
     >
       <v-icon class="mr-3">mdi-skip-next</v-icon>
       Go To Post A New Job Page
