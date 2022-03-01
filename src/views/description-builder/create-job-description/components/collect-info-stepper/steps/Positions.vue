@@ -20,17 +20,15 @@
           </v-alert>
         </v-row>
 
-        <div v-for="set in job.positions" :key="set._id">
-          <v-chip
-            color="info"
-            outlined
-            class="ma-2 akaya"
-            v-for="item in set.positions"
-            :key="item._id"
-          >
-            {{ item.name }}
-          </v-chip>
-        </div>
+        <v-chip
+          color="info"
+          outlined
+          class="ma-2 akaya"
+          v-for="position in job.positions"
+          :key="position"
+        >
+          {{ position }}
+        </v-chip>
       </v-row>
     </v-card-text>
   </v-card>

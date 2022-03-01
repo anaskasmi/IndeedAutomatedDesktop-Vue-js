@@ -6,7 +6,8 @@
     light
     multiple
     label="Positions"
-    v-model="job.positions"
+    v-model="job.positionSets"
+    @change="handleSetsChange"
     :items="positionsSets"
     item-text="name"
     item-value="name"
@@ -25,5 +26,16 @@ import JobMixin from "@/views/description-builder/create-job-description/mixins/
 export default {
   mixins: [JobMixin, PositionsMixin],
   props: ["isSoloInverted"],
+  methods: {
+    handleSetsChange() {
+      const positions = new Set(this.job.positionItems);
+      for (const positionSet of this.job.positionSets) {
+        for (const item of positionSet.positions) {
+          positions.add(item.name);
+        }
+      }
+      this.job = Object.assign({}, this.job, { positions: [...positions] });
+    },
+  },
 };
 </script>

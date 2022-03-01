@@ -6,8 +6,9 @@
     light
     multiple
     label="Incentives"
-    v-model="job.incentives"
+    v-model="job.incentiveSets"
     :items="incentivesSets"
+    @change="handleSetsChange"
     item-text="name"
     item-value="name"
     :loading="isLoading"
@@ -24,5 +25,16 @@ import JobMixin from "@/views/description-builder/create-job-description/mixins/
 export default {
   mixins: [JobMixin, IncentivesMixin],
   props: ["isSoloInverted"],
+  methods: {
+    handleSetsChange() {
+      const incentives = new Set(this.job.incentiveItems);
+      for (const incentiveSet of this.job.incentiveSets) {
+        for (const item of incentiveSet.incentives) {
+          incentives.add(item.name);
+        }
+      }
+      this.job = Object.assign({}, this.job, { incentives: [...incentives] });
+    },
+  },
 };
 </script>

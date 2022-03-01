@@ -18,17 +18,15 @@
           </v-alert>
         </v-row>
 
-        <div v-for="set in job.incentives" :key="set._id">
-          <v-chip
-            v-for="item in set.incentives"
-            :key="item._id"
-            color="info"
-            outlined
-            class="ma-2 akaya"
-          >
-            {{ item.name }}
-          </v-chip>
-        </div>
+        <v-chip
+          v-for="incentive in job.incentives"
+          :key="incentive"
+          color="info"
+          outlined
+          class="ma-2 akaya"
+        >
+          {{ incentive }}
+        </v-chip>
       </v-row>
     </v-card-text>
   </v-card>

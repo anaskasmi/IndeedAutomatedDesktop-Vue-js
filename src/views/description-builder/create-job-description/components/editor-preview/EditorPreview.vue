@@ -137,12 +137,10 @@ export default {
       if (!this.job.positions || !this.job.positions.length) return "";
       let result = "<b>Positions: </b>";
       result = result + "<ul>";
-      for (const positionSet of this.job.positions) {
-        for (const position of positionSet.positions) {
-          result = result + "<li>";
-          result = result + position.name;
-          result = result + "</li>";
-        }
+      for (const position of this.job.positions) {
+        result = result + "<li>";
+        result = result + position;
+        result = result + "</li>";
       }
       result = result + "</ul>";
       return result;
@@ -169,13 +167,12 @@ export default {
 
       result = result + "<ul>";
 
-      for (const incentiveSet of this.job.incentives) {
-        for (const incentive of incentiveSet.incentives) {
+      for (const incentive of this.job.incentives) {
           result = result + "<li>";
-          result = result + incentive.name;
+          result = result + incentive;
           result = result + "</li>";
         }
-      }
+      
       result = result + "</ul>";
       return result;
     },
