@@ -15,6 +15,7 @@ import { DescriptionBuilderCompaniesModule } from './../views/description-builde
 import { DescriptionBuilderTagsModule } from './../views/description-builder/tags/store/index';
 import { DescriptionBuilderRoleDescriptionsModule } from './../views/description-builder/roleDescriptions/store/index';
 import { DescriptionBuilderPostingsModule } from './../views/description-builder/postings/store/index';
+import { crelateReportsGenerator } from './crelateReportsGenerator/index';
 Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
@@ -56,6 +57,7 @@ export const store = new Vuex.Store({
         updatePageModule,
         resumePageModule,
         invoiceGeneratorModule,
+        crelateReportsGenerator,
         DescriptionBuilderExperiencesModule,
         DescriptionBuilderPositionsModule,
         DescriptionBuilderCompensationsModule,
