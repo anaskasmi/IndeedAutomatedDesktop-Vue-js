@@ -11,12 +11,22 @@
         <v-divider></v-divider>
       </v-col>
     </v-row>
-    <v-card class="pa-6" height="400" rounded="lg" elevation="2" color="white">
-      <v-alert type="info" v-if="isLoading"> We are working on your report, it will be ready in a minute...</v-alert>
-      <v-alert type="success" v-if="successResult" >Great News ! we successfully generated your report, check your Desktop 🎉</v-alert>
+    <v-card
+      class="pa-6 report-card-shadow"
+      height="400"
+      rounded="lg"
+      color="white"
+    >
+      <v-alert type="info" v-if="isLoading">
+        We are working on your report, it will be ready in a minute...</v-alert
+      >
+      <v-alert type="success" v-if="successResult"
+        >Great News ! we successfully generated your report, check your Desktop
+        🎉</v-alert
+      >
       <v-card-title>
         <v-row class="col-12 text-center font-poppins" style="color: #203239">
-          Generate Crelate reports with one click
+          Please put the job numbers, sparated by enter after each input !
         </v-row>
       </v-card-title>
 
@@ -126,5 +136,9 @@ export default {
   color: #fff;
   font-size: 3em;
   padding-left: 7px;
+}
+.report-card-shadow {
+  box-shadow: rgba(47, 98, 192, 0.25) 0px 50px 100px -20px,
+    rgba(0, 89, 172, 0.3) 0px 30px 60px -30px !important;
 }
 </style>
