@@ -147,16 +147,12 @@ export default {
     },
     getCompensationsHtml() {
       if (!this.job.compensations || !this.job.compensations.length) return "";
-      let result = "<b>Compensations: </b>";
-
+      let result = "<b>Compensation: </b>";
       result = result + "<ul>";
-
-      for (const compensationSet of this.job.compensations) {
-        for (const compensation of compensationSet.compensations) {
-          result = result + "<li>";
-          result = result + compensation.name;
-          result = result + "</li>";
-        }
+      for (const compensation of this.job.compensations) {
+        result = result + "<li>";
+        result = result + compensation;
+        result = result + "</li>";
       }
       result = result + "</ul>";
       return result;
@@ -164,30 +160,23 @@ export default {
     getIncentivesHtml() {
       if (!this.job.incentives || !this.job.incentives.length) return "";
       let result = "<b>Incentives: </b>";
-
       result = result + "<ul>";
-
       for (const incentive of this.job.incentives) {
-          result = result + "<li>";
-          result = result + incentive;
-          result = result + "</li>";
-        }
-      
+        result = result + "<li>";
+        result = result + incentive;
+        result = result + "</li>";
+      }
       result = result + "</ul>";
       return result;
     },
     getExperiencesHtml() {
       if (!this.job.experiences || !this.job.experiences.length) return "";
       let result = "<b>Experiences: </b>";
-
       result = result + "<ul>";
-
-      for (const experienceSet of this.job.experiences) {
-        for (const experience of experienceSet.experiences) {
-          result = result + "<li>";
-          result = result + experience.name;
-          result = result + "</li>";
-        }
+      for (const experience of this.job.experiences) {
+        result = result + "<li>";
+        result = result + experience;
+        result = result + "</li>";
       }
       result = result + "</ul>";
       return result;
@@ -195,15 +184,11 @@ export default {
     getQualitiesHtml() {
       if (!this.job.qualities || !this.job.qualities.length) return "";
       let result = "<b>Qualities: </b>";
-
       result = result + "<ul>";
-
-      for (const qualitySet of this.job.qualities) {
-        for (const quality of qualitySet.qualities) {
-          result = result + "<li>";
-          result = result + quality.name;
-          result = result + "</li>";
-        }
+      for (const quality of this.job.qualities) {
+        result = result + "<li>";
+        result = result + quality;
+        result = result + "</li>";
       }
       result = result + "</ul>";
       return result;

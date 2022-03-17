@@ -6,8 +6,9 @@
     multiple
     :solo-inverted="isSoloInverted"
     label="Apply Methods"
-    v-model="job.applyMethods"
+    v-model="job.applyMethodsSets"
     :items="applyMethodsSets"
+    @change="handleSetsChange"
     item-text="name"
     item-value="name"
     :loading="isLoading"
@@ -24,5 +25,18 @@ import JobMixin from "@/views/description-builder/create-job-description/mixins/
 export default {
   mixins: [JobMixin, ApplyMethodsMixin],
   props: ["isSoloInverted"],
+  methods: {
+    handleSetsChange() {
+      const applyMethods = new Set(this.job.applyMethodsItems);
+      for (const applyMethodsSet of this.job.applyMethodsSets) {
+        for (const item of applyMethodsSet.applyMethods) {
+          applyMethods.add(item.name);
+        }
+      }
+      this.job = Object.assign({}, this.job, {
+        applyMethods: [...applyMethods],
+      });
+    },
+  },
 };
 </script>

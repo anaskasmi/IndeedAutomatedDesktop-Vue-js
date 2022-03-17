@@ -18,18 +18,15 @@
             You picked
           </v-alert>
         </v-row>
-
-        <div v-for="set in job.qualities" :key="set._id">
-          <v-chip
-            v-for="item in set.qualities"
-            :key="item._id"
-            color="info"
-            outlined
-            class="ma-2 akaya"
-          >
-            {{ item.name }}
-          </v-chip>
-        </div>
+        <v-chip
+          color="info"
+          outlined
+          class="ma-2 akaya"
+          v-for="quality in job.qualities"
+          :key="quality"
+        >
+          {{ quality }}
+        </v-chip>
       </v-row>
     </v-card-text>
   </v-card>

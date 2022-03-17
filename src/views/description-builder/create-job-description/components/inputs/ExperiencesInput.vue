@@ -6,8 +6,9 @@
     light
     multiple
     label="Experiences"
-    v-model="job.experiences"
+    v-model="job.experiencesSets"
     :items="experiencesSets"
+    @change="handleSetsChange"
     item-text="name"
     item-value="name"
     :loading="isLoading"
@@ -25,5 +26,18 @@ import JobMixin from "@/views/description-builder/create-job-description/mixins/
 export default {
   mixins: [JobMixin, ExperiencesMixin],
   props: ["isSoloInverted"],
+  methods: {
+    handleSetsChange() {
+      const experiences = new Set(this.job.experiencesItems);
+      for (const experiencesSet of this.job.experiencesSets) {
+        for (const item of experiencesSet.experiences) {
+          experiences.add(item.name);
+        }
+      }
+      this.job = Object.assign({}, this.job, {
+        experiences: [...experiences],
+      });
+    },
+  },
 };
 </script>

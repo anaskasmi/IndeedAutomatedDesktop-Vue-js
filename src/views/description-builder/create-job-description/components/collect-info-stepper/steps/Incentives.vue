@@ -17,13 +17,12 @@
             You picked
           </v-alert>
         </v-row>
-
         <v-chip
-          v-for="incentive in job.incentives"
-          :key="incentive"
           color="info"
           outlined
           class="ma-2 akaya"
+          v-for="incentive in job.incentives"
+          :key="incentive"
         >
           {{ incentive }}
         </v-chip>

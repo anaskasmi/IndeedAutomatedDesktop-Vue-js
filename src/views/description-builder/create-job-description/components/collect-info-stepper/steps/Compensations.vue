@@ -22,18 +22,15 @@
             You picked
           </v-alert>
         </v-row>
-
-        <div v-for="set in job.compensations" :key="set._id">
-          <v-chip
-            v-for="item in set.compensations"
-            :key="item._id"
-            color="info"
-            outlined
-            class="ma-2 akaya"
-          >
-            {{ item.name }}
-          </v-chip>
-        </div>
+        <v-chip
+          color="info"
+          outlined
+          class="ma-2 akaya"
+          v-for="compensation in job.compensations"
+          :key="compensation"
+        >
+          {{ compensation }}
+        </v-chip>
       </v-row>
     </v-card-text>
   </v-card>

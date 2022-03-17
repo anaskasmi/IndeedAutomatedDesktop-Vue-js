@@ -22,22 +22,15 @@
             You picked
           </v-alert>
         </v-row>
-
-        <span
-          v-for="set in job.applyMethods"
-          class="float-right"
-          :key="set._id"
+        <v-chip
+          color="info"
+          outlined
+          class="ma-2 akaya"
+          v-for="applyMethod in job.applyMethods"
+          :key="applyMethod"
         >
-          <v-chip
-            color="info"
-            outlined
-            class="ma-2 akaya"
-            v-for="item in set.applyMethods"
-            :key="item._id"
-          >
-            {{ item.name }}
-          </v-chip>
-        </span>
+          {{ applyMethod }}
+        </v-chip>
       </v-row>
     </v-card-text>
   </v-card>

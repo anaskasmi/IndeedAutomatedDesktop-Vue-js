@@ -27,13 +27,15 @@ export default {
   props: ["isSoloInverted"],
   methods: {
     handleSetsChange() {
-      const incentives = new Set(this.job.incentiveItems);
-      for (const incentiveSet of this.job.incentiveSets) {
-        for (const item of incentiveSet.incentives) {
+      const incentives = new Set(this.job.incentivesItems);
+      for (const incentivesSet of this.job.incentiveSets) {
+        for (const item of incentivesSet.incentives) {
           incentives.add(item.name);
         }
       }
-      this.job = Object.assign({}, this.job, { incentives: [...incentives] });
+      this.job = Object.assign({}, this.job, {
+        incentives: [...incentives],
+      });
     },
   },
 };
