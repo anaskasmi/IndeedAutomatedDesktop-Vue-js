@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ApplyOnlyInput from "@/views/description-builder/create-job-description/components/sets-inputs/ApplyOnlyInput.vue";
+import ApplyOnlyInput from "@/views/description-builder/create-job-description/components/items-inputs/ApplyOnlyInput.vue";
 import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
 export default {
   mixins: [JobMixin,],

@@ -43,15 +43,8 @@ export default {
         `${this.getTagsHtml()}`
       );
     },
-    job: {
-      get: function () {
-        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
-      },
-      set: function (newVal) {
-        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
-      },
-    },
   },
+  props: ["job"],
   data: () => {
     return {
       editorConfig: {
@@ -86,7 +79,7 @@ export default {
       return result;
     },
     getJobOpeningHtml() {
-      if (!this.job.company.name) return "";
+      if (!this.job || !this.job.company || !this.job.company.name) return "";
       let result = "<p>";
       result = result + "<b>";
       result = result + (this.job.company.name || "");
@@ -115,7 +108,7 @@ export default {
     },
 
     getCompanyDescriptionHtml() {
-      if (!this.job.company.name) return "";
+      if (!this.job || !this.job.company || !this.job.company.name) return "";
       let result = "<p>";
       result = result + "<b>";
       result = result + (this.job.company.name || "");
@@ -126,7 +119,8 @@ export default {
       return result;
     },
     getCompanyCultureHtml() {
-      if (!this.job.company.culture) return "";
+      if (!this.job || !this.job.company || !this.job.company.culture)
+        return "";
       let result = "";
       result = result + "<b>Company culture: </b>";
       result = result + this.job.company.culture;

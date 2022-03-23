@@ -1,4 +1,4 @@
 export const state = {
     postings: [],
-    viewDialogVisible: false,
+    viewPostingDialogVisible: false,
 }

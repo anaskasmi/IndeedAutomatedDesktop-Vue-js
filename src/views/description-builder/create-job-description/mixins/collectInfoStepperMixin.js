@@ -13,6 +13,7 @@ export default {
                     "DescriptionBuilderPostingsModule/createPosting",
                     this.job
                 );
+
                 this.showSuccessMessage("Saved & Generated successfully");
             } catch (error) {
                 this.$swal.fire({

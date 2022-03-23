@@ -9,7 +9,7 @@
   </v-card>
 </template>
 <script>
-import TagsInput from "@/views/description-builder/create-job-description/components/sets-inputs/TagsInput.vue";
+import TagsInput from "@/views/description-builder/create-job-description/components/items-inputs/TagsInput.vue";
 
 export default {
   components: {

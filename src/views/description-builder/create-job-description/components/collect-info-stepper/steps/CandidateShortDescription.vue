@@ -8,7 +8,7 @@
     </v-card-text>
   </v-card>
 </template><script>
-import RoleDescriptionInput from "@/views/description-builder/create-job-description/components/sets-inputs/RoleDescriptionInput.vue";
+import RoleDescriptionInput from "@/views/description-builder/create-job-description/components/items-inputs/RoleDescriptionInput.vue";
 export default {
   components: {
     RoleDescriptionInput,

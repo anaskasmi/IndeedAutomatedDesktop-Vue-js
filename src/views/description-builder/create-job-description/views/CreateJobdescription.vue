@@ -36,7 +36,7 @@
         </v-card>
       </v-col>
       <v-col :cols="isExpanded ? 12 : 6">
-        <EditorPreview />
+        <EditorPreview :job="job" />
       </v-col>
     </v-row>
   </div>
@@ -81,8 +81,16 @@ export default {
       isExpanded: false,
     };
   },
-  methods: {
-   
+  computed: {
+    job: {
+      get: function () {
+        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
+      },
+      set: function (newVal) {
+        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
+      },
+    },
   },
+  methods: {},
 };
 </script>

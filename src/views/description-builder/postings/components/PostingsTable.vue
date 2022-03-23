@@ -6,22 +6,24 @@
     :loading="isLoading"
     :disabled="isLoading"
   >
-    <ViewPostingDialog />
+    <ViewPostingDialog :posting="openedPosting" />
     <v-card-title style="color: #30475e">Postings</v-card-title>
     <v-card-text class="pa-12">
       <v-row class="col-12">
         <v-card
-          class="col-sm-12 col-ms-4 col-lg-3 mx-2"
+          style="box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px"
+          class="col-sm-12 col-ms-4 col-lg-3 ma-8"
           v-for="posting in postings"
           :key="posting._id"
-          outlined
         >
           <v-list-item three-line>
             <v-list-item-content>
               <v-list-item-title class="text-h5 mb-1" style="color: #2e4c6d">
-                <v-row class="col-12" justify="space-between">
-                  {{ posting.name }}
-                  <v-spacer />
+                <v-row no-gutters justify="space-between">
+                  <span>
+                    {{ posting.name }}
+                  </span>
+
                   <v-btn color="success" outlined> Copy </v-btn>
                 </v-row>
               </v-list-item-title>
@@ -32,24 +34,15 @@
               <v-list-item-subtitle v-if="posting.company">
                 {{ posting.company.city }}, {{ posting.company.state }}
               </v-list-item-subtitle>
-              <div v-for="set in posting.positions" :key="set._id">
-                <v-chip
-                  small
-                  color="#2e4c6d"
-                  outlined
-                  class="my-1 mr-1 akaya"
-                  v-for="item in set.positions"
-                  :key="item._id"
-                >
-                  {{ item.name }}
-                </v-chip>
-              </div>
             </v-list-item-content>
           </v-list-item>
-
           <v-card-actions class="float-right">
-            <v-btn rounded text color="red"> Delete </v-btn>
-            <v-btn depressed color="info"> Full Posting </v-btn>
+            <v-btn rounded text color="red" @click="deletePosting(posting._id)">
+              Delete
+            </v-btn>
+            <v-btn depressed color="info" @click="openPosting(posting)">
+              Full Posting
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-row>
@@ -69,7 +62,7 @@ export default {
   data() {
     return {
       isLoading: false,
-      search: null,
+      openedPosting: {},
       headers: [
         {
           text: "name",
@@ -127,41 +120,15 @@ export default {
         this.$store.commit("DescriptionBuilderPostingsModule/postings", newVal);
       },
     },
-    createDialogVisible: {
+    viewPostingDialogVisible: {
       get: function () {
         return this.$store.getters[
-          "DescriptionBuilderPostingsModule/createDialogVisible"
+          "DescriptionBuilderPostingsModule/viewPostingDialogVisible"
         ];
       },
       set: function (newVal) {
         this.$store.commit(
-          "DescriptionBuilderPostingsModule/createDialogVisible",
-          newVal
-        );
-      },
-    },
-    updateDialogVisible: {
-      get: function () {
-        return this.$store.getters[
-          "DescriptionBuilderPostingsModule/updateDialogVisible"
-        ];
-      },
-      set: function (newVal) {
-        this.$store.commit(
-          "DescriptionBuilderPostingsModule/updateDialogVisible",
-          newVal
-        );
-      },
-    },
-    postingUnderUpdate: {
-      get: function () {
-        return this.$store.getters[
-          "DescriptionBuilderPostingsModule/postingUnderUpdate"
-        ];
-      },
-      set: function (newVal) {
-        this.$store.commit(
-          "DescriptionBuilderPostingsModule/postingUnderUpdate",
+          "DescriptionBuilderPostingsModule/viewPostingDialogVisible",
           newVal
         );
       },
@@ -180,11 +147,12 @@ export default {
         this.isLoading = false;
       }
     },
-    editItem(posting) {
-      this.postingUnderUpdate = posting;
-      this.updateDialogVisible = true;
+
+    openPosting(posting) {
+      this.viewPostingDialogVisible = true;
+      this.openedPosting = posting;
     },
-    async deletePosting(item) {
+    async deletePosting(_id) {
       this.$swal
         .fire({
           title: "This Posting will be deleted, continue ?",
@@ -201,7 +169,7 @@ export default {
             try {
               await this.$store.dispatch(
                 "DescriptionBuilderPostingsModule/deletePosting",
-                item._id
+                _id
               );
               this.$swal.fire({
                 title: "Deleted successfully",
