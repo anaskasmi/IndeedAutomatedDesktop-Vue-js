@@ -7,7 +7,7 @@
 
 <script>
 import ExperiencesMixin from "@/views/description-builder/create-job-description/mixins/experiencesMixin.js";
-import ExperiencesInput from "@/views/description-builder/create-job-description/components/inputs/ExperiencesInput.vue";
+import ExperiencesInput from "@/views/description-builder/create-job-description/components/items-inputs/ExperiencesInput.vue";
 import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
 
 export default {

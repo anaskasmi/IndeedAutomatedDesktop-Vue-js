@@ -68,9 +68,9 @@
 </template>
 <script>
 import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
-import RoleDescriptionInput from "@/views/description-builder/create-job-description/components/inputs/RoleDescriptionInput.vue";
-import JobTypeInput from "@/views/description-builder/create-job-description/components/inputs/JobTypeInput.vue";
-import PositionsInput from "@/views/description-builder/create-job-description/components/inputs/PositionsInput.vue";
+import RoleDescriptionInput from "@/views/description-builder/create-job-description/components/items-inputs/RoleDescriptionInput.vue";
+import JobTypeInput from "@/views/description-builder/create-job-description/components/items-inputs/JobTypeInput.vue";
+import PositionsInput from "@/views/description-builder/create-job-description/components/items-inputs/PositionsInput.vue";
 
 export default {
   components: {

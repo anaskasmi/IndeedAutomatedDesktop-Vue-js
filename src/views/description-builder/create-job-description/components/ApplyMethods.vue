@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ApplyMethodsInput from "@/views/description-builder/create-job-description/components/inputs/ApplyMethodsInput.vue";
+import ApplyMethodsInput from "@/views/description-builder/create-job-description/components/items-inputs/ApplyMethodsInput.vue";
 import ApplyMethodsMixin from "@/views/description-builder/create-job-description/mixins/applyMethodsMixin.js";
 import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
 

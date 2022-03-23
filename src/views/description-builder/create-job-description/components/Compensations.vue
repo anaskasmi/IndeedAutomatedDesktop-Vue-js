@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import CompenstationsInput from "@/views/description-builder/create-job-description/components/inputs/CompenstationsInput.vue";
+import CompenstationsInput from "@/views/description-builder/create-job-description/components/items-inputs/CompenstationsInput.vue";
 import CompensationsMixin from "@/views/description-builder/create-job-description/mixins/compensationsMixin.js";
 import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
 

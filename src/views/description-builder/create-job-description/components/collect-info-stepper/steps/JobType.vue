@@ -10,7 +10,7 @@
     </v-card-text>
   </v-card>
 </template><script>
-import JobTypeInput from "@/views/description-builder/create-job-description/components/inputs/JobTypeInput.vue";
+import JobTypeInput from "@/views/description-builder/create-job-description/components/sets-inputs/JobTypeInput.vue";
 export default {
   components: {
     JobTypeInput,

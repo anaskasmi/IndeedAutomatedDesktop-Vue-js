@@ -35,7 +35,7 @@
 </template>
 <script>
 import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
-import PositionsInput from "@/views/description-builder/create-job-description/components/inputs/PositionsInput.vue";
+import PositionsInput from "@/views/description-builder/create-job-description/components/sets-inputs/PositionsInput.vue";
 
 export default {
   components: {

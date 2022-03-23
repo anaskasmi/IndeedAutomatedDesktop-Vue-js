@@ -9,7 +9,7 @@
   </v-card>
 </template>
 <script>
-import CompanyInput from "@/views/description-builder/create-job-description/components/inputs/CompanyInput.vue";
+import CompanyInput from "@/views/description-builder/create-job-description/components/sets-inputs/CompanyInput.vue";
 
 export default {
   components: {

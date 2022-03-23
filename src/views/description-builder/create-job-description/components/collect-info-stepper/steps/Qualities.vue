@@ -32,7 +32,7 @@
   </v-card>
 </template>
 <script>
-import QualitiesInput from "@/views/description-builder/create-job-description/components/inputs/QualitiesInput.vue";
+import QualitiesInput from "@/views/description-builder/create-job-description/components/sets-inputs/QualitiesInput.vue";
 import QualitiesMixin from "@/views/description-builder/create-job-description/mixins/qualitiesMixin.js";
 import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
 

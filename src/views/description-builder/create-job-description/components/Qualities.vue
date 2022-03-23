@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import QualitiesInput from "@/views/description-builder/create-job-description/components/inputs/QualitiesInput.vue";
+import QualitiesInput from "@/views/description-builder/create-job-description/components/items-inputs/QualitiesInput.vue";
 import QualitiesMixin from "@/views/description-builder/create-job-description/mixins/qualitiesMixin.js";
 import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
 

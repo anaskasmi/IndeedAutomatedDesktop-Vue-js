@@ -8,7 +8,7 @@
 <script>
 import IncentivesMixin from "@/views/description-builder/create-job-description/mixins/incentivesMixin.js";
 import JobMixin from "@/views/description-builder/create-job-description/mixins/jobMixin.js";
-import IncentivesInput from "@/views/description-builder/create-job-description/components/inputs/IncentivesInput.vue";
+import IncentivesInput from "@/views/description-builder/create-job-description/components/items-inputs/IncentivesInput.vue";
 
 export default {
   components: { IncentivesInput },

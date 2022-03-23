@@ -11,7 +11,7 @@
 
 
 <script>
-import CandidateDescriptionInput from "@/views/description-builder/create-job-description/components/inputs/CandidateDescriptionInput.vue";
+import CandidateDescriptionInput from "@/views/description-builder/create-job-description/components/items-inputs/CandidateDescriptionInput.vue";
 
 export default {
   components: {
