@@ -198,12 +198,10 @@ export default {
       let result = "<b>How To Apply: </b>";
 
       result = result + "<ul>";
-      for (const applyMethodSet of this.job.applyMethods) {
-        for (const applyMethod of applyMethodSet.applyMethods) {
-          result = result + "<li>";
-          result = result + applyMethod.name;
-          result = result + "</li>";
-        }
+      for (const applyMethod of this.job.applyMethods) {
+        result = result + "<li>";
+        result = result + applyMethod;
+        result = result + "</li>";
       }
       result = result + "</ul>";
       return result;
