@@ -1,10 +1,14 @@
 <template>
-  <v-dialog persistent v-model="viewPostingDialogVisible" max-width="490">
+  <v-dialog persistent v-model="viewPostingDialogVisible" max-width="900">
     <v-card :loading="isLoading" :disabled="isLoading" rounded="lg">
-      <v-card-title> {{ posting.name }} </v-card-title>
+      <v-card-title>
+        <v-row no-gutters justify="space-between">
+          {{ posting.name }}
+          <v-btn @click="viewPostingDialogVisible = false" depressed color="success">COPY</v-btn>
+        </v-row>
+      </v-card-title>
       <v-card-text>
-        <EditorPreview :job="posting" />
-
+        <EditorPreview :job="posting" :showActions="false" />
         <v-btn
           outlined
           @click="viewPostingDialogVisible = false"

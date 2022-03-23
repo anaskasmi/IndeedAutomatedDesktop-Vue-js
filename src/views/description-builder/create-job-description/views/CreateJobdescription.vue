@@ -36,7 +36,7 @@
         </v-card>
       </v-col>
       <v-col :cols="isExpanded ? 12 : 6">
-        <EditorPreview :job="job" />
+        <EditorPreview :job="job" :showActions="true"/>
       </v-col>
     </v-row>
   </div>

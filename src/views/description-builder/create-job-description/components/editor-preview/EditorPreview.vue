@@ -1,7 +1,7 @@
 <template>
   <div class="col-12 pa-0">
-    <v-card outlined elevation="0">
-      <v-card-title>
+    <v-card :outlined="showActions" elevation="0">
+      <v-card-title v-if="showActions">
         <v-row class="col-12" justify="space-between">
           <div>Preview</div>
           <div>
@@ -16,7 +16,7 @@
           </div>
         </v-row>
       </v-card-title>
-      <v-divider></v-divider>
+      <v-divider v-if="showActions"></v-divider>
       <v-card-text>
         <ckeditor :value="description" :config="editorConfig"></ckeditor>
       </v-card-text>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+
 export default {
   computed: {
     description() {
@@ -44,7 +45,7 @@ export default {
       );
     },
   },
-  props: ["job"],
+  props: ["job", "showActions"],
   data: () => {
     return {
       editorConfig: {
