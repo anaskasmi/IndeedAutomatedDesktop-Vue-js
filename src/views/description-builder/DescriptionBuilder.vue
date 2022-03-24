@@ -24,13 +24,7 @@
             dark
             depressed
             width="250"
-            @click="
-              $router.push(
-                { name: 'descriptionBuilder.createJobdescription' },
-                () => {}
-              );
-              collectInfoStepperIsVisible = true;
-            "
+            @click="startNewJobDescription()"
           >
             <v-icon class="mr-4">mdi-shape-square-rounded-plus</v-icon>New Job
           </v-btn>
@@ -107,6 +101,14 @@ import CollectInfoStepper from "@/views/description-builder/create-job-descripti
 export default {
   components: { CollectInfoStepper },
   computed: {
+    currentPosting: {
+      get: function () {
+        return this.$store.getters["DescriptionBuilderTemplateModule/job"];
+      },
+      set: function (newVal) {
+        this.$store.commit("DescriptionBuilderTemplateModule/job", newVal);
+      },
+    },
     collectInfoStepperIsVisible: {
       get: function () {
         return this.$store.getters[
@@ -121,6 +123,33 @@ export default {
       },
     },
   },
+  methods: {
+    async startNewJobDescription() {
+      let result = await this.$swal.fire({
+        title: "your already have a job draft  ",
+        text: "We noticed that you were writing a job description earlier, if you want to continue workin on it hit continue, otherwise the old data will be wiped.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "New Job",
+        cancelButtonText: `Keep Draft`,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#eee",
+      });
+      if (result.isConfirmed) {
+        // reset job
+        this.currentPosting = {
+          signature: "Mis en Place (misenpl.com) talent acquisition",
+          company: {},
+        };
+        this.collectInfoStepperIsVisible = true;
+      }
+      this.$router.push(
+        { name: "descriptionBuilder.createJobdescription" },
+        () => {}
+      );
+    },
+  },
+
   data() {
     return {
       drawer: true,

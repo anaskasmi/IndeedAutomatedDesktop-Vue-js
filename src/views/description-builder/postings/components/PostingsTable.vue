@@ -6,13 +6,13 @@
     :loading="isLoading"
     :disabled="isLoading"
   >
-    <ViewPostingDialog :posting="openedPosting" />
-    <v-card-title style="color: #30475e">Postings</v-card-title>
+    <ViewPostingDialog :postings="openedPosting" />
+    <v-card-title style="color: #30475e">Saved Job Postings</v-card-title>
     <v-card-text class="pa-12">
-      <v-row class="col-12">
+      <v-row class="col-12" no-gutters justify="center">
         <v-card
           style="box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px"
-          class="col-sm-12 col-ms-4 col-lg-3 ma-8"
+          class="grow col-sm-9 col-md-9 col-lg-9 ma-8"
           v-for="posting in postings"
           :key="posting._id"
         >
@@ -24,7 +24,15 @@
                     {{ posting.name }}
                   </span>
 
-                  <v-btn color="success" outlined> Copy </v-btn>
+                  <v-btn
+                    color="success"
+                    text
+                    depressed
+                    fab
+                    @click="copyDescription"
+                  >
+                    <v-icon>mdi-content-copy</v-icon>
+                  </v-btn>
                 </v-row>
               </v-list-item-title>
               <v-divider class="my-2"></v-divider>
@@ -52,7 +60,9 @@
 
 <script>
 import ViewPostingDialog from "@/views/description-builder/postings/components/ViewPostingDialog.vue";
+import jobDescriptionMixin from "@/views/description-builder/create-job-description/mixins/jobDescriptionMixin.js";
 export default {
+  mixins: [jobDescriptionMixin],
   created() {
     this.fetchPostings();
   },

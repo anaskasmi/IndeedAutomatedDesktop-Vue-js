@@ -36,7 +36,7 @@
         </v-card>
       </v-col>
       <v-col :cols="isExpanded ? 12 : 6">
-        <EditorPreview :job="job" :showActions="true"/>
+        <EditorPreview :postings="postings" :showActions="true"/>
       </v-col>
     </v-row>
   </div>
@@ -82,7 +82,7 @@ export default {
     };
   },
   computed: {
-    job: {
+    postings: {
       get: function () {
         return this.$store.getters["DescriptionBuilderTemplateModule/job"];
       },
