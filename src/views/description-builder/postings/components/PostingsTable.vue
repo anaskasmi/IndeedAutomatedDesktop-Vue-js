@@ -6,22 +6,22 @@
     :loading="isLoading"
     :disabled="isLoading"
   >
-    <ViewPostingDialog :postings="openedPosting" />
+    <ViewPostingDialog :posting="openedPosting" />
     <v-card-title style="color: #30475e">Saved Job Postings</v-card-title>
     <v-card-text class="pa-12">
       <v-row class="col-12" no-gutters justify="center">
         <v-card
           style="box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px"
           class="grow col-sm-9 col-md-9 col-lg-9 ma-8"
-          v-for="posting in postings"
-          :key="posting._id"
+          v-for="currentPosting in postings"
+          :key="currentPosting._id"
         >
           <v-list-item three-line>
             <v-list-item-content>
               <v-list-item-title class="text-h5 mb-1" style="color: #2e4c6d">
                 <v-row no-gutters justify="space-between">
                   <span>
-                    {{ posting.name }}
+                    {{ currentPosting.name }}
                   </span>
 
                   <v-btn
@@ -29,26 +29,29 @@
                     text
                     depressed
                     fab
-                    @click="copyDescription"
+                    @click="
+                      posting = currentPosting;
+                      copyDescription();
+                    "
                   >
                     <v-icon>mdi-content-copy</v-icon>
                   </v-btn>
                 </v-row>
               </v-list-item-title>
               <v-divider class="my-2"></v-divider>
-              <v-list-item-subtitle v-if="posting.company">
-                {{ posting.company.name }}
+              <v-list-item-subtitle v-if="currentPosting.company">
+                {{ currentPosting.company.name }}
               </v-list-item-subtitle>
-              <v-list-item-subtitle v-if="posting.company">
-                {{ posting.company.city }}, {{ posting.company.state }}
+              <v-list-item-subtitle v-if="currentPosting.company">
+                {{ currentPosting.company.city }}, {{ currentPosting.company.state }}
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
           <v-card-actions class="float-right">
-            <v-btn rounded text color="red" @click="deletePosting(posting._id)">
+            <v-btn rounded text color="red" @click="deletePosting(currentPosting._id)">
               Delete
             </v-btn>
-            <v-btn depressed color="info" @click="openPosting(posting)">
+            <v-btn depressed color="info" @click="openPosting(currentPosting)">
               Full Posting
             </v-btn>
           </v-card-actions>

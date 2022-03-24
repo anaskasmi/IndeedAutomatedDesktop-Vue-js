@@ -36,67 +36,67 @@ export default {
                 return array.join(", ").replace(/, ((?:.(?!, ))+)$/, " & $1");
         },
         getApplyOnlyHtml() {
-            if (!this.postings.applyOnly) return "";
+            if (!this.posting.applyOnly) return "";
             let result = "<p><b>";
             result = result + "*Apply only if you ";
-            result = result + this.postings.applyOnly;
+            result = result + this.posting.applyOnly;
             result = result + "*</b></p>";
             return result;
         },
         getJobOpeningHtml() {
-            if (!this.postings || !this.postings.company || !this.postings.company.name) return "";
+            if (!this.posting || !this.posting.company || !this.posting.company.name) return "";
             let result = "<p>";
             result = result + "<b>";
-            result = result + (this.postings.company.name || "");
+            result = result + (this.posting.company.name || "");
             result = result + "</b>";
             result = result + " in ";
             result = result + "<b>";
-            result = result + (this.postings.company.city || "");
+            result = result + (this.posting.company.city || "");
             result = result + ", ";
-            result = result + (this.postings.company.state || "");
+            result = result + (this.posting.company.state || "");
             result = result + "</b>";
             result = result + " is seeking ";
-            result = result + (this.postings.roleDescription || "");
+            result = result + (this.posting.roleDescription || "");
             result = result + " ";
-            result = result + (this.arrayToList(this.postings.positions) || "");
+            result = result + (this.arrayToList(this.posting.positions) || "");
             result = result + ".";
             result = result + "</p>";
             return result;
         },
         getCandidateDescriptionHtml() {
-            if (!this.postings.candidateDescription) return "";
+            if (!this.posting.candidateDescription) return "";
             let result = "<p>";
             result = result + "The ideal candidate ";
-            result = result + (this.postings.candidateDescription || "");
+            result = result + (this.posting.candidateDescription || "");
             result = result + "</p>";
             return result;
         },
 
         getCompanyDescriptionHtml() {
-            if (!this.postings || !this.postings.company || !this.postings.company.name) return "";
+            if (!this.posting || !this.posting.company || !this.posting.company.name) return "";
             let result = "<p>";
             result = result + "<b>";
-            result = result + (this.postings.company.name || "");
+            result = result + (this.posting.company.name || "");
             result = result + "</b> is ";
-            result = result + (this.postings.company.description || "");
+            result = result + (this.posting.company.description || "");
             result = result + ".";
             result = result + "</p>";
             return result;
         },
         getCompanyCultureHtml() {
-            if (!this.postings || !this.postings.company || !this.postings.company.culture)
+            if (!this.posting || !this.posting.company || !this.posting.company.culture)
                 return "";
             let result = "";
             result = result + "<b>Company culture: </b>";
-            result = result + this.postings.company.culture;
+            result = result + this.posting.company.culture;
             return result;
         },
 
         getPositionsHtml() {
-            if (!this.postings.positions || !this.postings.positions.length) return "";
+            if (!this.posting.positions || !this.posting.positions.length) return "";
             let result = "<b>Positions: </b>";
             result = result + "<ul>";
-            for (const position of this.postings.positions) {
+            for (const position of this.posting.positions) {
                 result = result + "<li>";
                 result = result + position;
                 result = result + "</li>";
@@ -105,10 +105,10 @@ export default {
             return result;
         },
         getCompensationsHtml() {
-            if (!this.postings.compensations || !this.postings.compensations.length) return "";
+            if (!this.posting.compensations || !this.posting.compensations.length) return "";
             let result = "<b>Compensation: </b>";
             result = result + "<ul>";
-            for (const compensation of this.postings.compensations) {
+            for (const compensation of this.posting.compensations) {
                 result = result + "<li>";
                 result = result + compensation;
                 result = result + "</li>";
@@ -117,10 +117,10 @@ export default {
             return result;
         },
         getIncentivesHtml() {
-            if (!this.postings.incentives || !this.postings.incentives.length) return "";
+            if (!this.posting.incentives || !this.posting.incentives.length) return "";
             let result = "<b>Incentives: </b>";
             result = result + "<ul>";
-            for (const incentive of this.postings.incentives) {
+            for (const incentive of this.posting.incentives) {
                 result = result + "<li>";
                 result = result + incentive;
                 result = result + "</li>";
@@ -129,10 +129,10 @@ export default {
             return result;
         },
         getExperiencesHtml() {
-            if (!this.postings.experiences || !this.postings.experiences.length) return "";
+            if (!this.posting.experiences || !this.posting.experiences.length) return "";
             let result = "<b>Experiences: </b>";
             result = result + "<ul>";
-            for (const experience of this.postings.experiences) {
+            for (const experience of this.posting.experiences) {
                 result = result + "<li>";
                 result = result + experience;
                 result = result + "</li>";
@@ -141,10 +141,10 @@ export default {
             return result;
         },
         getQualitiesHtml() {
-            if (!this.postings.qualities || !this.postings.qualities.length) return "";
+            if (!this.posting.qualities || !this.posting.qualities.length) return "";
             let result = "<b>Qualities: </b>";
             result = result + "<ul>";
-            for (const quality of this.postings.qualities) {
+            for (const quality of this.posting.qualities) {
                 result = result + "<li>";
                 result = result + quality;
                 result = result + "</li>";
@@ -153,11 +153,11 @@ export default {
             return result;
         },
         getHTAHtml() {
-            if (!this.postings.applyMethods || !this.postings.applyMethods.length) return "";
+            if (!this.posting.applyMethods || !this.posting.applyMethods.length) return "";
             let result = "<b>How To Apply: </b>";
 
             result = result + "<ul>";
-            for (const applyMethod of this.postings.applyMethods) {
+            for (const applyMethod of this.posting.applyMethods) {
                 result = result + "<li>";
                 result = result + applyMethod;
                 result = result + "</li>";
@@ -166,16 +166,16 @@ export default {
             return result;
         },
         getSignatureHtml() {
-            if (!this.postings.signature || !this.postings.showSignature) return "";
+            if (!this.posting.signature || !this.posting.showSignature) return "";
             let result = "<p><b>";
-            result = result + this.postings.signature;
+            result = result + this.posting.signature;
             result = result + "</b></p>";
             return result;
         },
         getTagsHtml() {
-            if (!this.postings.tags) return "";
+            if (!this.posting.tags) return "";
             let result = "<p>";
-            result = result + this.postings.tags;
+            result = result + this.posting.tags;
             result = result + "</p>";
             return result;
         },

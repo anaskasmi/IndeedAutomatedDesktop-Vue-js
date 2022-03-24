@@ -3,7 +3,7 @@
     <v-card :loading="isLoading" :disabled="isLoading" rounded="lg">
       <v-card-title>
         <v-row no-gutters justify="space-between">
-          {{ postings.name }}
+          {{ posting.name }}
           <v-btn
             @click="viewPostingDialogVisible = false"
             dark
@@ -28,7 +28,7 @@
             ><v-icon class="mr-4">mdi-content-copy</v-icon> COPY DESCRIPTION</v-btn
           >
         </v-row>
-        <EditorPreview :postings="postings" :showActions="false" />
+        <EditorPreview :posting="posting" :showActions="false" />
       </v-card-text>
     </v-card>
   </v-dialog>
@@ -44,7 +44,7 @@ export default {
     };
   },
   components: { EditorPreview },
-  props: ["postings"],
+  props: ["posting"],
   computed: {
     viewPostingDialogVisible: {
       get: function () {
