@@ -30,7 +30,7 @@
           collectInfoStepperIsVisible = false;
         "
         text
-        >Later</v-btn
+        >Add more updates to this job</v-btn
       >
     </v-card-text>
   </v-card>

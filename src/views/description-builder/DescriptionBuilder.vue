@@ -55,6 +55,17 @@
               <v-list-item-title v-text="item.text"></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item>
+            <v-btn
+              outlined
+              color="red"
+              :loading="isReseting"
+              :disabled="isReseting"
+              @click="resetAllItems()"
+            >
+              Reset all items to default</v-btn
+            >
+          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -124,6 +135,54 @@ export default {
     },
   },
   methods: {
+    async resetAllItems() {
+      this.$swal
+        .fire({
+          title:
+            "All items will be reset to the default ones, and sets will be deleted",
+          showCancelButton: true,
+          confirmButtonText: "Continue",
+          cancelButtonText: `Cancel`,
+          confirmButtonColor: "#E05D5D",
+          cancelButtonColor: "#ddd",
+          icon: "error",
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            this.isReseting = true;
+            try {
+              await this.$axios.get(
+                "http://localhost:3009/api/description-builder/compensations/items/populate"
+              );
+              await this.$axios.get(
+                "http://localhost:3009/api/description-builder/compensations/items/populate"
+              );
+              await this.$axios.get(
+                "http://localhost:3009/api/description-builder/incentives/items/populate"
+              );
+              await this.$axios.get(
+                "http://localhost:3009/api/description-builder/experiences/items/populate"
+              );
+              await this.$axios.get(
+                "http://localhost:3009/api/description-builder/qualities/items/populate"
+              );
+              await this.$axios.get(
+                "http://localhost:3009/api/description-builder/applyMethods/items/populate"
+              );
+              this.$swal.fire({
+                title: "All items reseted ",
+                icon: "success",
+                confirmButtonText: "Okey",
+                confirmButtonColor: "green",
+              });
+            } catch (error) {
+              console.log(error);
+            } finally {
+              this.isReseting = false;
+            }
+          }
+        });
+    },
     async startNewJobDescription() {
       let result = await this.$swal.fire({
         title: "your already have a job draft  ",
@@ -153,6 +212,7 @@ export default {
   data() {
     return {
       drawer: true,
+      isReseting: false,
       selectedItem: null,
       links: [
         {
