@@ -58,34 +58,35 @@
           <FillInSalaryFromAndTo stepNumber="12" />
 
           <FillInPaymentPer stepNumber="13" />
+          <FillInBenefits stepNumber="14" />
 
           <JobDescriptionBar />
 
-          <FillInDescription stepNumber="14" />
+          <FillInDescription stepNumber="15" />
 
           <ApplicationSettingsBar />
 
-          <FillInIsResumeRequired stepNumber="15" />
-          <FillInEmail stepNumber="16" />
+          <FillInIsResumeRequired stepNumber="16" />
+          <FillInEmail stepNumber="17" />
 
           <CustomizedPreScreeningBar />
 
-          <CloseQuestions stepNumber="17" />
+          <CloseQuestions stepNumber="18" />
           <br />
           <PreviewJobBar />
           <br />
 
           <SponsoringPageBar />
-          <ClickAdvanced stepNumber="18" />
-          <FillInAdDurationType stepNumber="19" />
-          <FillInAdDurationDate stepNumber="20" />
-          <FillInCPC stepNumber="21" />
-          <FillInAdBudget stepNumber="22" />
+          <ClickAdvanced stepNumber="19" />
+          <FillInAdDurationType stepNumber="20" />
+          <FillInAdDurationDate stepNumber="21" />
+          <FillInCPC stepNumber="22" />
+          <FillInAdBudget stepNumber="23" />
 
           <CloseOldJobBar />
 
-          <CloseJob stepNumber="23" />
-          <RepostNextJobComponent stepNumber="24" />
+          <CloseJob stepNumber="24" />
+          <RepostNextJobComponent stepNumber="25" />
         </div>
       </v-stepper>
     </div>
@@ -109,6 +110,7 @@ import FillInRolesLocation from "./RepostingStepSubComponent/fillIn_RolesLocatio
 import FillInIsJobFullTimeOrPartTime from "./RepostingStepSubComponent/fillIn_isJobFullTimeOrPartTime";
 import FillInSchedule from "./RepostingStepSubComponent/fillIn_schedule";
 import FillInHiresNumber from "./RepostingStepSubComponent/fillIn_hiresNumber";
+import FillInBenefits from "./RepostingStepSubComponent/fillIn_benefits";
 import FillInDeadline from "./RepostingStepSubComponent/fillIn_deadline";
 import FillInPaymentType from "./RepostingStepSubComponent/fillIn_paymentType";
 import FillInPaymentPer from "./RepostingStepSubComponent/fillIn_paymentPer";
@@ -152,6 +154,7 @@ export default {
     FillInDeadline,
     FillInPaymentType,
     FillInPaymentPer,
+    FillInBenefits,
     FillInDescription,
     FillInIsResumeRequired,
     FillInAdDurationDate,

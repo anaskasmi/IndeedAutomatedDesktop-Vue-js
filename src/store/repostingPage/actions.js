@@ -225,6 +225,26 @@ export const actions = {
         })
 
     },
+    execute_fillIn_benefits({ state, getters }) {
+        return new Promise((res, rej) => {
+            state.repostingSteps.fillIn_benefits = "doing";
+            state.failureMsgs.fillIn_benefits = null;
+            let url = state.BASE_URL + "/jobs/fillIn_benefits";
+            axios
+                .post(url, { benefits: getters.getCurrentJob.benefits })
+                .then(() => {
+                    state.repostingSteps.fillIn_benefits = "done";
+                    res();
+                })
+                .catch((error) => {
+                    state.repostingSteps.fillIn_benefits = "failed";
+                    state.failureMsgs.fillIn_benefits = error.response.data.error;
+                    console.log(error);
+                    rej(error)
+                });
+        })
+
+    },
     execute_fillIn_deadline({ state, getters }) {
         return new Promise((res, rej) => {
             state.repostingSteps.fillIn_deadline = "doing";

@@ -46,6 +46,7 @@ export default {
         await this.$store.dispatch("repostPageModule/execute_fillIn_paymentType");
         await this.$store.dispatch("repostPageModule/execute_fillIn_salaryFromAndTo");
         await this.$store.dispatch("repostPageModule/execute_fillIn_paymentPer");
+        await this.$store.dispatch("repostPageModule/execute_fillIn_benefits");
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;
@@ -58,6 +59,7 @@ export default {
         await this.$store.dispatch("repostPageModule/execute_fillIn_paymentType");
         await this.$store.dispatch("repostPageModule/execute_fillIn_salaryFromAndTo");
         await this.$store.dispatch("repostPageModule/execute_fillIn_paymentPer");
+        await this.$store.dispatch("repostPageModule/execute_fillIn_benefits");
         await this.$store.dispatch("repostPageModule/execute_clickSaveAndContinue");
         this.isLoading = false;
       } catch (error) {
