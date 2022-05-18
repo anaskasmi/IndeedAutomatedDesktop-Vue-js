@@ -42,6 +42,9 @@ export const state = {
         close_questions: 'notDone',
         RepostNextJobComponent: 'notDone',
         fillIn_salaryFromAndTo: 'notDone',
+        review_potential_matches: 'notDone',
+        skip_qualifications: 'notDone',
+
     },
     failureMsgs: {
         getJobFullDetails: null,
@@ -73,5 +76,9 @@ export const state = {
         close_questions: null,
         RepostNextJobComponent: null,
         fillIn_salaryFromAndTo: null,
+        review_potential_matches: null,
+        skip_qualifications: null,
+
+
     },
 };

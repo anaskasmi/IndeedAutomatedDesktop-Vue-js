@@ -64,24 +64,40 @@
 
           <FillInDescription stepNumber="15" />
 
-          <ApplicationSettingsBar />
+          <div>
+            <!-- 5 here goes : Set application preferences -->
+            <ApplicationSettingsBar />
+            <FillInIsResumeRequired stepNumber="16" />
+            <FillInEmail stepNumber="17" />
+          </div>
 
-          <FillInIsResumeRequired stepNumber="16" />
-          <FillInEmail stepNumber="17" />
+          <div>
+            <br />
+            <PreviewJobBar />
+            <br />
+          </div>
 
-          <CustomizedPreScreeningBar />
+          <!-- 7 here goes : Review potential matches  -->
+          <PotentialMatches />
+          <!-- 8 here goes : Key qualifications   -->
+          <RoleQualifications />
 
+          <div>
+            <!-- 9 here goes : Customize your application process (close questions) -->
+            <CustomizedPreScreeningBar />
+          </div>
+
+          <div>
+            <!-- 10 here goes : sponsor -->
+            <SponsoringPageBar />
+            <ClickAdvanced stepNumber="19" />
+            <FillInAdDurationType stepNumber="20" />
+            <FillInAdDurationDate stepNumber="21" />
+            <FillInCPC stepNumber="22" />
+            <FillInAdBudget stepNumber="23" />
+          </div>
+          <!-- confirm -->
           <CloseQuestions stepNumber="18" />
-          <br />
-          <PreviewJobBar />
-          <br />
-
-          <SponsoringPageBar />
-          <ClickAdvanced stepNumber="19" />
-          <FillInAdDurationType stepNumber="20" />
-          <FillInAdDurationDate stepNumber="21" />
-          <FillInCPC stepNumber="22" />
-          <FillInAdBudget stepNumber="23" />
 
           <CloseOldJobBar />
 
@@ -137,6 +153,8 @@ import PreviewJobBar from "./bars/PreviewJob";
 import SponsoringPageBar from "./bars/SponsoringPage";
 import CompensationDetailsBar from "./bars/CompensationDetails";
 import DownloadJobDetailsBar from "./bars/DownloadJobDetails";
+import PotentialMatches from "./bars/PotentialMatches.vue";
+import RoleQualifications from "./bars/RoleQualifications.vue";
 
 export default {
   name: "repostingComponent",
@@ -178,6 +196,8 @@ export default {
     CustomizedPreScreeningBar,
     DownloadJobDetailsBar,
     FillInSalaryFromAndTo,
+    PotentialMatches,
+    RoleQualifications,
   },
 
   computed: {

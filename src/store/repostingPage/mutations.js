@@ -59,6 +59,8 @@ export const mutations = {
             close_questions: 'notDone',
             RepostNextJobComponent: 'notDone',
             fillIn_salaryFromAndTo: 'notDone',
+            review_potential_matches: 'notDone',
+            skip_qualifications: 'notDone',
         };
 
         //reset feilure messages
@@ -92,6 +94,8 @@ export const mutations = {
             close_questions: null,
             RepostNextJobComponent: null,
             fillIn_salaryFromAndTo: null,
+            review_potential_matches: null,
+            skip_qualifications: null,
         };
     },
 

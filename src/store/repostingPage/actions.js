@@ -596,6 +596,7 @@ export const actions = {
         })
 
     },
+
     execute_fillIn_email({ state, getters }) {
         return new Promise((res, rej) => {
             state.repostingSteps.fillIn_email = "doing";
@@ -617,6 +618,51 @@ export const actions = {
                 });
         })
 
+    },
+
+    execute_review_potential_matches({ state, getters }) {
+        return new Promise((res, rej) => {
+            state.repostingSteps.review_potential_matches = "doing";
+            state.failureMsgs.review_potential_matches = null;
+            let url = state.BASE_URL + "/jobs/review_potential_matches";
+            axios
+                .post(url, {
+                    jobDetails_emails: getters.getCurrentJob
+                        .jobDetails_emails[0],
+                }).then(() => {
+                    state.repostingSteps.review_potential_matches = "done";
+                    res();
+                })
+                .catch((error) => {
+                    state.repostingSteps.review_potential_matches = "failed";
+                    state.failureMsgs.review_potential_matches = error.response.data.error;
+                    console.log(error);
+                    rej(error)
+                });
+        })
+
+    },
+
+    execute_skip_qualifications({ state, getters }) {
+        return new Promise((res, rej) => {
+            state.repostingSteps.skip_qualifications = "doing";
+            state.failureMsgs.skip_qualifications = null;
+            let url = state.BASE_URL + "/jobs/skip_qualifications";
+            axios
+                .post(url, {
+                    jobDetails_emails: getters.getCurrentJob
+                        .jobDetails_emails[0],
+                }).then(() => {
+                    state.repostingSteps.skip_qualifications = "done";
+                    res();
+                })
+                .catch((error) => {
+                    state.repostingSteps.skip_qualifications = "failed";
+                    state.failureMsgs.skip_qualifications = error.response.data.error;
+                    console.log(error);
+                    rej(error)
+                });
+        })
     },
     execute_close_questions({ state }) {
         return new Promise((res, rej) => {

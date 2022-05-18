@@ -1,6 +1,6 @@
 <template>
   <v-app-bar dark color="#0f3057">
-    <v-toolbar-title class="ml-10">8- Sponsor job</v-toolbar-title>
+    <v-toolbar-title class="ml-10">10- Sponsor job</v-toolbar-title>
 
     <v-spacer></v-spacer>
 
@@ -117,6 +117,9 @@ export default {
         }
 
         this.isLoading = true;
+        await this.$store.dispatch(
+          "repostPageModule/execute_goto_sponsor_page"
+        );
         await this.$store.dispatch("repostPageModule/execute_click_advanced");
         await this.$store.dispatch(
           "repostPageModule/execute_fillIn_adDurationType"
@@ -153,7 +156,12 @@ export default {
         }
       }
       this.isLoading = true;
+
       try {
+        await this.$store.dispatch(
+          "repostPageModule/execute_goto_sponsor_page"
+        );
+
         await this.$store.dispatch("repostPageModule/execute_click_advanced");
         await this.$store.dispatch(
           "repostPageModule/execute_fillIn_adDurationType"
