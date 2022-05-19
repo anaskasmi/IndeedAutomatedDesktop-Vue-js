@@ -52,10 +52,7 @@ export default {
       this.isLoading = true;
       try {
         await this.$store.dispatch("repostPageModule/execute_close_questions");
-        await this.$store.dispatch(
-          "repostPageModule/execute_clickSaveAndContinue"
-        );
-        await this.$store.dispatch("repostPageModule/execute_click_skip");
+
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;

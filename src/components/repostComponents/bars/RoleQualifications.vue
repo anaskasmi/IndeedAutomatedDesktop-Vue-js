@@ -31,7 +31,12 @@ export default {
     async confirm() {
       this.isLoading = true;
       try {
-        await this.$store.dispatch("repostPageModule/execute_skip_qualifications");
+        await this.$store.dispatch(
+          "repostPageModule/execute_skip_qualifications"
+        );
+        await this.$store.dispatch(
+          "repostPageModule/execute_clickSaveAndContinue"
+        );
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;

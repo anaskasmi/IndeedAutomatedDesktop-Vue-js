@@ -72,19 +72,19 @@
           </div>
 
           <div>
-            <br />
-            <PreviewJobBar />
-            <br />
+            <!-- 6 here goes : Review the job post -->
+            <PreviewJobBar  />
           </div>
 
           <!-- 7 here goes : Review potential matches  -->
-          <PotentialMatches />
+          <PotentialMatches class="mt-8" />
           <!-- 8 here goes : Key qualifications   -->
-          <RoleQualifications />
+          <RoleQualifications class="mt-8" />
 
           <div>
             <!-- 9 here goes : Customize your application process (close questions) -->
-            <CustomizedPreScreeningBar />
+            <CustomizedPreScreeningBar class="mt-8" />
+            <CloseQuestions stepNumber="18" />
           </div>
 
           <div>
@@ -97,7 +97,6 @@
             <FillInAdBudget stepNumber="23" />
           </div>
           <!-- confirm -->
-          <CloseQuestions stepNumber="18" />
 
           <CloseOldJobBar />
 
