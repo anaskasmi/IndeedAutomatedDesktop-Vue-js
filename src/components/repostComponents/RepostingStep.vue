@@ -72,30 +72,31 @@
           </div>
 
           <div>
-            <!-- 6 here goes : Review the job post -->
-            <PreviewJobBar  />
-          </div>
-
-          <!-- 7 here goes : Review potential matches  -->
-          <PotentialMatches class="mt-8" />
-          <!-- 8 here goes : Key qualifications   -->
-          <RoleQualifications class="mt-8" />
-
-          <div>
-            <!-- 9 here goes : Customize your application process (close questions) -->
+            <!-- 6 here goes : Customize your application process (close questions) -->
             <CustomizedPreScreeningBar class="mt-8" />
             <CloseQuestions stepNumber="18" />
           </div>
 
           <div>
-            <!-- 10 here goes : sponsor -->
-            <SponsoringPageBar />
+            <!-- 7 here goes : Review the job post -->
+            <PreviewJobBar />
+          </div>
+
+          <div>
+            <!-- 8 here goes : sponsor -->
+            <SponsoringPageBar class="mt-8" />
             <ClickAdvanced stepNumber="19" />
             <FillInAdDurationType stepNumber="20" />
             <FillInAdDurationDate stepNumber="21" />
             <FillInCPC stepNumber="22" />
             <FillInAdBudget stepNumber="23" />
           </div>
+
+          <!-- 7 here goes : Review potential matches  -->
+          <!-- <PotentialMatches class="mt-8" /> -->
+          <!-- 8 here goes : Key qualifications   -->
+          <!-- <RoleQualifications class="mt-8" /> -->
+
           <!-- confirm -->
 
           <CloseOldJobBar />
@@ -152,8 +153,8 @@ import PreviewJobBar from "./bars/PreviewJob";
 import SponsoringPageBar from "./bars/SponsoringPage";
 import CompensationDetailsBar from "./bars/CompensationDetails";
 import DownloadJobDetailsBar from "./bars/DownloadJobDetails";
-import PotentialMatches from "./bars/PotentialMatches.vue";
-import RoleQualifications from "./bars/RoleQualifications.vue";
+// import PotentialMatches from "./bars/PotentialMatches.vue";
+// import RoleQualifications from "./bars/RoleQualifications.vue";
 
 export default {
   name: "repostingComponent",
@@ -195,8 +196,8 @@ export default {
     CustomizedPreScreeningBar,
     DownloadJobDetailsBar,
     FillInSalaryFromAndTo,
-    PotentialMatches,
-    RoleQualifications,
+    // PotentialMatches,
+    // RoleQualifications,
   },
 
   computed: {
