@@ -234,7 +234,7 @@ export default {
       await this.$store.dispatch("repostPageModule/execute_fillIn_CompanyName");
       await this.$store.dispatch("repostPageModule/execute_fillIn_JobTitle");
       await this.$store.dispatch(
-        "repostPageModule/execute_fillIn_RolesLocation"
+        "repostPageModule/execute_fillIn_location"
       );
       await this.$store.dispatch(
         "repostPageModule/execute_clickSaveAndContinue"

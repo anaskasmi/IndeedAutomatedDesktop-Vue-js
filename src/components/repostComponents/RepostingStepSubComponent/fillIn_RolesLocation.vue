@@ -84,18 +84,18 @@ export default {
   computed: {
     status: {
       get() {
-        return this.$store.getters['repostPageModule/getRepostingSteps'].fillIn_RolesLocation;
+        return this.$store.getters['repostPageModule/getRepostingSteps'].fillIn_location;
       },
     },
     failureMsg: {
       get() {
-        return this.$store.getters['repostPageModule/getFailureMsgs'].fillIn_RolesLocation;
+        return this.$store.getters['repostPageModule/getFailureMsgs'].fillIn_location;
       },
     },
   },
   methods: {
     execute() {
-      this.$store.dispatch("repostPageModule/execute_fillIn_RolesLocation");
+      this.$store.dispatch("repostPageModule/execute_fillIn_location");
     },
   },
 };

@@ -107,30 +107,12 @@
                     >Locations :</b
                   >
                   <span
-                    v-if="job.primaryJobLocation"
+                    v-if="job.location || job.address"
                     class="text-secondary mx-1"
-                    >{{ job.primaryJobLocation }}
+                    >{{ job.address + " " + job.location }}
                   </span>
 
-                  <span
-                    v-else
-                    class="text-secondary"
-                    v-for="location in job.displayLocation"
-                    v-bind:key="location.location"
-                  >
-                    {{ location.location }}
-                    <span
-                      class="mx-1"
-                      style="color: black !important"
-                      v-if="
-                        job.displayLocation.length > 1 &&
-                        job.displayLocation[job.displayLocation.length - 1] !=
-                          location
-                      "
-                    >
-                      |
-                    </span>
-                  </span>
+                
                 </div>
               </div>
             </div>

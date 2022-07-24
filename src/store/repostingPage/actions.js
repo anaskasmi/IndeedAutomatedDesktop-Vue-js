@@ -490,26 +490,21 @@ export const actions = {
         })
 
     },
-    execute_fillIn_RolesLocation({ state, getters }) {
+    execute_fillIn_location({ state, getters }) {
         return new Promise((res, rej) => {
-            let locationArray = getters.getCurrentJob.primaryJobLocation.split(
-                ", "
-            );
-            let city = locationArray[0];
-            let stateName = locationArray[1];
 
-            state.repostingSteps.fillIn_RolesLocation = "doing";
-            state.failureMsgs.fillIn_RolesLocation = null;
-            let url = state.BASE_URL + "/jobs/fillIn_RolesLocation";
+            state.repostingSteps.fillIn_location = "doing";
+            state.failureMsgs.fillIn_location = null;
+            let url = state.BASE_URL + "/jobs/fillIn_location";
             axios
-                .post(url, { location: { "city": city, "state": stateName } })
+                .post(url, { "address": getters.getCurrentJob.address, "location": getters.getCurrentJob.location })
                 .then(() => {
                     res();
-                    state.repostingSteps.fillIn_RolesLocation = "done";
+                    state.repostingSteps.fillIn_location = "done";
                 })
                 .catch((error) => {
-                    state.repostingSteps.fillIn_RolesLocation = "failed";
-                    state.failureMsgs.fillIn_RolesLocation = error.response.data.error;
+                    state.repostingSteps.fillIn_location = "failed";
+                    state.failureMsgs.fillIn_location = error.response.data.error;
                     console.log(error);
                     rej(error)
                 });
