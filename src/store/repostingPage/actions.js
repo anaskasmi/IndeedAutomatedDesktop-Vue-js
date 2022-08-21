@@ -62,7 +62,40 @@ export const actions = {
         })
 
     },
+    execute_click_skip({ state }) {
+        return new Promise((res, rej) => {
+            state.repostingSteps.click_skip = "doing";
+            state.failureMsgs.click_skip = null;
+            let url = state.BASE_URL + "/jobs/click_skip";
+            axios
+                .get(url)
+                .then(() => {
+                    state.repostingSteps.click_skip = "done";
+                    res();
+                })
+                .catch((error) => {
+                    state.repostingSteps.click_skip = "failed";
+                    state.failureMsgs.click_skip = error.response.data.error;
+                    console.log(error);
+                    rej(error)
+                });
+        })
 
+    },
+    execute_skip_preview_page({ state }) {
+        return new Promise((res, rej) => {
+            let url = state.BASE_URL + "/jobs/skip_preview_page";
+            axios
+                .get(url)
+                .then(() => {
+                    res();
+                })
+                .catch((error) => {
+                    console.log(error);
+                    rej(error)
+                });
+        })
+    },
     execute_fillIn_CPC({ state, getters }) {
         return new Promise((res, rej) => {
             state.repostingSteps.fillIn_CPC = "doing";
@@ -81,7 +114,6 @@ export const actions = {
                     rej(error)
                 });
         })
-
     },
 
     execute_click_advanced({ state }) {

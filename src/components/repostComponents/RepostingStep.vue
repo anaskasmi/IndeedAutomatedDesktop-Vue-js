@@ -72,14 +72,14 @@
           </div>
 
           <div>
-            <!-- 6 here goes : Customize your application process (close questions) -->
-            <CustomizedPreScreeningBar class="mt-8" />
-            <CloseQuestions stepNumber="18" />
+            <!-- 6 here goes : Review the job post -->
+            <PreviewJobBar />
           </div>
 
           <div>
-            <!-- 7 here goes : Review the job post -->
-            <PreviewJobBar />
+            <!-- 7 here goes : Customize your application process (close questions) -->
+            <CustomizedPreScreeningBar class="mt-8" />
+            <CloseQuestions stepNumber="18" />
           </div>
 
           <div>
@@ -92,13 +92,7 @@
             <FillInAdBudget stepNumber="23" />
           </div>
 
-          <!-- 7 here goes : Review potential matches  -->
-          <!-- <PotentialMatches class="mt-8" /> -->
-          <!-- 8 here goes : Key qualifications   -->
-          <!-- <RoleQualifications class="mt-8" /> -->
-
-          <!-- confirm -->
-
+          <!-- 9 here goes : confirm -->
           <CloseOldJobBar />
 
           <CloseJob stepNumber="24" />
@@ -233,9 +227,7 @@ export default {
       );
       await this.$store.dispatch("repostPageModule/execute_fillIn_CompanyName");
       await this.$store.dispatch("repostPageModule/execute_fillIn_JobTitle");
-      await this.$store.dispatch(
-        "repostPageModule/execute_fillIn_location"
-      );
+      await this.$store.dispatch("repostPageModule/execute_fillIn_location");
       await this.$store.dispatch(
         "repostPageModule/execute_clickSaveAndContinue"
       );

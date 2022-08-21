@@ -29,7 +29,7 @@ export default {
     async confirm() {
       this.isLoading = true;
       try {
-        await this.$store.dispatch("repostPageModule/execute_click_confirm");
+        await this.$store.dispatch("repostPageModule/execute_skip_preview_page");
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;
