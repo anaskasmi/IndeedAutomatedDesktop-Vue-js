@@ -304,7 +304,7 @@ export const actions = {
             let url = state.BASE_URL + "/jobs/fillIn_description";
             axios
                 .post(url, {
-                    jobDescriptionHtml: getters.getCurrentJob.jobDescriptionHtml,
+                    jobDescription: getters.getCurrentJob.jobDescription,
                 }).then(() => {
                     state.repostingSteps.fillIn_description = "done";
                     res();
