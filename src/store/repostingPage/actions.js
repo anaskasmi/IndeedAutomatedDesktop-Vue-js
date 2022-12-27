@@ -116,26 +116,6 @@ export const actions = {
         })
     },
 
-    execute_click_advanced({ state }) {
-        return new Promise((res, rej) => {
-            state.repostingSteps.click_advanced = "doing";
-            state.failureMsgs.click_advanced = null;
-            let url = state.BASE_URL + "/jobs/click_advanced";
-            axios
-                .get(url)
-                .then(() => {
-                    state.repostingSteps.click_advanced = "done";
-                    res();
-                })
-                .catch((error) => {
-                    state.repostingSteps.click_advanced = "failed";
-                    state.failureMsgs.click_advanced = error.response.data.error;
-                    console.log(error);
-                    rej(error)
-                });
-        })
-
-    },
 
     execute_clickSaveAndContinue({ state }) {
         return new Promise((res, rej) => {
@@ -183,7 +163,7 @@ export const actions = {
             state.failureMsgs.fillIn_adBudget = null;
             let url = state.BASE_URL + "/jobs/fillIn_adBudget";
             axios
-                .post(url, { 'budget_amount': getters.getCurrentJob.budget_amount })
+                .post(url, { 'budget': getters.getCurrentJob.budget })
                 .then(() => {
                     state.repostingSteps.fillIn_adBudget = "done";
                     res();
@@ -197,13 +177,13 @@ export const actions = {
         })
 
     },
-    execute_fillIn_adDurationDate({ state }, endDateIncreaseNumber) {
+    execute_fillIn_adDurationDate({ state }) {
         return new Promise((res, rej) => {
             state.repostingSteps.fillIn_adDurationDate = "doing";
             state.failureMsgs.fillIn_adDurationDate = null;
             let url = state.BASE_URL + "/jobs/fillIn_adDurationDate";
             axios
-                .post(url, { endDateIncreaseNumber })
+                .post(url)
                 .then(() => {
                     state.repostingSteps.fillIn_adDurationDate = "done";
                     res();

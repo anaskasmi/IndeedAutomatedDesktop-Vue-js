@@ -2,7 +2,6 @@ export const state = {
     BASE_URL: 'http://127.0.0.1:3009/api',
 
     jobs: [],
-    endDateIncreaseNumber: 3,
     selectedJobs: [],
     currentJob: null,
     isAllSelected: false,

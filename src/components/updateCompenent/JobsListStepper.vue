@@ -63,7 +63,14 @@
 
               <div class="my-auto col">
                 <div
-                  class="my-3 text-info text-left text-uppercase font-weight-bold row justify-content-start align-middle"
+                  class="
+                    my-3
+                    text-info text-left text-uppercase
+                    font-weight-bold
+                    row
+                    justify-content-start
+                    align-middle
+                  "
                 >
                   {{ job.jobTitle }}
                 </div>
@@ -222,10 +229,7 @@
                 <panelTitle title="Budget" />
                 <div class="mt-5">
                   <div class="row col-12 justify-content-around">
-                    <budgetPanel
-                      title="Amount"
-                      :value="'$' + job.budget_amount / 100"
-                    />
+                    <budgetPanel title="Amount" :value="'$' + job.budget" />
                     <budgetPanel
                       title="Display cost"
                       :value="job.budget_displayCost"

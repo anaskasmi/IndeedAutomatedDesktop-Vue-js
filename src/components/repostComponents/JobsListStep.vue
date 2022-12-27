@@ -215,7 +215,7 @@
                   <div class="row col-12 justify-content-around">
                     <budgetPanel
                       title="Amount"
-                      :value="'$' + job.budget_amount / 100"
+                      :value="'$' + job.budget"
                     />
                     <budgetPanel
                       title="Display cost"

@@ -85,18 +85,16 @@
           <div>
             <!-- 8 here goes : sponsor -->
             <SponsoringPageBar class="mt-8" />
-            <ClickAdvanced stepNumber="19" />
-            <FillInAdDurationType stepNumber="20" />
-            <FillInAdDurationDate stepNumber="21" />
-            <FillInCPC stepNumber="22" />
-            <FillInAdBudget stepNumber="23" />
+            <FillInAdDurationType stepNumber="19" />
+            <FillInAdDurationDate stepNumber="20" />
+            <FillInAdBudget stepNumber="21" />
           </div>
 
           <!-- 9 here goes : confirm -->
           <CloseOldJobBar />
 
-          <CloseJob stepNumber="24" />
-          <RepostNextJobComponent stepNumber="25" />
+          <CloseJob stepNumber="22" />
+          <RepostNextJobComponent stepNumber="23" />
         </div>
       </v-stepper>
     </div>
@@ -134,8 +132,6 @@ import FillInEmail from "./RepostingStepSubComponent/fillIn_email";
 import CloseQuestions from "./RepostingStepSubComponent/close_questions";
 import RepostNextJobComponent from "./RepostingStepSubComponent/RepostNextJobComponent";
 import FillInAdDurationType from "./RepostingStepSubComponent/fillIn_adDurationType";
-import ClickAdvanced from "./RepostingStepSubComponent/click_advanced";
-import FillInCPC from "./RepostingStepSubComponent/fillIn_CPC";
 import OpenPostJobBar from "./bars/OpenPostJobBar";
 import GettingStartedBar from "./bars/GettingStarted";
 import CustomizedPreScreeningBar from "./bars/CustomizedPreScreening";
@@ -147,9 +143,6 @@ import PreviewJobBar from "./bars/PreviewJob";
 import SponsoringPageBar from "./bars/SponsoringPage";
 import CompensationDetailsBar from "./bars/CompensationDetails";
 import DownloadJobDetailsBar from "./bars/DownloadJobDetails";
-// import PotentialMatches from "./bars/PotentialMatches.vue";
-// import RoleQualifications from "./bars/RoleQualifications.vue";
-
 export default {
   name: "repostingComponent",
 
@@ -172,8 +165,6 @@ export default {
     FillInAdDurationDate,
     FillInAdDurationType,
     FillInAdBudget,
-    ClickAdvanced,
-    FillInCPC,
     CloseJob,
     FillInEmail,
     CloseQuestions,
@@ -190,8 +181,6 @@ export default {
     CustomizedPreScreeningBar,
     DownloadJobDetailsBar,
     FillInSalaryFromAndTo,
-    // PotentialMatches,
-    // RoleQualifications,
   },
 
   computed: {

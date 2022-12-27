@@ -2,11 +2,6 @@ export const getters = {
     getJobs: (state) => {
         return state.jobs;
     },
-    getEndDateIncreaseNumber: (state) => {
-
-        state.endDateIncreaseNumber = +localStorage.getItem('endDateIncreaseNumber');
-        return state.endDateIncreaseNumber || 3;
-    },
     getSelectedJobs: (state) => {
         return state.selectedJobs;
     },
