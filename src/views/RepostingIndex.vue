@@ -37,7 +37,48 @@
     <!-- steps cards -->
     <v-stepper-items elevation="0">
       <!-- Login step -->
+      <div v-if="error">
+        <v-row class="col-12 my-4" no-gutters justify="center">
+          <div class="col-10">
+            <v-alert rounded="lg" border="left" dismissible type="error">
+              Error: {{ error }}</v-alert
+            >
+          </div>
+        </v-row>
+        <div>
+          <v-divider></v-divider>
+        </div>
+      </div>
       <v-stepper-content step="1" elevation="0">
+        <v-row class="col-12" justify="end" no-gutters>
+          <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                v-bind="attrs"
+                v-on="on"
+                rounded
+                :color="
+                  cookiesSaved
+                    ? 'green lighten-4 white--text '
+                    : 'orange darken-3 white--text'
+                "
+                @click="saveCookies"
+                :loading="cookiesLoading"
+                :disabled="cookiesLoading"
+                :depressed="cookiesSaved"
+              >
+                <v-icon class="mr-2">mdi-cookie</v-icon>
+                {{
+                  cookiesSaved ? "Saved Successfully ! 🎉🎉" : "Save cookies"
+                }}
+              </v-btn>
+            </template>
+            <span
+              >Please make sure Chromuim browser is open, You are on an Indeed
+              page and the page is fully loaded</span
+            >
+          </v-tooltip>
+        </v-row>
         <v-card elevation="0">
           <LoginComponent />
         </v-card>
@@ -51,10 +92,10 @@
           @click="currentStep = 2"
         >
           <v-icon>mdi-chevron-right </v-icon>
-
           Grab All jobs
         </v-btn>
       </v-stepper-content>
+
       <!-- !! end of Login step !!  -->
 
       <!-- grab all jobs -->
@@ -119,6 +160,9 @@ export default {
   data() {
     return {
       currentStep: 1,
+      cookiesLoading: false,
+      error: null,
+      cookiesSaved: false,
     };
   },
   computed: {
@@ -149,6 +193,21 @@ export default {
     },
     async refreshJobs() {
       await this.$store.dispatch("repostPageModule/fetchJobs");
+    },
+    async saveCookies() {
+      this.cookiesLoading = true;
+      try {
+        this.error = null;
+        this.cookiesSaved = false;
+        await this.$store.dispatch("repostPageModule/saveCookies");
+        this.cookiesSaved = true;
+      } catch (error) {
+        this.cookiesSaved = false;
+        this.error =
+          "couldn't save cookies, please make sure your chromuim browser is open and you are logged in";
+      } finally {
+        this.cookiesLoading = false;
+      }
     },
   },
 };

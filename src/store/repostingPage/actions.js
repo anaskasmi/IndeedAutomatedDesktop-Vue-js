@@ -2,6 +2,10 @@ import axios from 'axios'
 
 
 export const actions = {
+    async saveCookies({ state }) {
+        let url = state.BASE_URL + "/jobs/saveCookies";
+        await axios.get(url);
+    },
     async fetchJobs({ state, commit }) {
         //init
         state.fetchJobsStatus.failed = false;
