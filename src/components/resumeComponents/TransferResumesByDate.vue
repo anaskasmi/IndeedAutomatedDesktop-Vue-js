@@ -75,7 +75,7 @@
             <v-btn
               color="info"
               tile
-              @click="transferResumesOfCandidatesList"
+              @click="transferResumesOfCandidatesList(false)"
               :disabled="candidatesListUnderTransfer"
               :loading="candidatesListUnderTransfer"
             >
