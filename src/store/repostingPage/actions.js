@@ -20,11 +20,26 @@ export const actions = {
             jobs = jobs.sort((job1, job2) => {
                 let dateOfJob1 = new Date(job1.dateCreated);
                 let dateOfJob2 = new Date(job2.dateCreated);
-                if (dateOfJob1 >= dateOfJob2) {
+
+                // Compare dates
+                if (dateOfJob1 > dateOfJob2) {
                     return 1;
-                } else {
+                } else if (dateOfJob1 < dateOfJob2) {
                     return -1;
                 }
+
+                // Dates are equal, so compare times
+                let timeOfJob1 = dateOfJob1.getTime();
+                let timeOfJob2 = dateOfJob2.getTime();
+
+                if (timeOfJob1 > timeOfJob2) {
+                    return 1;
+                } else if (timeOfJob1 < timeOfJob2) {
+                    return -1;
+                }
+
+                // Times are equal, so jobs are equal
+                return 0;
             });
             commit("setJobs", jobs);
             if (!state.selectedJobs.length) {
