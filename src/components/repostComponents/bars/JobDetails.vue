@@ -45,6 +45,10 @@ export default {
           "repostPageModule/execute_fillIn_isJobFullTimeOrPartTime"
         );
         await this.$store.dispatch("repostPageModule/execute_fillIn_schedule");
+				await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_hiresNumber"
+        );
+        await this.$store.dispatch("repostPageModule/execute_fillIn_deadline");
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;
@@ -58,7 +62,12 @@ export default {
           "repostPageModule/execute_fillIn_isJobFullTimeOrPartTime"
         );
         await this.$store.dispatch("repostPageModule/execute_fillIn_schedule");
-        await this.$store.dispatch(
+
+				await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_hiresNumber"
+        );
+        await this.$store.dispatch("repostPageModule/execute_fillIn_deadline");
+				await this.$store.dispatch(
           "repostPageModule/execute_clickSaveAndContinue"
         );
         this.isLoading = false;

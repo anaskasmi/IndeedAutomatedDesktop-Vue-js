@@ -46,29 +46,28 @@
           <FillInRolesLocation stepNumber="6" />
 
           <JobDetailsBar />
-
           <FillInIsJobFullTimeOrPartTime stepNumber="7" />
           <FillInSchedule stepNumber="8" />
+					<FillInHiresNumber stepNumber="9" />
+					<FillInDeadline stepNumber="10" />
 
           <CompensationDetailsBar />
 
-          <FillInPaymentType stepNumber="9" />
-          <FillInSalaryFromAndTo stepNumber="10" />
+          <FillInPaymentType stepNumber="11" />
+          <FillInSalaryFromAndTo stepNumber="12" />
 
-          <FillInPaymentPer stepNumber="11" />
-          <FillInBenefits stepNumber="12" />
+          <FillInPaymentPer stepNumber="13" />
+          <FillInBenefits stepNumber="14" />
 
           <JobDescriptionBar />
 
-          <FillInDescription stepNumber="13" />
+          <FillInDescription stepNumber="15" />
 
           <div>
             <!-- 5 here goes : Set application preferences -->
             <ApplicationSettingsBar />
-            <FillInIsResumeRequired stepNumber="14" />
-            <FillInEmail stepNumber="15" />
-            <FillInHiresNumber stepNumber="16" />
-            <FillInDeadline stepNumber="17" />
+            <FillInIsResumeRequired stepNumber="16" />
+            <FillInEmail stepNumber="17" />
           </div>
 
           <div>
@@ -82,7 +81,7 @@
             <CloseQuestions stepNumber="18" />
           </div>
 
-          <div>
+         <div>
             <!-- 8 here goes : sponsor -->
             <SponsoringPageBar class="mt-8" />
             <FillInAdDurationType stepNumber="19" />
