@@ -12,7 +12,12 @@
       edit-icon="mdi-check"
       elevation="0"
     >
-      Fill In salary
+      Fill In salary ({{
+        "from : " +
+        salaryFrom +
+        " USD " +
+        (salaryTo ? "- To: " + salaryTo + " USD" : "")
+      }})
     </v-stepper-step>
 
     <v-stepper-content :step="stepNumber" elevation="0">
@@ -76,19 +81,32 @@
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   props: ["stepNumber"],
   computed: {
     status: {
       get() {
-        return this.$store.getters['repostPageModule/getRepostingSteps'].fillIn_salaryFromAndTo;
+        return this.$store.getters["repostPageModule/getRepostingSteps"]
+          .fillIn_salaryFromAndTo;
       },
     },
     failureMsg: {
       get() {
-        return this.$store.getters['repostPageModule/getFailureMsgs'].fillIn_salaryFromAndTo;
+        return this.$store.getters["repostPageModule/getFailureMsgs"]
+          .fillIn_salaryFromAndTo;
+      },
+    },
+    salaryFrom: {
+      get() {
+        return this.$store.getters["repostPageModule/getCurrentJob"]
+          .jobDetails_SalaryFrom;
+      },
+    },
+    salaryTo: {
+      get() {
+        return this.$store.getters["repostPageModule/getCurrentJob"]
+          .jobDetails_SalaryTo;
       },
     },
   },

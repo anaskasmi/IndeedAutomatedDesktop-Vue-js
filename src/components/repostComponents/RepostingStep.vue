@@ -40,34 +40,32 @@
           <OpenPostJobPage stepNumber="2" />
 
           <GettingStartedBar />
-          <UnlockCompanyNameInput stepNumber="3" />
-          <FillInCompanyName stepNumber="4" />
-          <FillInJobTitle stepNumber="5" />
-          <FillInRolesLocation stepNumber="6" />
+          <FillInJobTitle stepNumber="3" />
+          <FillInRolesLocation stepNumber="4" />
 
           <JobDetailsBar />
-          <FillInIsJobFullTimeOrPartTime stepNumber="7" />
-          <FillInSchedule stepNumber="8" />
-					<FillInHiresNumber stepNumber="9" />
-					<FillInDeadline stepNumber="10" />
+          <FillInIsJobFullTimeOrPartTime stepNumber="5" />
+          <FillInSchedule stepNumber="6" />
+					<FillInHiresNumber stepNumber="7" />
+					<FillInDeadline stepNumber="8" />
 
           <CompensationDetailsBar />
 
-          <FillInPaymentType stepNumber="11" />
-          <FillInSalaryFromAndTo stepNumber="12" />
+          <FillInPaymentType stepNumber="9" />
+          <FillInSalaryFromAndTo stepNumber="10" />
 
-          <FillInPaymentPer stepNumber="13" />
-          <FillInBenefits stepNumber="14" />
+          <FillInPaymentPer stepNumber="11" />
+          <FillInBenefits stepNumber="12" />
 
           <JobDescriptionBar />
 
-          <FillInDescription stepNumber="15" />
+          <FillInDescription stepNumber="13" />
 
           <div>
             <!-- 5 here goes : Set application preferences -->
             <ApplicationSettingsBar />
-            <FillInIsResumeRequired stepNumber="16" />
-            <FillInEmail stepNumber="17" />
+            <FillInIsResumeRequired stepNumber="14" />
+            <FillInEmail stepNumber="15" />
           </div>
 
           <div>
@@ -78,22 +76,22 @@
           <div>
             <!-- 7 here goes : Customize your application process (close questions) -->
             <CustomizedPreScreeningBar class="mt-8" />
-            <CloseQuestions stepNumber="18" />
+            <CloseQuestions stepNumber="16" />
           </div>
 
          <div>
             <!-- 8 here goes : sponsor -->
             <SponsoringPageBar class="mt-8" />
-            <FillInAdDurationType stepNumber="19" />
-            <FillInAdDurationDate stepNumber="20" />
-            <FillInAdBudget stepNumber="21" />
+            <FillInAdDurationType stepNumber="17" />
+            <FillInAdDurationDate stepNumber="18" />
+            <FillInAdBudget stepNumber="19" />
           </div>
 
           <!-- 9 here goes : confirm -->
           <CloseOldJobBar />
 
-          <CloseJob stepNumber="22" />
-          <RepostNextJobComponent stepNumber="23" />
+          <CloseJob stepNumber="20" />
+          <RepostNextJobComponent stepNumber="21" />
         </div>
       </v-stepper>
     </div>
@@ -110,8 +108,6 @@
 <script>
 import OpenPostJobPage from "./RepostingStepSubComponent/openPostJobPage";
 import GetJobFullDetails from "./RepostingStepSubComponent/getJobFullDetails";
-import UnlockCompanyNameInput from "./RepostingStepSubComponent/unlockCompanyNameInput";
-import FillInCompanyName from "./RepostingStepSubComponent/fillIn_CompanyName";
 import FillInJobTitle from "./RepostingStepSubComponent/fillIn_JobTitle";
 import FillInRolesLocation from "./RepostingStepSubComponent/fillIn_RolesLocation";
 import FillInIsJobFullTimeOrPartTime from "./RepostingStepSubComponent/fillIn_isJobFullTimeOrPartTime";
@@ -148,8 +144,6 @@ export default {
   components: {
     OpenPostJobPage,
     GetJobFullDetails,
-    UnlockCompanyNameInput,
-    FillInCompanyName,
     FillInJobTitle,
     FillInRolesLocation,
     FillInIsJobFullTimeOrPartTime,
@@ -197,7 +191,7 @@ export default {
       get() {
         return this.$store.getters["repostPageModule/doesJobHasFullDetails"];
       },
-    },
+    }, 
   },
   data() {
     return {

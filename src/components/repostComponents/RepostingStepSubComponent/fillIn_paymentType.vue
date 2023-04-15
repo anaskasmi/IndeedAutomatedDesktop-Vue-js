@@ -12,7 +12,7 @@
       edit-icon="mdi-check"
       elevation="0"
     >
-      Fill In Payment Type
+      Fill In Payment Type ({{ rangeType }})
     </v-stepper-step>
 
     <v-stepper-content :step="stepNumber" elevation="0">
@@ -32,7 +32,8 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually by Filling the payment type Input (range or starting at or up to ...)
+        This task Failed, Rexecute it Or do it manually by Filling the payment
+        type Input (range or starting at or up to ...)
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -76,19 +77,26 @@
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   props: ["stepNumber"],
   computed: {
     status: {
       get() {
-        return this.$store.getters['repostPageModule/getRepostingSteps'].fillIn_paymentType;
+        return this.$store.getters["repostPageModule/getRepostingSteps"]
+          .fillIn_paymentType;
       },
     },
     failureMsg: {
       get() {
-        return this.$store.getters['repostPageModule/getFailureMsgs'].fillIn_paymentType;
+        return this.$store.getters["repostPageModule/getFailureMsgs"]
+          .fillIn_paymentType;
+      },
+    },
+    rangeType: {
+      get() {
+        return this.$store.getters["repostPageModule/getCurrentJob"]
+          .jobDetails_salaryRangeType;
       },
     },
   },

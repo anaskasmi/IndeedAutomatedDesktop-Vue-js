@@ -12,11 +12,7 @@ export const getters = {
         return state.fetchJobsStatus;
     },
     getIsRepostingPageEnabled: (state) => {
-        if (state.selectedJobs.length > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return (state.selectedJobs.length > 0);
     },
     getCurrentJob: (state) => {
         if (state.selectedJobs.length > 0) {

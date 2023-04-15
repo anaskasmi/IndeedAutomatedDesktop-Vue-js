@@ -12,7 +12,7 @@
       edit-icon="mdi-check"
       elevation="0"
     >
-      Fill In Payment Per
+      Fill In Payment Per ({{ salaryPer }})
     </v-stepper-step>
 
     <v-stepper-content :step="stepNumber" elevation="0">
@@ -32,7 +32,8 @@
         prominent
         border="left"
       >
-        This task Failed, Rexecute it Or do it manually by Filling the payment Per
+        This task Failed, Rexecute it Or do it manually by Filling the payment
+        Per
       </v-alert>
       <v-alert
         v-if="status == 'done'"
@@ -76,19 +77,26 @@
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   props: ["stepNumber"],
   computed: {
     status: {
       get() {
-        return this.$store.getters['repostPageModule/getRepostingSteps'].fillIn_paymentPer;
+        return this.$store.getters["repostPageModule/getRepostingSteps"]
+          .fillIn_paymentPer;
       },
     },
     failureMsg: {
       get() {
-        return this.$store.getters['repostPageModule/getFailureMsgs'].fillIn_paymentPer;
+        return this.$store.getters["repostPageModule/getFailureMsgs"]
+          .fillIn_paymentPer;
+      },
+    },
+    salaryPer: {
+      get() {
+        return this.$store.getters["repostPageModule/getCurrentJob"]
+          .jobDetails_SalaryPer;
       },
     },
   },

@@ -41,12 +41,6 @@ export default {
     async fillInPage() {
       this.isLoading = true;
       try {
-        await this.$store.dispatch(
-          "repostPageModule/execute_unlockCompanyNameInput"
-        );
-        await this.$store.dispatch(
-          "repostPageModule/execute_fillIn_CompanyName"
-        );
         await this.$store.dispatch("repostPageModule/execute_fillIn_JobTitle");
         await this.$store.dispatch(
           "repostPageModule/execute_fillIn_location"
@@ -61,18 +55,6 @@ export default {
     async fillInPageAndContinue() {
       this.isLoading = true;
       try {
-        try {
-          await this.$store.dispatch(
-            "repostPageModule/execute_unlockCompanyNameInput"
-          );
-        } catch (error) {
-          this.isLoading = false;
-
-          console.log(error);
-        }
-        await this.$store.dispatch(
-          "repostPageModule/execute_fillIn_CompanyName"
-        );
         await this.$store.dispatch("repostPageModule/execute_fillIn_JobTitle");
         await this.$store.dispatch(
           "repostPageModule/execute_fillIn_location"
