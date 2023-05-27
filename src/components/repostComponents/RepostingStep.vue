@@ -41,31 +41,31 @@
 
           <GettingStartedBar />
           <FillInJobTitle stepNumber="3" />
-          <FillInRolesLocation stepNumber="4" />
+					<FillInHiresNumber stepNumber="4" />
+          <FillInRolesLocation stepNumber="5" />
 
           <JobDetailsBar />
-          <FillInIsJobFullTimeOrPartTime stepNumber="5" />
-          <FillInSchedule stepNumber="6" />
-					<FillInHiresNumber stepNumber="7" />
-					<FillInDeadline stepNumber="8" />
+          <FillInIsJobFullTimeOrPartTime stepNumber="6" />
+          <FillInSchedule stepNumber="7" />
 
           <CompensationDetailsBar />
 
-          <FillInPaymentType stepNumber="9" />
-          <FillInSalaryFromAndTo stepNumber="10" />
+          <FillInPaymentType stepNumber="8" />
+          <FillInSalaryFromAndTo stepNumber="9" />
 
-          <FillInPaymentPer stepNumber="11" />
-          <FillInBenefits stepNumber="12" />
+          <FillInPaymentPer stepNumber="10" />
+          <FillInBenefits stepNumber="11" />
 
           <JobDescriptionBar />
 
-          <FillInDescription stepNumber="13" />
+          <FillInDescription stepNumber="12" />
 
           <div>
             <!-- 5 here goes : Set application preferences -->
             <ApplicationSettingsBar />
-            <FillInIsResumeRequired stepNumber="14" />
-            <FillInEmail stepNumber="15" />
+            <FillInIsResumeRequired stepNumber="13" />
+            <FillInEmail stepNumber="14" />
+						<FillInDeadline stepNumber="15" />
           </div>
 
           <div>

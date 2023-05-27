@@ -2,12 +2,12 @@
   <div>
     <v-stepper-step
       editable
-      :step="stepNumber"
+      :step="stepNumber" 
       :rules="[
         (status) => {
           return this.status != 'failed';
         },
-      ]"
+      ]" 
       :complete="this.status == 'done'"
       edit-icon="mdi-check"
       elevation="0"

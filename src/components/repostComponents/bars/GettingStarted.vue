@@ -42,6 +42,9 @@ export default {
       this.isLoading = true;
       try {
         await this.$store.dispatch("repostPageModule/execute_fillIn_JobTitle");
+				await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_hiresNumber"
+        );
         await this.$store.dispatch(
           "repostPageModule/execute_fillIn_location"
         );
@@ -56,7 +59,9 @@ export default {
       this.isLoading = true;
       try {
         await this.$store.dispatch("repostPageModule/execute_fillIn_JobTitle");
-        await this.$store.dispatch(
+				await this.$store.dispatch(
+          "repostPageModule/execute_fillIn_hiresNumber"
+        );        await this.$store.dispatch(
           "repostPageModule/execute_fillIn_location"
         );
 
