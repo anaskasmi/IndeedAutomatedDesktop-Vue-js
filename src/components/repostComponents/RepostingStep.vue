@@ -32,8 +32,6 @@
         class="mb-10"
         elevation="0"
       >
-        <DownloadJobDetailsBar />
-        <GetJobFullDetails stepNumber="1" />
 
         <div v-if="doesJobHasFullDetails">
           <OpenPostJobBar />
@@ -107,7 +105,6 @@
 
 <script>
 import OpenPostJobPage from "./RepostingStepSubComponent/openPostJobPage";
-import GetJobFullDetails from "./RepostingStepSubComponent/getJobFullDetails";
 import FillInJobTitle from "./RepostingStepSubComponent/fillIn_JobTitle";
 import FillInRolesLocation from "./RepostingStepSubComponent/fillIn_RolesLocation";
 import FillInIsJobFullTimeOrPartTime from "./RepostingStepSubComponent/fillIn_isJobFullTimeOrPartTime";
@@ -137,13 +134,11 @@ import JobDetailsBar from "./bars/JobDetails";
 import PreviewJobBar from "./bars/PreviewJob";
 import SponsoringPageBar from "./bars/SponsoringPage";
 import CompensationDetailsBar from "./bars/CompensationDetails";
-import DownloadJobDetailsBar from "./bars/DownloadJobDetails";
 export default {
   name: "repostingComponent",
 
   components: {
     OpenPostJobPage,
-    GetJobFullDetails,
     FillInJobTitle,
     FillInRolesLocation,
     FillInIsJobFullTimeOrPartTime,
@@ -172,7 +167,6 @@ export default {
     SponsoringPageBar,
     CompensationDetailsBar,
     CustomizedPreScreeningBar,
-    DownloadJobDetailsBar,
     FillInSalaryFromAndTo,
   },
 

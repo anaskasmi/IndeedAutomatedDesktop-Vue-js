@@ -182,7 +182,7 @@ export const actions = {
             state.failureMsgs.fillIn_adBudget = null;
             let url = state.BASE_URL + "/jobs/fillIn_adBudget";
             axios
-                .post(url, { 'budget': getters.getCurrentJob.budget })
+                .post(url, { 'budget_amount': getters.getCurrentJob.budget_amount/100 })
                 .then(() => {
                     state.repostingSteps.fillIn_adBudget = "done";
                     res();
@@ -282,7 +282,7 @@ export const actions = {
             state.failureMsgs.fillIn_deadline = null;
             let url = state.BASE_URL + "/jobs/fillIn_deadline";
             axios
-                .post(url, { 'jobDetails_expectedHireDate': getters.getCurrentJob.jobDetails_expectedHireDate })
+                .post(url, { 'expectedHireDate': getters.getCurrentJob.expectedHireDate })
                 .then(() => {
                     state.repostingSteps.fillIn_deadline = "done";
                     res();
@@ -303,7 +303,7 @@ export const actions = {
             let url = state.BASE_URL + "/jobs/fillIn_description";
             axios
                 .post(url, {
-                    jobDescription: getters.getCurrentJob.jobDescription,
+                    description: getters.getCurrentJob.description,
                 }).then(() => {
                     state.repostingSteps.fillIn_description = "done";
                     res();
@@ -324,7 +324,7 @@ export const actions = {
             let url = state.BASE_URL + "/jobs/fillIn_hiresNumber";
             axios
                 .post(url, {
-                    jobDetails_intHiresNeeded: getters.getCurrentJob.jobDetails_intHiresNeeded,
+                    hiresNeeded: getters.getCurrentJob.hiresNeeded,
                 })
                 .then(() => {
                     state.repostingSteps.fillIn_hiresNumber = "done";
@@ -346,8 +346,8 @@ export const actions = {
             let url = state.BASE_URL + "/jobs/fillIn_isJobFullTimeOrPartTime";
             axios
                 .post(url, {
-                    jobDetails_WhatTypeOfJobIsIt: getters.getCurrentJob
-                        .jobDetails_WhatTypeOfJobIsIt,
+                    type: getters.getCurrentJob
+                        .type,
                 }).then(() => {
                     state.repostingSteps.fillIn_isJobFullTimeOrPartTime = "done";
                     res();
@@ -433,12 +433,12 @@ export const actions = {
             let url = state.BASE_URL + "/jobs/fillIn_salaryFromAndTo";
             axios
                 .post(url, {
-                    jobDetails_SalaryFrom: getters.getCurrentJob
-                        .jobDetails_SalaryFrom,
-                    jobDetails_SalaryTo: getters.getCurrentJob
-                        .jobDetails_SalaryTo,
-                    jobDetails_salaryRangeType: getters.getCurrentJob
-                        .jobDetails_salaryRangeType,
+                    minSalary: getters.getCurrentJob
+                        .minSalary,
+                    maxSalary: getters.getCurrentJob
+                        .maxSalary,
+                    salaryRange: getters.getCurrentJob
+                        .salaryRange,
                 }).then(() => {
                     state.repostingSteps.fillIn_salaryFromAndTo = "done";
                     res();
@@ -483,8 +483,8 @@ export const actions = {
                 .post(url, {
                     jobDetails_SalaryTo: getters.getCurrentJob
                         .jobDetails_SalaryTo,
-                    jobDetails_salaryRangeType: getters.getCurrentJob
-                        .jobDetails_salaryRangeType
+                    salaryPeriod: getters.getCurrentJob
+                        .salaryPeriod
                 }).then(() => {
                     state.repostingSteps.fillIn_paymentTo = "done";
                     res();
@@ -506,8 +506,8 @@ export const actions = {
             let url = state.BASE_URL + "/jobs/fillIn_paymentType";
             axios
                 .post(url, {
-                    jobDetails_salaryRangeType: getters.getCurrentJob
-                        .jobDetails_salaryRangeType,
+                    salaryPeriod: getters.getCurrentJob
+                        .salaryPeriod,
                 }).then(() => {
                     state.repostingSteps.fillIn_paymentType = "done";
                     res();
@@ -561,28 +561,6 @@ export const actions = {
         })
 
     },
-    execute_getJobFullDetails({ state, getters, commit }) {
-        return new Promise((response, reject) => {
-            state.repostingSteps.getJobFullDetails = "doing";
-            state.failureMsgs.getJobFullDetails = null;
-            let url = state.BASE_URL + "/jobs/getJobFullDetails";
-            axios
-                .post(url, { job_id: getters.getCurrentJob.job_id })
-                .then((res) => {
-                    state.repostingSteps.getJobFullDetails = "done";
-                    //affect the full details to the current job
-                    commit("setCurrentJob", res.data.job);
-                    response();
-
-                })
-                .catch((error) => {
-                    state.repostingSteps.getJobFullDetails = "failed";
-                    state.failureMsgs.getJobFullDetails = error.response.data.error;
-                    console.log(error);
-                    reject(error)
-                });
-        })
-    },
     execute_openPostJobPage({ state }) {
         return new Promise((res, rej) => {
             state.repostingSteps.openPostJobPage = "doing";
@@ -630,8 +608,8 @@ export const actions = {
             let url = state.BASE_URL + "/jobs/fillIn_email";
             axios
                 .post(url, {
-                    jobDetails_emails: getters.getCurrentJob
-                        .jobDetails_emails[0],
+                    email: getters.getCurrentJob
+                        .email,
                 }).then(() => {
                     state.repostingSteps.fillIn_email = "done";
                     res();
@@ -653,8 +631,8 @@ export const actions = {
             let url = state.BASE_URL + "/jobs/review_potential_matches";
             axios
                 .post(url, {
-                    jobDetails_emails: getters.getCurrentJob
-                        .jobDetails_emails[0],
+                    email: getters.getCurrentJob
+                        .email,
                 }).then(() => {
                     state.repostingSteps.review_potential_matches = "done";
                     res();
@@ -676,8 +654,8 @@ export const actions = {
             let url = state.BASE_URL + "/jobs/skip_qualifications";
             axios
                 .post(url, {
-                    jobDetails_emails: getters.getCurrentJob
-                        .jobDetails_emails[0],
+                    email: getters.getCurrentJob
+                        .email,
                 }).then(() => {
                     state.repostingSteps.skip_qualifications = "done";
                     res();

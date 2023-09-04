@@ -12,7 +12,6 @@ export const state = {
         failureMsg: null,
     },
     repostingSteps: {
-        getJobFullDetails: 'notDone',
         openPostJobPage: 'notDone',
         unlockCompanyNameInput: 'notDone',
         fillIn_CompanyName: 'notDone',
@@ -47,7 +46,6 @@ export const state = {
 
     },
     failureMsgs: {
-        getJobFullDetails: null,
         openPostJobPage: null,
         unlockCompanyNameInput: null,
         fillIn_CompanyName: null,

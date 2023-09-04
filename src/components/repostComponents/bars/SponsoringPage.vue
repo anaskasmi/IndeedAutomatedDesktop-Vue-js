@@ -1,7 +1,7 @@
 <template>
   <v-app-bar dark color="#0f3057">
     <v-toolbar-title class="ml-10"
-      >8- Sponsor job (budget : ${{ this.budget }})</v-toolbar-title
+      >8- Sponsor job (budget : ${{ this.budget_amount }})</v-toolbar-title
     >
     <v-spacer></v-spacer>
 
@@ -39,18 +39,18 @@ export default {
     };
   },
   computed: {
-    budget: {
+    budget_amount: {
       get: function () {
-        return this.$store.getters["repostPageModule/getCurrentJob"].budget;
+        return this.$store.getters["repostPageModule/getCurrentJob"].budget_amount /100;
       },
     },
   },
   methods: {
     async fillInPage() {
       try {
-        if (this.budget > 5) {
+        if (this.budget_amount > 5) {
           let result = await this.$swal.fire({
-            title: `Current budget is ${this.budget}!`,
+            title: `Current budget is ${this.budget_amount}!`,
             text: "Please keep an eye on the Budget Field, it's seems higher than the usual $5",
             icon: "warning",
             showCancelButton: true,
@@ -82,9 +82,9 @@ export default {
       }
     },
     async fillInPageAndContinue() {
-      if (this.budget > 5) {
+      if (this.budget_amount > 5) {
         let result = await this.$swal.fire({
-          title: `Current budget is $ ${this.budget}!`,
+          title: `Current budget is $ ${this.budget_amount}!`,
           text: "Please keep an eye on the Budget Field, it's seems higher than the usual $5",
           icon: "warning",
           showCancelButton: true,

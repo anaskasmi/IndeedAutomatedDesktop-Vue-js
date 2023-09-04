@@ -32,8 +32,8 @@ export const getters = {
         return state.failureMsgs;
     },
     doesJobHasFullDetails: (state) => {
-        if (state.currentJob && state.currentJob.jobDetails_type) {
-            return (state.currentJob.jobDetails_type != null)
+        if (state.currentJob && state.currentJob.description) {
+            return (state.currentJob.description != null)
         }
         return false;
     }

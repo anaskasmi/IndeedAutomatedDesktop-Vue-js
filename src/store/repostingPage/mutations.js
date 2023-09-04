@@ -26,7 +26,6 @@ export const mutations = {
         state.currentJob = state.selectedJobs[0];
         //reset steps
         state.repostingSteps = {
-            getJobFullDetails: 'notDone',
             openPostJobPage: 'notDone',
             unlockCompanyNameInput: 'notDone',
             fillIn_CompanyName: 'notDone',
@@ -61,7 +60,6 @@ export const mutations = {
 
         //reset feilure messages
         state.failureMsgs = {
-            getJobFullDetails: null,
             openPostJobPage: null,
             unlockCompanyNameInput: null,
             fillIn_CompanyName: null,

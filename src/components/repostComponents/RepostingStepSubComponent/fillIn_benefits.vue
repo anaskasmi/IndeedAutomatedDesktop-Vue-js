@@ -5,7 +5,7 @@
 				return this.status != 'failed';
 			},
 		]" :complete="this.status == 'done'" edit-icon="mdi-check" elevation="0">
-			Fill In Benefits ({{ benefitsLength }} item)
+			<div>Fill In Benefits : <span class="font-weight-light warning--text">{{ benefits.join(', ') }}</span> </div>
 		</v-stepper-step>
 
 		<v-stepper-content :step="stepNumber" elevation="0">
@@ -49,10 +49,10 @@ export default {
 					.fillIn_benefits;
 			},
 		},
-		benefitsLength: {
+		benefits: {
 			get: function () {
 				return this.$store.getters["repostPageModule/getCurrentJob"]
-					.benefits?.length;
+					.benefits;
 			},
 		},
 	},
