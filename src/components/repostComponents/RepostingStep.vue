@@ -48,10 +48,7 @@
 
           <CompensationDetailsBar />
 
-          <FillInPaymentType stepNumber="8" />
-          <FillInSalaryFromAndTo stepNumber="9" />
-
-          <FillInPaymentPer stepNumber="10" />
+          <FillIn_Salary stepNumber="8" />
           <FillInBenefits stepNumber="11" />
 
           <JobDescriptionBar />
@@ -112,9 +109,7 @@ import FillInSchedule from "./RepostingStepSubComponent/fillIn_schedule";
 import FillInHiresNumber from "./RepostingStepSubComponent/fillIn_hiresNumber";
 import FillInBenefits from "./RepostingStepSubComponent/fillIn_benefits";
 import FillInDeadline from "./RepostingStepSubComponent/fillIn_deadline";
-import FillInPaymentType from "./RepostingStepSubComponent/fillIn_paymentType";
-import FillInPaymentPer from "./RepostingStepSubComponent/fillIn_paymentPer";
-import FillInSalaryFromAndTo from "./RepostingStepSubComponent/fillIn_salaryFromAndTo";
+import FillIn_Salary from "./RepostingStepSubComponent/fillIn_salary";
 import FillInDescription from "./RepostingStepSubComponent/fillIn_description";
 import FillInIsResumeRequired from "./RepostingStepSubComponent/fillIn_isResumeRequired";
 import FillInAdDurationDate from "./RepostingStepSubComponent/fillIn_adDurationDate";
@@ -145,8 +140,7 @@ export default {
     FillInSchedule,
     FillInHiresNumber,
     FillInDeadline,
-    FillInPaymentType,
-    FillInPaymentPer,
+    FillIn_Salary,
     FillInBenefits,
     FillInDescription,
     FillInIsResumeRequired,
@@ -167,7 +161,6 @@ export default {
     SponsoringPageBar,
     CompensationDetailsBar,
     CustomizedPreScreeningBar,
-    FillInSalaryFromAndTo,
   },
 
   computed: {

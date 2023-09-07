@@ -402,121 +402,30 @@ export const actions = {
                 });
         })
     },
-    execute_fillIn_paymentFrom({ state, getters }) {
+    execute_fillIn_salary({ state, getters }) {
         return new Promise((res, rej) => {
-            state.repostingSteps.fillIn_paymentFrom = "doing";
-            state.failureMsgs.fillIn_paymentFrom = null;
-            let url = state.BASE_URL + "/jobs/fillIn_paymentFrom";
+            state.repostingSteps.fillIn_salary = "doing";
+            state.failureMsgs.fillIn_salary = null;
+            let url = state.BASE_URL + "/jobs/fillIn_salary";
             axios
                 .post(url, {
-                    jobDetails_SalaryFrom: getters.getCurrentJob
-                        .jobDetails_SalaryFrom,
-                }).then(() => {
-                    state.repostingSteps.fillIn_paymentFrom = "done";
-                    res();
-                })
-                .catch((error) => {
-                    state.repostingSteps.fillIn_paymentFrom = "failed";
-                    state.failureMsgs.fillIn_paymentFrom = error.response.data.error;
-                    console.log(error);
-                    rej(error);
-                });
-        })
-
-    },
-
-
-    execute_fillIn_salaryFromAndTo({ state, getters }) {
-        return new Promise((res, rej) => {
-            state.repostingSteps.fillIn_salaryFromAndTo = "doing";
-            state.failureMsgs.fillIn_salaryFromAndTo = null;
-            let url = state.BASE_URL + "/jobs/fillIn_salaryFromAndTo";
-            axios
-                .post(url, {
-                    minSalary: getters.getCurrentJob
-                        .minSalary,
-                    maxSalary: getters.getCurrentJob
-                        .maxSalary,
                     salaryRange: getters.getCurrentJob
                         .salaryRange,
-                }).then(() => {
-                    state.repostingSteps.fillIn_salaryFromAndTo = "done";
-                    res();
-                })
-                .catch((error) => {
-                    state.repostingSteps.fillIn_salaryFromAndTo = "failed";
-                    state.failureMsgs.fillIn_salaryFromAndTo = error.response.data.error;
-                    console.log(error);
-                    rej(error);
-                });
-        })
-
-    },
-    execute_fillIn_paymentPer({ state, getters }) {
-        return new Promise((res, rej) => {
-            state.repostingSteps.fillIn_paymentPer = "doing";
-            state.failureMsgs.fillIn_paymentPer = null;
-            let url = state.BASE_URL + "/jobs/fillIn_paymentPer";
-            axios
-                .post(url, {
-                    jobDetails_SalaryPer: getters.getCurrentJob
-                        .jobDetails_SalaryPer,
-                }).then(() => {
-                    state.repostingSteps.fillIn_paymentPer = "done";
-                    res()
-                })
-                .catch((error) => {
-                    state.repostingSteps.fillIn_paymentPer = "failed";
-                    state.failureMsgs.fillIn_paymentPer = error.response.data.error;
-                    console.log(error);
-                    rej(error);
-                });
-        })
-
-    },
-    execute_fillIn_paymentTo({ state, getters }) {
-        return new Promise((res, rej) => {
-            state.repostingSteps.fillIn_paymentTo = "doing";
-            state.failureMsgs.fillIn_paymentTo = null;
-            let url = state.BASE_URL + "/jobs/fillIn_paymentTo";
-            axios
-                .post(url, {
-                    jobDetails_SalaryTo: getters.getCurrentJob
-                        .jobDetails_SalaryTo,
-                    salaryPeriod: getters.getCurrentJob
-                        .salaryPeriod
-                }).then(() => {
-                    state.repostingSteps.fillIn_paymentTo = "done";
-                    res();
-
-                })
-                .catch((error) => {
-                    state.repostingSteps.fillIn_paymentTo = "failed";
-                    state.failureMsgs.fillIn_paymentTo = error.response.data.error;
-                    console.log(error);
-                    rej(error)
-                });
-        })
-
-    },
-    execute_fillIn_paymentType({ state, getters }) {
-        return new Promise((res, rej) => {
-            state.repostingSteps.fillIn_paymentType = "doing";
-            state.failureMsgs.fillIn_paymentType = null;
-            let url = state.BASE_URL + "/jobs/fillIn_paymentType";
-            axios
-                .post(url, {
-                    salaryPeriod: getters.getCurrentJob
+                    minSalary:getters.getCurrentJob
+                        .minSalary,
+                    maxSalary:getters.getCurrentJob
+                        .maxSalary,
+                    salaryPeriod:getters.getCurrentJob
                         .salaryPeriod,
                 }).then(() => {
-                    state.repostingSteps.fillIn_paymentType = "done";
+                    state.repostingSteps.fillIn_salary = "done";
                     res();
                 })
                 .catch((error) => {
-                    state.repostingSteps.fillIn_paymentType = "failed";
-                    state.failureMsgs.fillIn_paymentType = error.response.data.error;
+                    state.repostingSteps.fillIn_salary = "failed";
+                    state.failureMsgs.fillIn_salary = error.response.data.error;
                     console.log(error);
-                    rej(error)
+                    rej(error);
                 });
         })
 

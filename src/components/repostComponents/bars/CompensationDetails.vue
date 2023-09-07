@@ -43,9 +43,7 @@ export default {
     async fillInPage() {
       this.isLoading = true;
       try {
-        await this.$store.dispatch("repostPageModule/execute_fillIn_paymentType");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_salaryFromAndTo");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_paymentPer");
+        await this.$store.dispatch("repostPageModule/execute_fillIn_salary");
         await this.$store.dispatch("repostPageModule/execute_fillIn_benefits");
         this.isLoading = false;
       } catch (error) {
@@ -56,9 +54,7 @@ export default {
     async fillInPageAndContinue() {
       this.isLoading = true;
       try {
-        await this.$store.dispatch("repostPageModule/execute_fillIn_paymentType");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_salaryFromAndTo");
-        await this.$store.dispatch("repostPageModule/execute_fillIn_paymentPer");
+        await this.$store.dispatch("repostPageModule/execute_fillIn_salary");
         await this.$store.dispatch("repostPageModule/execute_fillIn_benefits");
         await this.$store.dispatch("repostPageModule/execute_clickSaveAndContinue");
         this.isLoading = false;
