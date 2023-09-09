@@ -2,16 +2,8 @@
   <div>
     <div v-if="currentJob">
       <div class="text-center">
-        <v-alert
-          style="font-size: 22px"
-          tile
-          type="warning"
-          color="#f1f6f9"
-          class="text-dark"
-          prominent
-          border="left"
-          elevation="3"
-        >
+        <v-alert style="font-size: 22px" tile type="warning" color="#f1f6f9" class="text-dark" prominent border="left"
+          elevation="3">
           <span>Currently Reposting : </span>
           <span class="font-weight-bold" style="color: #3d7ea6">{{
             currentJob.jobTitle
@@ -20,26 +12,22 @@
             AND
             <span class="font-weight-bold" style="color: #ee6f57">{{
               queueLenght - 1
-            }}</span>
-            other jobs left in queue</span
-          >
+            }}
+            </span>
+            other jobs left in queue
+          </span>
         </v-alert>
       </div>
-      <v-stepper
-        editable
-        v-model="currentStep"
-        vertical
-        class="mb-10"
-        elevation="0"
-      >
-
+      <v-stepper editable v-model="currentStep" vertical class="mb-10" elevation="0">
+        <QuickRepost class="elevation-4 my-5" />
+        <hr>
         <div v-if="doesJobHasFullDetails">
           <OpenPostJobBar />
           <OpenPostJobPage stepNumber="2" />
 
           <GettingStartedBar />
           <FillInJobTitle stepNumber="3" />
-					<FillInHiresNumber stepNumber="4" />
+          <FillInHiresNumber stepNumber="4" />
           <FillInRolesLocation stepNumber="5" />
 
           <JobDetailsBar />
@@ -60,7 +48,7 @@
             <ApplicationSettingsBar />
             <FillInIsResumeRequired stepNumber="13" />
             <FillInEmail stepNumber="14" />
-						<FillInDeadline stepNumber="15" />
+            <FillInDeadline stepNumber="15" />
           </div>
 
           <div>
@@ -74,7 +62,7 @@
             <CloseQuestions stepNumber="16" />
           </div>
 
-         <div>
+          <div>
             <!-- 8 here goes : sponsor -->
             <SponsoringPageBar class="mt-8" />
             <FillInAdDurationType stepNumber="17" />
@@ -129,6 +117,7 @@ import JobDetailsBar from "./bars/JobDetails";
 import PreviewJobBar from "./bars/PreviewJob";
 import SponsoringPageBar from "./bars/SponsoringPage";
 import CompensationDetailsBar from "./bars/CompensationDetails";
+import QuickRepost from "./bars/QuickRepost.vue";
 export default {
   name: "repostingComponent",
 
@@ -161,6 +150,7 @@ export default {
     SponsoringPageBar,
     CompensationDetailsBar,
     CustomizedPreScreeningBar,
+    QuickRepost
   },
 
   computed: {
@@ -178,7 +168,7 @@ export default {
       get() {
         return this.$store.getters["repostPageModule/doesJobHasFullDetails"];
       },
-    }, 
+    },
   },
   data() {
     return {

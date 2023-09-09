@@ -339,6 +339,25 @@ export const actions = {
         })
 
     },
+    execute_duplicateJob({ state, getters }) {
+        return new Promise((res, rej) => {
+            state.repostingSteps.duplicateJob = "doing";
+            state.failureMsgs.duplicateJob = null;
+            let url = state.BASE_URL + `/jobs/duplicate_job/${getters.getCurrentJob.job_id}`;
+            axios
+                .get(url)
+                .then(() => {
+                    state.repostingSteps.duplicateJob = "done";
+                    res();
+                })
+                .catch((error) => {
+                    state.repostingSteps.duplicateJob = "failed";
+                    state.failureMsgs.duplicateJob = error.response.data.error;
+                    console.log(error);
+                    rej(error)
+                });
+        })
+    },
     execute_fillIn_isJobFullTimeOrPartTime({ state, getters }) {
         return new Promise((res, rej) => {
             state.repostingSteps.fillIn_isJobFullTimeOrPartTime = "doing";
@@ -381,7 +400,6 @@ export const actions = {
         })
 
     },
-
     execute_fillIn_JobTitle({ state, getters }) {
         return new Promise((res, rej) => {
 
